@@ -13,6 +13,7 @@ case 66: g=((h*60)+m)*0; break;
 case 1 : g=((h*60)+m)*30; break;
 default: {
 g=((h*60)+m)*1;
+printf("vartist: %f", g);
 return 1;}
 }
 printf("vartist: %f", g);

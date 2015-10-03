@@ -6,16 +6,19 @@
 
 double calc(double x, double y, double z) {
 double a;
-
-int main(){
-float a0, a1, a2;
+double a0, a1, a2;
 a0 = (pow(x, (y+1)))/(pow((x-y), (1/z)));
 a1 = y/(4*(fabs(x + y)));
 a2 = pow(x, (1/fabs(sin(y))));
 a = a0 + a1 + a2;
-printf("a= %d", a);
-return 0;
-}
 return a;
 }
+/*
+int main() {
 
+double a = calc(2.242, 1.234, 0.234);
+printf("a= %d", a);
+
+}
+
+*/

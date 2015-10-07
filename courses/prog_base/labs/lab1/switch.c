@@ -53,6 +53,5 @@ if (op >= 100){
 }
 }
 }
-printf("%i", res);
 return res;
 }

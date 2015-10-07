@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-int satisfies(int a, int b, int c); {
+int satisfies(int a, int b, int c) {
 int modmin, sum2, maximum, minimum;
 if (a<0, b<0, c<0) {
     if (abs(a) < abs(b), abs(a) < abs(c)){
@@ -17,7 +17,7 @@ if (a<0, b<0, c<0) {
         modmin = abs(c);
         sum2 = a + b;
     }
-    if (sum2 < -256, modmin < 256, (log2(modmin))%1 = 0){
+    if (sum2 < -256, modmin < 256, ((int)log2(modmin))%1 == 0){
             printf("1");
             return 0;
     }

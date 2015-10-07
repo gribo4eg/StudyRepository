@@ -42,13 +42,11 @@ case 11: res = 4 * M_PI * cos((a * b) / a);
 default:{
 if (op < 100) {
     res = ((op % abs(a + 1)) + (op % abs(b + 1)));
-    printf("%i", res);
-    return 1;
+    return res;
     }else {
 if (op >= 100){
     res = -1;
-    printf("%i", res);
-    return 1;
+    return res;
 }
 }
 }

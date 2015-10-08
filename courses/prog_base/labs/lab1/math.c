@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-#import <math.h>
-
 double calc(double x, double y, double z) {
 double a;
 double a0, a1, a2;

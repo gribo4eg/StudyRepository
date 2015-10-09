@@ -10,7 +10,7 @@ if (op < 0){
     b = c;
     op = abs(op);
 }
-if (a == 0, b == 0){
+if (a == 0 || b == 0){
     return 0;
 }
 switch (op){

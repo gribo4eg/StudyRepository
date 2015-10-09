@@ -5,7 +5,7 @@
 double calc(double x, double y, double z) {
 double a;
 double a0, a1, a2;
-if (z==0, x==y, x==0, y==0){
+if (z==0 || x==y || x==0 || y==0){
     return NAN;
 }
 a0 = ((pow(x, y+1)) / (pow((x - y), 1/z)));

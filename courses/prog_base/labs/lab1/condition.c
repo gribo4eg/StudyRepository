@@ -23,6 +23,8 @@ if (a<0 && b<0 && c<0){
         } else {
 if (abs(sum2)>modmin && sum2>-256){
     res= 1;
+} else {
+res= 0;
 }
 }
 }

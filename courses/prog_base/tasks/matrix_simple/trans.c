@@ -21,7 +21,6 @@ void fillRand(int mat[4][4])
     mat[3][1]=n= -999 + rand() % 999;
     mat[3][2]=o= -999 + rand() % 999;
     mat[3][3]=p= -999 + rand() % 999;
-    printf("%i %i %i %i \n%i %i %i %i \n%i %i %i %i \n%i %i %i %i", a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p);
 }
 
 void rotateCCW90(int mat[4][4])
@@ -61,7 +60,6 @@ void rotateCCW90(int mat[4][4])
     mat[2][3]=n;
     mat[1][3]=o;
     mat[0][3]=p;
-    printf("%i %i %i %i \n%i %i %i %i \n%i %i %i %i \n%i %i %i %i", d, h, l, p, c, g, k, o, b, f, j, n, a, e, i, m);
 }
 
 void flipH(int mat[4][4])
@@ -100,7 +98,6 @@ void flipH(int mat[4][4])
     mat[2][3]=i;
     mat[1][3]=e;
     mat[0][3]=a;
-    printf("%i %i %i %i \n%i %i %i %i \n%i %i %i %i \n%i %i %i %i", d, c, b, a, h, g, f, e, l, k, j, i, p, o, n, m);
 }
 
 void transposSide(int mat[4][4])
@@ -139,5 +136,4 @@ void transposSide(int mat[4][4])
     mat[2][3]=b;
     mat[1][3]=c;
     mat[0][3]=d;
-    printf("%i %i %i %i \n%i %i %i %i \n%i %i %i %i \n%i %i %i %i", p, l, h, d, o, k, g, c, n, j, f, b, m, i, e, a);
 }

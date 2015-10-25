@@ -18,7 +18,7 @@ void fillRand(int mat[4][4])
 void rotateCCW90(int mat[4][4])
 {
     int s, s1, r, r1;
-    int mat1[4][4]
+    int mat1[4][4];
     for (r=0, r1=0; r<4; r++, r1++)
      {
          for (s=0, s1=0; s<4; s++, s1++)

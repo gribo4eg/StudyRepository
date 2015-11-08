@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1446997819 source:c:\repository\repos1\repos1\courses\prog_base\tasks\console\console\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+

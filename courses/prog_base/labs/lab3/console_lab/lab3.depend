@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1448708370 source:c:\repository\repos1\repos1\courses\prog_base\labs\lab3\console_lab\lab3\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<string.h>
+	<windows.h>
+

@@ -22,7 +22,7 @@ void fprocess(const char * pread, const char * pwrite)
          i++;
      }
      fclose(p);
-
+    
     p = fopen(pwrite, "w");
 
     if(p == NULL)
@@ -30,7 +30,16 @@ void fprocess(const char * pread, const char * pwrite)
         puts("Error!");
         return EXIT_FAILURE;
     }
-
+    
+    for(i=0; i<100; i++)
+    {
+        if(str[i]=='\n')
+        {
+            str[i]='\0';
+            break;
+        }
+    }
+    
     ptr = strtok(str, " ");
     while(ptr != NULL)
     {

@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1456782272 source:c:\repository\repos1\courses\prog_base_2\tasks\module\module\list.c
+	"list.h"
+
+1456783164 c:\repository\repos1\courses\prog_base_2\tasks\module\module\list.h
+	<stdlib.h>
+
+1456783120 source:c:\repository\repos1\courses\prog_base_2\tasks\module\module\main.c
+	<stdio.h>
+	<stdlib.h>
+	<assert.h>
+	"list.h"
+

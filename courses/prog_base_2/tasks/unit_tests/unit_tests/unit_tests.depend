@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1456783346 source:c:\repository\repos1\courses\prog_base_2\tasks\unit_tests\unit_tests\list.c
+	"list.h"
+
+1456783346 c:\repository\repos1\courses\prog_base_2\tasks\unit_tests\unit_tests\list.h
+	<stdlib.h>
+
+1457383678 source:c:\repository\repos1\courses\prog_base_2\tasks\unit_tests\unit_tests\main.c
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<setjmp.h>
+	<cmocka.h>
+	"list.h"
+

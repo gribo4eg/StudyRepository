@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1459101483 source:c:\repository\repos1\courses\prog_base_2\tasks\threads\consumer.c
+	<stdio.h>
+	<windows.h>
+	"consumer.h"
+	"thread.h"
+
+1459101423 c:\repository\repos1\courses\prog_base_2\tasks\threads\consumer.h
+	"producer.h"
+	"mutex.h"
+	"thread.h"
+
+1459101366 c:\repository\repos1\courses\prog_base_2\tasks\threads\producer.h
+	"thread.h"
+	"mutex.h"
+
+1459098089 c:\repository\repos1\courses\prog_base_2\tasks\threads\thread.h
+
+1458937606 c:\repository\repos1\courses\prog_base_2\tasks\threads\mutex.h
+
+1459098166 source:c:\repository\repos1\courses\prog_base_2\tasks\threads\lib_thread.c
+	<windows.h>
+	"thread.h"
+	"mutex.h"
+
+1459101594 source:c:\repository\repos1\courses\prog_base_2\tasks\threads\main.c
+	<stdlib.h>
+	<stdio.h>
+	<windows.h>
+	"thread.h"
+	"mutex.h"
+	"producer.h"
+	"consumer.h"
+

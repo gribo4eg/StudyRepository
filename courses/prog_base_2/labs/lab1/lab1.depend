@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1459549787 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\folder.c
+	"folder.h"
+	"file.h"
+
+1459549053 c:\repository\repos1\courses\prog_base_2\labs\lab1\folder.h
+	<stdlib.h>
+	"file.h"
+
+1459553849 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\main.c
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<setjmp.h>
+	<cmocka.h>
+	"folder.h"
+	"file.h"
+	"glossary.h"
+
+1459547740 c:\repository\repos1\courses\prog_base_2\labs\lab1\file.h
+	<strings.h>
+	<stdlib.h>
+	"folder.h"
+
+1459554008 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\file.c
+	"file.h"
+	"folder.h"
+
+1424096216 c:\program files (x86)\cmocka\include\cmocka.h
+
+1459552937 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\glossary.c
+	"glossary.h"
+
+1459551762 c:\repository\repos1\courses\prog_base_2\labs\lab1\glossary.h
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	"folder.h"
+	"file.h"
+

@@ -63,10 +63,12 @@ char * folder_getData(folder_t * folder)
 {
     register int i;
     if(folder == NULL)
-        return NULL;
-    char folderData[100];
-    for(i = 0; i<folder_getSize(folder); i++)
+        return;
+    char folderData[300];
+    for(i = 0; i<folder->size; i++)
     {
+        if(file_getStatus(folder->files[i]) == FILE_EMPTY)
+            continue;
         if(i == 0)
         {
             strcpy(folderData, file_getData(folder, folder->files[i]));

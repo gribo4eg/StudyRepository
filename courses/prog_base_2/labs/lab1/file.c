@@ -17,14 +17,14 @@ struct file_s
 void file_fillData(folder_t* folder, file_t* file, char* data)
 {
     if(folder == NULL || file == NULL)
-        return NULL;
+        return;
     if(data == NULL)
     {
         file->status = FILE_EMPTY;
-        return NULL;
+        return;
     }
 
-    file->data = (char*)malloc(FILE_SIZE * sizeof(char));//30 symbols in one string
+    file->data = (char*)malloc(FILE_SIZE * sizeof(char));//100 symbols in one string
 
     strcpy(file->data, data);
 
@@ -42,7 +42,7 @@ void file_deleteData(folder_t * folder, file_t * file)
 char * file_getData(folder_t * folder, file_t * file)
 {
     if(folder == NULL || file == NULL || folder->status == FOLDER_EMPTY || file->status == FILE_EMPTY)
-        return NULL;
+        return;
     return file->data;
 }
 

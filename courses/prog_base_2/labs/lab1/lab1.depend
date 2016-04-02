@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1459549787 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\folder.c
+1459591656 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\folder.c
 	"folder.h"
 	"file.h"
 
@@ -7,7 +7,7 @@
 	<stdlib.h>
 	"file.h"
 
-1459553849 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\main.c
+1459591935 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\main.c
 	<stdlib.h>
 	<stdarg.h>
 	<stddef.h>
@@ -17,12 +17,12 @@
 	"file.h"
 	"glossary.h"
 
-1459547740 c:\repository\repos1\courses\prog_base_2\labs\lab1\file.h
+1459591239 c:\repository\repos1\courses\prog_base_2\labs\lab1\file.h
 	<strings.h>
 	<stdlib.h>
 	"folder.h"
 
-1459554008 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\file.c
+1459591254 source:c:\repository\repos1\courses\prog_base_2\labs\lab1\file.c
 	"file.h"
 	"folder.h"
 

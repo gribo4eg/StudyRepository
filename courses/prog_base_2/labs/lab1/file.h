@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include "folder.h"
 
-#define FILE_SIZE 30
+#define FILE_SIZE 100
 
 typedef struct folder_s folder_t;
 typedef struct file_s file_t;

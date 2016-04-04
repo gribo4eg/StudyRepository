@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
 
     closesocket(Socket);
     WSACleanup();
-
+	
+	getchar();
     return 0;
 }

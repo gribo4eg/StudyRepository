@@ -27,10 +27,11 @@ workers_t * workers_newWorker()
     strcpy(worker->surname, "");
     strcpy(worker->corp, "");
     strcpy(worker->depart, "");
-    worker->birthdate.tm_year = 9999;
-    worker->birthdate.tm_mday = 99;
-    worker->birthdate.tm_mon = 99;
-    worker->year = 9999;
+    memset(&worker->birthdate, 0, sizeof(worker->birthdate));
+    worker->birthdate.tm_year = 0000;
+    //worker->birthdate.tm_mday = ;
+    //worker->birthdate.tm_mon = ;
+    worker->year = 0000;
     worker->height = 0.0;
     return worker;
 }
@@ -62,7 +63,7 @@ void workers_parseWorker(workers_t **worker, const char *xmlFile)
                 }
                 else if(xmlStrEqual(xJ->name, "birthdate"))
                     sscanf(xmlNodeGetContent(xJ), "%i-%i-%i", &worker[i]->birthdate.tm_year,
-                           &worker[i]->birthdate.tm_mday, &worker[i]->birthdate.tm_mon);
+                           &worker[i]->birthdate.tm_mon, &worker[i]->birthdate.tm_mday);
                 else if(xmlStrEqual(xJ->name, "year"))
                     worker[i]->year = atoi(xmlNodeGetContent(xJ));
                 else if(xmlStrEqual(xJ->name, "height"))
@@ -78,6 +79,6 @@ void workers_printWorker(workers_t * worker)
 {
     printf("Name: %s\nSurname: %s\nCorporation: \"%s\"\nDepartment:<%s>\nBirth date: %i-%i-%i\nBecome worker in: %i\nHeight: %.2f\n\n----------------------\n\n",
            worker->name, worker->surname, worker->corp, worker->depart,
-           worker->birthdate.tm_mday, worker->birthdate.tm_mon, worker->birthdate.tm_year,
+           worker->birthdate.tm_year, worker->birthdate.tm_mon, worker->birthdate.tm_mday,
            worker->year, worker->height);
 }

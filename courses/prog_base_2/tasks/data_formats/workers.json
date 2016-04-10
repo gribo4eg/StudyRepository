@@ -1,0 +1,35 @@
+[
+	{
+		"name": "Maxim",
+		"surname": "Koval",
+		"corporation": {
+			"name": "BillyJ",
+			"department": "Design"
+		},
+		"birthdate": "1895-12-12",
+		"year": 2005,
+		"height": 1.70
+	},
+	{
+		"name": "Andrey",
+		"surname": "Berman",
+		"corporation": {
+			"name": "ModernT",
+			"department": "Processing"
+		},
+		"birthdate": "1900-01-01",
+		"year": 2010,
+		"height": 1.76
+	},
+	{
+		"name": "Alex",
+		"surname": "Norman",
+		"corporation": {
+			"name": "ModernT",
+			"department": "Testing"
+		},
+		"birthdate": "1899-06-25",
+		"year": 2007,
+		"height": 1.95
+	}
+]

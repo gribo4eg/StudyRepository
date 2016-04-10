@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workers>
+    <worker>
+        <name>Maxim</name>
+        <surname>Koval</surname>
+        <corporation name="BillyJ">
+            <department>Design</department>
+        </corporation>
+        <birthdate>1895-12-12</birthdate>
+        <year>2005</year>
+        <height>1.70</height>
+    </worker>
+    <worker>
+        <name>Andrey</name>
+        <surname>Berman</surname>
+        <corporation name="ModernT">
+            <department>Processing</department>
+        </corporation>
+        <birthdate>1900-01-01</birthdate>
+        <year>2010</year>
+        <height>1.76</height>
+    </worker>
+    <worker>
+        <name>Alex</name>
+        <surname>Norman</surname>
+        <corporation name="ModernT">
+            <department>Testing</department>
+        </corporation>
+        <birthdate>1899-25-06</birthdate>
+        <year>2007</year>
+        <height>1.95</height>
+    </worker>
+</workers>

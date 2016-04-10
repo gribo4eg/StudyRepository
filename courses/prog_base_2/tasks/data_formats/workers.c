@@ -28,11 +28,11 @@ workers_t * workers_newWorker()
     strcpy(worker->corp, "");
     strcpy(worker->depart, "");
     memset(&worker->birthdate, 0, sizeof(worker->birthdate));
-    worker->birthdate.tm_year = 0000;
-    //worker->birthdate.tm_mday = ;
-    //worker->birthdate.tm_mon = ;
-    worker->year = 0000;
-    worker->height = 0.0;
+    worker->birthdate.tm_year = 1111;
+    worker->birthdate.tm_mday = 11;
+    worker->birthdate.tm_mon = 11;
+    worker->year = 1111;
+    worker->height = 1.1;
     return worker;
 }
 
@@ -62,8 +62,8 @@ void workers_parseWorker(workers_t **worker, const char *xmlFile)
                     strcpy(worker[i]->depart, xmlNodeGetContent(xJ));
                 }
                 else if(xmlStrEqual(xJ->name, "birthdate"))
-                    sscanf(xmlNodeGetContent(xJ), "%i-%i-%i", &worker[i]->birthdate.tm_year,
-                           &worker[i]->birthdate.tm_mon, &worker[i]->birthdate.tm_mday);
+                    sscanf(xmlNodeGetContent(xJ), "%i-%i-%i", &(worker[i]->birthdate.tm_year),
+                           &(worker[i]->birthdate.tm_mon), &(worker[i]->birthdate.tm_mday));
                 else if(xmlStrEqual(xJ->name, "year"))
                     worker[i]->year = atoi(xmlNodeGetContent(xJ));
                 else if(xmlStrEqual(xJ->name, "height"))

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1460330091 source:c:\repository\repos1\courses\prog_base_2\tasks\data_formats\workers.c
+1460330907 source:c:\repository\repos1\courses\prog_base_2\tasks\data_formats\workers.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>

@@ -6,7 +6,7 @@
         <corporation name="BillyJ">
             <department>Design</department>
         </corporation>
-        <birthdate>1895-12-11</birthdate>
+        <birthdate>1990-12-11</birthdate>
         <year>2005</year>
         <height>1.70</height>
     </worker>
@@ -16,7 +16,7 @@
         <corporation name="ModernT">
             <department>Processing</department>
         </corporation>
-        <birthdate>1900-09-13</birthdate>
+        <birthdate>1985-10-20</birthdate>
         <year>2010</year>
         <height>1.76</height>
     </worker>
@@ -26,7 +26,7 @@
         <corporation name="ModernT">
             <department>Testing</department>
         </corporation>
-        <birthdate>1899-06-26</birthdate>
+        <birthdate>1970-06-26</birthdate>
         <year>2007</year>
         <height>1.95</height>
     </worker>

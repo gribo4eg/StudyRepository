@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1460803067 source:c:\repository\repos1\courses\prog_base_2\labs\lab2\lab2dll1\main.cpp
+	"main.h"
+
+1460803077 c:\repository\repos1\courses\prog_base_2\labs\lab2\lab2dll1\main.h
+	<windows.h>
+	"list.h"
+
+1460665634 c:\repository\repos1\courses\prog_base_2\labs\lab2\lab2staticlib\list.h
+	<stdlib.h>
+	<stdio.h>
+

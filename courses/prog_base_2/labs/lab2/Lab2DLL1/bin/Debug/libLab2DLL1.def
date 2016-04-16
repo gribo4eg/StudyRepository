@@ -1,0 +1,4 @@
+EXPORTS
+    DllMain@12 @1
+    check_foo @2
+    reaction @3

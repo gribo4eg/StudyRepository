@@ -52,7 +52,8 @@ int main(void)
         dll->react(dll->check(list));
         Sleep(750);
     }
-
+    
+    FreeLibrary(dll);
     list_freeList(list);
     return 0;
 }

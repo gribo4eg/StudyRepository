@@ -41,6 +41,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Creatures.cpp" />
+		<Unit filename="Creatures.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

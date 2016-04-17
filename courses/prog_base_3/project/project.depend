@@ -380,6 +380,13 @@
 	<string>
 	<vector>
 
-1460919799 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1460929091 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+	<SFML/Graphics.hpp>
+	"Creatures.h"
+
+1460929004 source:c:\repository\repos1\courses\prog_base_3\project\creatures.cpp
+	"Creatures.h"
+
+1460926610 c:\repository\repos1\courses\prog_base_3\project\creatures.h
 	<SFML/Graphics.hpp>
 

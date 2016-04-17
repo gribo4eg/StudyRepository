@@ -1,29 +1,19 @@
 #include <SFML/Graphics.hpp>
 
+#include "Creatures.h"
 
 using namespace std;
 using namespace sf;
 
 int main(void)
 {
-    RenderWindow window(VideoMode(1280, 720), "SFML works!");
+    RenderWindow window(VideoMode(1280, 720), "TerraX!");
 
     float CurrentFrame = 0;
 
     Clock clock;
 
-    Image Hero;
-    Hero.loadFromFile("images/mob.png");
-    Hero.createMaskFromColor(Color(0,0,0,0));
-
-    Texture HeroTexture;
-    HeroTexture.loadFromImage(Hero);
-
-    Sprite HeroSprite;
-    HeroSprite.setTexture(HeroTexture);// width.x = 115; width.y = 190
-    HeroSprite.setTextureRect(IntRect(0, 10, 115, 190));
-    HeroSprite.setPosition(900, 25);
-    HeroSprite.setScale(0.4,0.4);
+    Creatures enemy("mob.jpg", 100, 100, 115, 190);
 
     while (window.isOpen())
     {
@@ -41,58 +31,41 @@ int main(void)
 
         if(Keyboard::isKeyPressed(Keyboard::Left))
         {
+            enemy.direction = 1; enemy.speed = 0.1;
             CurrentFrame += 0.005 * time;
             if(CurrentFrame > 6)
                 CurrentFrame -= 6;
-            HeroSprite.setTextureRect(IntRect(115 * int(CurrentFrame), 10, 115, 190));
-            HeroSprite.move(-0.1 * time, 0);
+            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 10, 115, 190));
         }
 
         if(Keyboard::isKeyPressed(Keyboard::Right))
         {
+            enemy.direction = 0;
+            enemy.speed = 0.1;
             CurrentFrame += 0.005 * time;
             if(CurrentFrame > 6)
                 CurrentFrame -= 6;
-            HeroSprite.setTextureRect(IntRect(115 * int(CurrentFrame), 210, 115, 190));
-            HeroSprite.move(0.1 * time, 0);
+            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 210, 115, 190));
         }
 
         if(Keyboard::isKeyPressed(Keyboard::Down))
         {
-            HeroSprite.move(0, 0.1 * time);
-            HeroSprite.setTextureRect(IntRect(0, 10, 115, 190));
+            enemy.sprite.move(0, 0.1 * time);
+            enemy.sprite.setTextureRect(IntRect(0, 10, 115, 190));
         }
 
         if(Keyboard::isKeyPressed(Keyboard::Up))
         {
-            HeroSprite.move(0, -0.1 * time);
-            HeroSprite.setTextureRect(IntRect(0, 10, 115, 190));
+            enemy.sprite.move(0, -0.1 * time);
+            enemy.sprite.setTextureRect(IntRect(0, 10, 115, 190));
         }
 
+        enemy.position(time);
+
         window.clear(Color::White);
-        window.draw(HeroSprite);
+        window.draw(enemy.sprite);
         window.display();
     }
 
     return 0;
 }
-
-class Creatures
-{
-public:
-    creatures(string file, float x, float width,
-              float height);
-    float x, width, heigth, speed_x, speed;
-    int direction;
-    string imageName;
-    Image image;
-    Texture texture;
-    Sprite sprite;
-};
-
-Creatures::creatures(string file, float x, float width,
-              float height)
-              {
-                    imageName = file;
-
-              }

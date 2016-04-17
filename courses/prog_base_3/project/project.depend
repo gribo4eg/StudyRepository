@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1460388729 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1460447182 source:c:\users\Саша\c\tests\sfml\main.cpp
 	<SFML/Graphics.hpp>
 
 1429780453 c:\sfml\include\sfml\graphics.hpp
@@ -379,4 +379,7 @@
 	<SFML/System/String.hpp>
 	<string>
 	<vector>
+
+1460919799 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+	<SFML/Graphics.hpp>
 

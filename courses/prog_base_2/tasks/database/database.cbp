@@ -2,36 +2,30 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="project" />
+		<Option title="database" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/SFML" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/database" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add option="-DSFML_STATIC" />
-					<Add directory="C:/SFML/include" />
-					<Add directory="include" />
+					<Add directory="../../../../../../Libs/sqlite3" />
 				</Compiler>
 				<Linker>
-					<Add library="sfml-graphics" />
-					<Add library="sfml-window" />
-					<Add library="sfml-system" />
-					<Add directory="C:/SFML/lib" />
+					<Add library="../../../../../../Libs/sqlite3/bin/Debug/libsqlite3.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/SFML" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/database" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -41,13 +35,21 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Creatures.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="database.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="database.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="worker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="worker.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
-			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

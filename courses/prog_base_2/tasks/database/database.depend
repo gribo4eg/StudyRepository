@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1461546869 source:c:\repository\repos1\courses\prog_base_2\tasks\database\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sqlite3.h>
+	"database.h"
+	"worker.h"
+
+1450771366 c:\libs\sqlite3\sqlite3.h
+	<stdarg.h>
+
+1461541757 source:c:\repository\repos1\courses\prog_base_2\tasks\database\database.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<sqlite3.h>
+	"database.h"
+	"worker.h"
+
+1461538922 c:\repository\repos1\courses\prog_base_2\tasks\database\database.h
+	"worker.h"
+
+1461535301 c:\repository\repos1\courses\prog_base_2\tasks\database\worker.h
+	<time.h>
+
+1461539102 source:c:\repository\repos1\courses\prog_base_2\tasks\database\worker.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	"worker.h"
+

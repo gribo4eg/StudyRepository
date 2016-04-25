@@ -21,6 +21,7 @@ Creatures::Creatures(string file, float x, float y,
 
             sprite.setTexture(texture);
             sprite.setTextureRect(IntRect(0, 0, this->width, this->heigth));
+            sprite.setPosition(50, 50);
             sprite.setScale(0.4, 0.4);
         }
 

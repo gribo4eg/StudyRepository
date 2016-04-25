@@ -13,7 +13,7 @@ int main(void)
 
     Clock clock;
 
-    Creatures enemy("mob.jpg", 100, 100, 115, 190);
+    Creatures enemy("mob.jpg", 200, 200, 115, 195);
 
     while (window.isOpen())
     {
@@ -35,7 +35,7 @@ int main(void)
             CurrentFrame += 0.005 * time;
             if(CurrentFrame > 6)
                 CurrentFrame -= 6;
-            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 10, 115, 190));
+            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 10, 115, 195));
         }
 
         if(Keyboard::isKeyPressed(Keyboard::Right))
@@ -45,19 +45,19 @@ int main(void)
             CurrentFrame += 0.005 * time;
             if(CurrentFrame > 6)
                 CurrentFrame -= 6;
-            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 210, 115, 190));
+            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 210, 115, 195));
         }
 
         if(Keyboard::isKeyPressed(Keyboard::Down))
         {
             enemy.sprite.move(0, 0.1 * time);
-            enemy.sprite.setTextureRect(IntRect(0, 10, 115, 190));
+            enemy.sprite.setTextureRect(IntRect(0, 10, 115, 195));
         }
 
         if(Keyboard::isKeyPressed(Keyboard::Up))
         {
             enemy.sprite.move(0, -0.1 * time);
-            enemy.sprite.setTextureRect(IntRect(0, 10, 115, 190));
+            enemy.sprite.setTextureRect(IntRect(0, 10, 115, 195));
         }
 
         enemy.position(time);

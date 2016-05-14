@@ -5,9 +5,6 @@
 #include <Windows.h>
 #include <stdbool.h>
 
-/*#include "queue.h"
-#include "event.h"
-#include "user.h"*/
 #include "for_user.h"
 #include "unit_test.h"
 

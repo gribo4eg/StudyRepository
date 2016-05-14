@@ -4,8 +4,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "event.h"
+
 #define MAX_QUEUE_SIZE 10
 #define MAX_VALUE (float)20.0
+
 
 typedef enum queue_status_t
 {
@@ -23,6 +26,8 @@ void queue_enqueue(queue_t * queue, double value);
 double queue_dequeue(queue_t* queue);
 
 double queue_getByInd(queue_t* queue, int index);
+void queue_start(event_t* first, event_t* second, event_t* third, queue_t* queue);
+
 void queue_random(queue_t * queue);
 
 double queue_head(queue_t * queue);

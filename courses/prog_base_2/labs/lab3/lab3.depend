@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1463219442 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\queue.c
+1463235261 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\queue.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
@@ -7,9 +7,10 @@
 	<math.h>
 	"queue.h"
 
-1463220140 c:\repository\repos1\courses\prog_base_2\labs\lab3\queue.h
+1463235109 c:\repository\repos1\courses\prog_base_2\labs\lab3\queue.h
 	<stdlib.h>
 	<stdbool.h>
+	"event.h"
 
 1463173225 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\user.c
 	<stdlib.h>
@@ -19,7 +20,7 @@
 
 1463173252 c:\repository\repos1\courses\prog_base_2\labs\lab3\user.h
 
-1463218106 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\event.c
+1463233208 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\event.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
@@ -28,26 +29,26 @@
 	"event.h"
 	"user.h"
 
-1463218075 c:\repository\repos1\courses\prog_base_2\labs\lab3\event.h
+1463232895 c:\repository\repos1\courses\prog_base_2\labs\lab3\event.h
 	<stdbool.h>
 	"queue.h"
 	"user.h"
 
-1463222491 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\main.c
+1463235261 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	<conio.h>
 	<Windows.h>
 	<stdbool.h>
-	"queue.h"
 	"event.h"
 	"user.h"
+	"for_user.h"
 	"unit_test.h"
 
 1463222305 c:\repository\repos1\courses\prog_base_2\labs\lab3\unit_test.h
 
-1463222312 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\unit_tests.c
+1463232789 source:c:\repository\repos1\courses\prog_base_2\labs\lab3\unit_tests.c
 	<stdlib.h>
 	<stdarg.h>
 	<stddef.h>
@@ -55,4 +56,7 @@
 	<stdbool.h>
 	<cmocka.h>
 	"queue.h"
+
+1463234527 c:\repository\repos1\courses\prog_base_2\labs\lab3\for_user.h
+	"user.h"
 

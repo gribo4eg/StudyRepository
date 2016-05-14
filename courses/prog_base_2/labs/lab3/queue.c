@@ -16,6 +16,9 @@ struct queue_s
 };
 
 static void shiftLeft(queue_t* queue);
+static event_status_t queue_thirdEvent(queue_t* queue);
+static event_status_t queue_secondEvent(queue_t* queue);
+static event_status_t queue_firstEvent(queue_t* queue);
 
 queue_t * queue_new(void)
 {
@@ -128,8 +131,101 @@ void queue_random(queue_t * queue)
     queue_enqueue(queue, value);
 }
 
+void queue_start(event_t* first, event_t* second, event_t* third, queue_t* queue)
+{
+    event_status_t event;
+
+    printf("=*=*=*=*=*=*=*=*=*=*=*=WAITING FOR CHANGES=*=*=*=*=*=*=*=*=*=*=*=\n");
+    queue_random(queue);
+
+    //Sleep(900);
+    puts("");
+    queue_print(queue);
+    puts("\n");
+
+    puts("FIRST EVENT...\n");
+    event = queue_firstEvent(queue);
+    if(event == WRONG_DATA)
+        puts("Less then 10 elements\n");
+    else if(event == FIRST)
+        event_happend(first);
+    else if(event == BAD_EVENT)
+        puts("Nothing new!\n");
+
+    //Sleep(900);
+    puts("SECOND EVENT...\n");
+    event = queue_secondEvent(queue);
+    if(event == WRONG_DATA)
+        puts("Less then 5 elements\n");
+    else if(event == SECOND)
+        event_happend(second);
+    else if(event == BAD_EVENT)
+        puts("Nothing new!\n");
+
+    //Sleep(900);
+    puts("THIRD EVENT...\n");
+    event = queue_thirdEvent(queue);
+    if(event == WRONG_DATA)
+        puts("Less then 5 elements\n");
+    else if(event == THIRD)
+        event_happend(third);
+    else if(event == BAD_EVENT)
+        puts("Nothing new!\n");
+}
+
 static void shiftLeft(queue_t* queue)
 {
     for(int i = 0; i<queue->size-1; i++)
         queue->arr[i] = queue->arr[i+1];
+}
+
+static event_status_t queue_firstEvent(queue_t* queue)
+{
+    if(!queue_isFull(queue))
+        return WRONG_DATA;
+    double sum = 0;
+    for(int i = 0; i<queue_size(queue); i++)
+        sum += queue_getByInd(queue, i);
+
+    sum /= queue_size(queue);
+    sum = fabs(sum);
+
+    if( sum <= 1)
+        return FIRST;
+    else
+        return BAD_EVENT;
+}
+
+static event_status_t queue_secondEvent(queue_t* queue)
+{
+    if(queue_size(queue) < 5)
+        return WRONG_DATA;
+
+    double sum = 0;
+    for(int i = queue_size(queue) - 5; i <= 5; i++)
+        sum += queue_getByInd(queue, i);
+
+    sum /= 5;
+
+    if(sum > 5 || sum < -5)
+        return SECOND;
+    else
+        return BAD_EVENT;
+}
+
+static event_status_t queue_thirdEvent(queue_t* queue)
+{
+    if(queue_size(queue) < 5)
+        return WRONG_DATA;
+    double sum = 0;
+    for(int i = queue_size(queue) - 5; i<=5; i++)
+        sum += queue_getByInd(queue, i);
+
+    sum /= 5;
+    sum = fabs(sum);
+
+    if(sum > 10.0)
+        return THIRD;
+    else
+        return BAD_EVENT;
 }

@@ -5,9 +5,10 @@
 #include <Windows.h>
 #include <stdbool.h>
 
-#include "queue.h"
+/*#include "queue.h"
 #include "event.h"
-#include "user.h"
+#include "user.h"*/
+#include "for_user.h"
 #include "unit_test.h"
 
 void alert_callback(user_t * receiver, event_t * event);
@@ -48,45 +49,9 @@ int main(void)
     event_addReceiver(secondEvent, user3, alert_callback);
     event_addReceiver(thirdEvent, user2, alert_callback);
 
-    event_status_t event;
     while(!kbhit() && queue_status(queue) != QUEUE_FULL)
     {
-        printf("=*=*=*=*=*=*=*=*=*=*=*=WAITING FOR CHANGES=*=*=*=*=*=*=*=*=*=*=*=\n");
-        queue_random(queue);
-
-        Sleep(900);
-        puts("");
-        queue_print(queue);
-        puts("\n");
-
-        puts("FIRST EVENT...\n");
-        event = event_firstEvent(queue);
-        if(event == WRONG_DATA)
-            puts("Less then 10 elements\n");
-        else if(event == OK)
-            event_happend(firstEvent);
-        else if(event == BAD_EVENT)
-            puts("Nothing new!\n");
-
-        Sleep(900);
-        puts("SECOND EVENT...\n");
-        event = event_secondEvent(queue);
-        if(event == WRONG_DATA)
-            puts("Less then 5 elements\n");
-        else if(event == OK)
-            event_happend(secondEvent);
-        else if(event == BAD_EVENT)
-            puts("Nothing new!\n");
-
-        Sleep(900);
-        puts("THIRD EVENT...\n");
-        event = event_secondEvent(queue);
-        if(event == WRONG_DATA)
-            puts("Less then 5 elements\n");
-        else if(event == OK)
-            event_happend(thirdEvent);
-        else if(event == BAD_EVENT)
-            puts("Nothing new!\n");
+        queue_start(firstEvent, secondEvent, thirdEvent, queue);
     }
 
     event_free(firstEvent);

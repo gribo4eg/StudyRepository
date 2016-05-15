@@ -8,8 +8,10 @@ using namespace std;
 
 class Creatures
 {
+private:
+    float x, y;
 public:
-    float x, y, width, heigth, speed_x, speed;
+    float width, heigth, speed_x, speed_y, speed;
     int direction;
     string imageName;
     Image image;
@@ -18,23 +20,23 @@ public:
     //Creatures(string, float, float, float, float);
 
     Creatures(string file, float X, float Y,
-              float Width, float Height)
+            float Width, float Height)
     {
         direction = 0;
         imageName = file;
-        speed = 0;
-        speed_x = 0;
+        speed = 0; speed_x = 0;
+        speed_y = 0;
         x = X;
         y = Y;
         width = Width;
         heigth = Height;
         image.loadFromFile("images/" + imageName);
-        image.createMaskFromColor(Color::White);
+        image.createMaskFromColor(Color(255, 255, 255));
 
         texture.loadFromImage(image);
 
         sprite.setTexture(texture);
-        sprite.setTextureRect(IntRect(0, 0, this->width, this->heigth));
+        sprite.setTextureRect(IntRect(0, 0, width, heigth));
         sprite.setPosition(x, y);
         sprite.setScale(0.4, 0.4);
     }
@@ -45,15 +47,37 @@ public:
         {
         case 0:
             speed_x = speed;
+            speed_y = 0;
             break;
         case 1:
             speed_x = -speed;
+            speed_y = 0;
+            break;
+        case 2:
+            speed_x = 0;
+            speed_y = speed;
+            break;
+        case 3:
+            speed_x = 0;
+            speed_y = -speed;
             break;
         }
+
         x += speed_x * time;
+        y += speed_y * time;
 
         speed = 0;
         sprite.setPosition(x, y);
+    }
+
+    float getPlayerCoordX()
+    {
+        return x;
+    }
+
+    float getPlayerCoordY()
+    {
+        return y;
     }
 
 };

@@ -14,14 +14,14 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-DSFML_STATIC" />
-					<Add directory="C:/SFML/include" />
+					<Add directory="C:/Libs/SFML/include" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
-					<Add directory="C:/SFML/lib" />
+					<Add directory="C:/Libs/SFML/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -43,6 +43,8 @@
 		</Compiler>
 		<Unit filename="Creatures.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="map.h" />
+		<Unit filename="view.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

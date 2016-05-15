@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1463309167 source:c:\repository\repos1\courses\prog_base_2\tasks\windows\worker.c
+	<stdlib.h>
+	<string.h>
+	"worker.h"
+
+1463309181 c:\repository\repos1\courses\prog_base_2\tasks\windows\worker.h
+
+1463329861 source:c:\repository\repos1\courses\prog_base_2\tasks\windows\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<commctrl.h>
+	"worker.h"
+

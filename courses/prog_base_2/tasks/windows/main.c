@@ -93,8 +93,6 @@ int WINAPI WinMain(
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-    HINSTANCE hInstance = GetModuleHandle(NULL);
-
     static HINSTANCE hInst;
 
     static HWND hButtonEx, hLable;
@@ -197,7 +195,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                     150, 20, 130, 23,
                     hwnd,
                     (HMENU)LABLE_ID,
-                    hInstance,
+                    hInst,
                     NULL);
         int ret = SetTimer(hwnd, TIMER_CB, TIMER_TICK, NULL);
         if(ret == 0)

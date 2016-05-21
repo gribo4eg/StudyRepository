@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1463772131 source:c:\repository\repos1\courses\prog_base_2\tests\test_1\unittests\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<setjmp.h>
+	<windows.h>
+	<cmocka.h>
+

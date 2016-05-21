@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1459740961 source:c:\repository\repos1\courses\prog_base_2\tests\test_1\mainapp\module\file.c
+	"file.h"
+	"folder.h"
+
+1459591239 c:\repository\repos1\courses\prog_base_2\tests\test_1\mainapp\module\file.h
+	<strings.h>
+	<stdlib.h>
+	"folder.h"
+
+1459549053 c:\repository\repos1\courses\prog_base_2\tests\test_1\mainapp\module\folder.h
+	<stdlib.h>
+	"file.h"
+
+1459591656 source:c:\repository\repos1\courses\prog_base_2\tests\test_1\mainapp\module\folder.c
+	"folder.h"
+	"file.h"
+
+1463293074 source:c:\repository\repos1\courses\prog_base_2\tests\test_1\mainapp\list\list.c
+	<stdlib.h>
+	"list.h"
+
+1463293074 c:\repository\repos1\courses\prog_base_2\tests\test_1\mainapp\list\list.h
+	<stdlib.h>
+
+1463821742 source:c:\repository\repos1\courses\prog_base_2\tests\test_1\mainapp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"folder.h"
+	"file.h"
+
+1463820396 c:\repository\repos1\courses\prog_base_2\tests\test_1\libfilesystem\folder.h
+	<stdlib.h>
+	"file.h"
+
+1463821760 c:\repository\repos1\courses\prog_base_2\tests\test_1\libfilesystem\file.h
+	<strings.h>
+	<stdlib.h>
+	"folder.h"
+

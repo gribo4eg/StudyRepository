@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1460593386 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\json\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1460593386 c:\repository\repos1\courses\prog_base_2\labs\lab4\json\cjson.h
+
+1463947691 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<conio.h>
+	"worker/worker.h"
+	"socket/socket.h"
+
+1463950443 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\worker\worker.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<windows.h>
+	"worker.h"
+	"../JSON/cJSON.h"
+
+1463949242 c:\repository\repos1\courses\prog_base_2\labs\lab4\worker\worker.h
+
+1463925664 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\http\http.c
+	<stdlib.h>
+	<stdio.h>
+	<stddef.h>
+	<string.h>
+	"http.h"
+
+1463293074 c:\repository\repos1\courses\prog_base_2\labs\lab4\http\http.h
+
+1463293074 c:\repository\repos1\courses\prog_base_2\labs\lab4\socket\socket.h
+
+1463926278 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\socket\socket_win.c
+	<winsock2.h>
+	"socket.h"
+
+1463939796 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\server\server.c
+	<stdlib.h>
+	"server.h"
+	"../http/http.h"
+
+1463939783 c:\repository\repos1\courses\prog_base_2\labs\lab4\server\server.h
+	"../http/http.h"
+	"../socket/socket.h"
+	"../worker/worker.h"
+
+1463937870 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\worker\worker.json
+

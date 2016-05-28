@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1464430493 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\main.c
+1464435766 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -10,12 +10,12 @@
 	"http/http.h"
 	"client/client.h"
 
-1464430269 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.c
+1464432242 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.c
 	"client.h"
 	"../socket/socket.h"
 	<winsock2.h>
 
-1464427956 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.h
+1464435677 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.h
 	<winsock2.h>
 	"../socket/socket.h"
 
@@ -49,7 +49,7 @@
 1463955757 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\read.h
 	"worker/worker.h"
 
-1464423174 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.h
+1464435252 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.h
 
 1450771366 c:\repository\repos1\courses\prog_base_2\tests\test_2\sqlite3.h
 	<stdarg.h>
@@ -76,7 +76,7 @@
 	"../socket/socket.h"
 	"../worker/worker.h"
 
-1464428242 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.c
+1464435202 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>

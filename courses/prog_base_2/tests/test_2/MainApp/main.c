@@ -17,7 +17,8 @@ int main()
     lib_init();
 
     worker_t* myWorker = worker_new();
-    worker_fill(myWorker, "Sasha", "Voloshchenko", "1998-04-08", 100500, 10.0);
+
+    worker_fill(myWorker, "Sasha", "Voloshchenko", 6);
     char* worker = worker_makeWorkerJSON(myWorker);
 
     socket_t* server = socket_new();
@@ -25,7 +26,15 @@ int main()
     socket_listen(server);
 
     char buffer[10000];
-    /*while(true){
+
+    const char* hostName = "pb-homework.appspot.com";
+
+    char toReturn[100];
+    strcpy(toReturn, secondTask(hostName));
+
+    puts(toReturn);
+
+    while(true){
         puts("Waiting for client...");
         socket_t* client = socket_accept(server);
 
@@ -42,6 +51,9 @@ int main()
         if(!strcmp(request.uri, "/info"))
         {
             server_info(client, worker);
+        }if(!strcmp(request.uri, "/external"))
+        {
+            server_info(client, toReturn);
         }
         if(kbhit()){
                 char e = getch();
@@ -51,15 +63,7 @@ int main()
                 }
             }
         socket_free(client);
-    }*/
-
-    const char* hostName = "pb-homework.appspot.com";
-
-    strcpy(buffer, secondTask(hostName));
-
-
-
-    puts(buffer);
+    }
 
     socket_free(server);
 

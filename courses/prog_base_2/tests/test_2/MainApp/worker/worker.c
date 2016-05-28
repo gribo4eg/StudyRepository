@@ -12,26 +12,77 @@ struct worker_s
 {
     char name[50];
     char surname[50];
-    struct tm birthdate;
-    int exp;
-    double rating;
+    int var;
+};
+
+struct autor_s
+{
+    char name[100];
+    char quote[500];
+    struct tm date;
 };
 
 worker_t* worker_new(void){
     worker_t * worker = malloc(sizeof(struct worker_s));
     strcpy(worker->name, "");
     strcpy(worker->surname, "");
-    memset(&worker->birthdate, 0, sizeof(worker->birthdate));
-    worker->birthdate.tm_year = 0;
-    worker->birthdate.tm_mday = 0;
-    worker->birthdate.tm_mon = 0;
-    worker->exp = 0;
-    worker->rating = 0;
+    worker->var = 0;
     return worker;
+}
+
+autor_t* autor_new(void){
+    autor_t * autor = malloc(sizeof(struct autor_s));
+    strcpy(autor->name, "");
+    strcpy(autor->quote, "");
+    memset(&autor->date, 0, sizeof(autor->date));
+    autor->date.tm_year = 0;
+    autor->date.tm_mday = 0;
+    autor->date.tm_mon = 0;
+    return autor;
+}
+
+void autor_free(autor_t* autor)
+{
+    free(autor);
 }
 
 void worker_free(worker_t * worker){
     free(worker);
+}
+
+char* autor_getName(autor_t* autor)
+{
+    return autor->name;
+}
+
+char* autor_getQuote(autor_t* autor){
+    return autor->quote;
+}
+
+char* autor_getDate(autor_t* autor){
+    char buffer[300];
+    sprintf(buffer, "%i-%i-%i", autor->date.tm_year,
+                                autor->date.tm_mon,
+                                autor->date.tm_mday);
+    return buffer;
+}
+
+
+void autor_fill(autor_t* autor, char* name, char* quote, char* date){
+    char* str = NULL;
+    char buffer[300];
+
+    strcpy(autor->name, name);
+    strcpy(autor->quote, quote);
+
+    strcpy(buffer, date);
+
+    str = strtok(buffer, "-");
+    autor->date.tm_year = atoi(str);
+    str = strtok(NULL, "-");
+    autor->date.tm_mon = atoi(str);
+    str = strtok(NULL, "\0");
+    autor->date.tm_mday = atoi(str);
 }
 
 char* worker_getName(worker_t* worker)
@@ -43,39 +94,18 @@ char* worker_getSurname(worker_t* worker){
     return worker->surname;
 }
 
-char* worker_getBirthdate(worker_t* worker){
-    char buffer[300];
-    sprintf(buffer, "%i-%i-%i", worker->birthdate.tm_year,
-                                worker->birthdate.tm_mon,
-                                worker->birthdate.tm_mday);
-    return buffer;
+int worker_getVar(worker_t* worker){
+    return worker->var;
 }
 
-int worker_getExp(worker_t* worker){
-    return worker->exp;
-}
 
-double worker_getRate(worker_t* worker){
-    return worker->rating;
-}
-
-void worker_fill(worker_t* worker, char* name, char* surname, char* birthdate, int exp, double rating){
+void worker_fill(worker_t* worker, char* name, char* surname, int var){
     char* str = NULL;
     char buffer[300];
 
     strcpy(worker->name, name);
     strcpy(worker->surname, surname);
-    worker->exp = exp;
-    worker->rating = rating;
-
-    strcpy(buffer, birthdate);
-
-    str = strtok(buffer, "-");
-    worker->birthdate.tm_year = atoi(str);
-    str = strtok(NULL, "-");
-    worker->birthdate.tm_mon = atoi(str);
-    str = strtok(NULL, "\0");
-    worker->birthdate.tm_mday = atoi(str);
+    worker->var = var;
 }
 
 char* worker_makeWorkerJSON(worker_t *worker){
@@ -85,16 +115,36 @@ char* worker_makeWorkerJSON(worker_t *worker){
 
     cJSON_AddItemToObject(workerJsn, "Name", cJSON_CreateString(worker->name));
     cJSON_AddItemToObject(workerJsn, "Surname", cJSON_CreateString(worker->surname));
-    sprintf(buffer, "%i-%i-%i", worker->birthdate.tm_year,
-                                worker->birthdate.tm_mon,
-                                worker->birthdate.tm_mday);
-    cJSON_AddItemToObject(workerJsn, "Birth date", cJSON_CreateString(buffer));
-    cJSON_AddItemToObject(workerJsn, "Experience", cJSON_CreateNumber(worker->exp));
-    cJSON_AddItemToObject(workerJsn, "Rating", cJSON_CreateNumber(worker->rating));
+    cJSON_AddItemToObject(workerJsn, "Variant", cJSON_CreateNumber(worker->var));
+
 
     inJsn = cJSON_Print(workerJsn);
     cJSON_Delete(workerJsn);
     return inJsn;
+}
+
+char* autor_makeAutorJSON(autor_t* autor){
+    char* inJsn = NULL;
+    char buffer[300];
+    cJSON* workerJsn = cJSON_CreateObject();
+
+    cJSON_AddItemToObject(workerJsn, "Name", cJSON_CreateString(autor->name));
+    cJSON_AddItemToObject(workerJsn, "Quote", cJSON_CreateString(autor->quote));
+    sprintf(buffer, "%i-%i-%i", autor->date.tm_year,
+                                autor->date.tm_mon,
+                                autor->date.tm_mday);
+
+    inJsn = cJSON_Print(workerJsn);
+    cJSON_Delete(workerJsn);
+    return inJsn;
+}
+
+void autor_fromJSON(autor_t* autor, char* text)
+{
+    cJSON * jList = cJSON_Parse(text);
+}
+{
+
 }
 
 

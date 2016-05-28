@@ -1,9 +1,12 @@
 #include "client.h"
+
 #include "../socket/socket.h"
 #include <winsock2.h>
 #define PORT 5000
 
 #pragma comment(lib, "ws2_32.lib")
+
+char* getStringJSON(SOCKET Socket, char* reply);
 
 void sendRequest(socket_t* client, const char* host)
 {
@@ -67,22 +70,36 @@ char* secondTask(const char* host)
         WSACleanup();
         return 1;
     }
-    puts(reply);
     char stringJSON[100];
-    strcpy(stringJSON, getString(Socket, reply));
+    strcpy(stringJSON, getStringJSON(Socket, reply));
 
     return stringJSON;
 }
 
-char* getString(SOCKET Socket, char* reply)
+char* getStringJSON(SOCKET Socket, char* reply)
 {
-    char stringJSON[40];
+    char JSON[400];
     char* str;
     reply = strstr(reply, "Content-Length:");
     str = strtok(reply, "\n");
     str = strtok(NULL, "\n");
     str = strtok(NULL, "\n");
-    strcpy(stringJSON, str);
-    stringJSON[strlen(stringJSON)] = '\0';
-    return stringJSON;
+    strcpy(JSON, str);
+    JSON[strlen(JSON)] = '\0';
+    return JSON;
 }
+
+/*char* makeJSON(char* data){
+    char* inJsn = NULL;
+    char buffer[300];
+    cJSON* workerJsn = cJSON_CreateObject();
+
+    sprintf(buffer, "%i-%i-%i", worker->birthdate.tm_year,
+                                worker->birthdate.tm_mon,
+                                worker->birthdate.tm_mday);
+    cJSON_AddItemToObject(workerJsn, "Birth date", cJSON_CreateString(buffer));
+
+    inJsn = cJSON_Print(workerJsn);
+    cJSON_Delete(workerJsn);
+    return inJsn;
+}*/

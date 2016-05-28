@@ -97,34 +97,7 @@ char* worker_makeWorkerJSON(worker_t *worker){
     return inJsn;
 }
 
-void worker_print(worker_t * worker){
-    printf("Name: %s\nSurname: %s\nBirth date: %i-%i-%i\nExperience: %i\nRating: %.2f\n\n----------------------\n\n",
-        worker->name, worker->surname, worker->birthdate.tm_year,
-        worker->birthdate.tm_mon, worker->birthdate.tm_mday,
-        worker->exp, worker->rating);
-}
 
-char* worker_getWorker(worker_t* worker)
-{
-    char one[500];
-    sprintf(one,
-            "      Name: %s\n"
-            "   Surname: %s\n"
-            "Birth date: %i-%i-%i\n"
-            "Experience: %i\n"
-            "    Rating: %.2f\n\n",
-            worker->name, worker->surname, worker->birthdate.tm_year,
-            worker->birthdate.tm_mon, worker->birthdate.tm_mday,
-            worker->exp, worker->rating);
-    return one;
-}
 
-int worker_workersCount(worker_t** workers){
-    int count = 0;
-    for(int i = 0; i<MAX_WORKERS; i++){
-        if(worker_getName(workers[i]) != ""){
-            count++;
-        }
-    }
-    return count;
-}
+
+

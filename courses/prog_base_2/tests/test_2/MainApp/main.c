@@ -20,14 +20,12 @@ int main()
     worker_fill(myWorker, "Sasha", "Voloshchenko", "1998-04-08", 100500, 10.0);
     char* worker = worker_makeWorkerJSON(myWorker);
 
-    puts(worker);
-
     socket_t* server = socket_new();
     socket_bind(server, PORT);
     socket_listen(server);
 
     char buffer[10000];
-    while(true){
+    /*while(true){
         puts("Waiting for client...");
         socket_t* client = socket_accept(server);
 
@@ -53,9 +51,15 @@ int main()
                 }
             }
         socket_free(client);
-    }
+    }*/
+
+    const char* hostName = "pb-homework.appspot.com";
+
+    strcpy(buffer, secondTask(hostName));
 
 
+
+    puts(buffer);
 
     socket_free(server);
 

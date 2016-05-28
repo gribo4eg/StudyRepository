@@ -1,18 +1,19 @@
 #include "client.h"
+#include "../socket/socket.h"
+#include <winsock2.h>
+#define PORT 5000
 
-int initializeWinsock(WSADATA wsa)
+#pragma comment(lib, "ws2_32.lib")
+
+void sendRequest(socket_t* client, const char* host)
 {
-    puts("Initialising Winsock...");
-    if(WSAStartup(MAKEWORD(2,2), &wsa) != 0)
-    {
-        printf("Failed. Error Code : %d", WSAGetLastError());
-        return 1;
-    }
-    puts("Initialised.");
-    return 0;
+    char data[200];
+
+    sprintf(data, "GET /test/var/6?format=json HTTP/1.1\r\nHost:%s\r\n\r\n", host);
+    send(client, data, strlen(data), 0);
 }
 
-SOCKET createSocket()
+static SOCKET createSocket()
 {
     SOCKET Socket;
     puts("Creating socket...");
@@ -26,32 +27,38 @@ SOCKET createSocket()
     return Socket;
 }
 
-void connectToServer(SOCKET Socket, SOCKADDR_IN receiveSocketAddr)
+char* secondTask(const char* host)
 {
-    puts("Connecting to server...");
-    if(connect(Socket, (struct sockaddr *)&receiveSocketAddr, sizeof(receiveSocketAddr)) == SOCKET_ERROR)
+    SOCKET Socket;
+    struct sockaddr_in recvSockAddr;
+    struct hostent * rHost;
+    char* ip;
+
+    Socket = createSocket();
+    rHost = gethostbyname(host);
+
+    ip = inet_ntoa(*(struct in_addr *)*rHost->h_addr_list);
+	printf("IP address is: %s\n", ip);
+
+    memset(&recvSockAddr, 0, sizeof(recvSockAddr));
+
+    recvSockAddr.sin_addr.s_addr = inet_addr(ip);
+    recvSockAddr.sin_family = AF_INET;
+    recvSockAddr.sin_port = htons(80);
+
+    if(connect(Socket, (struct sockaddr *)&recvSockAddr, sizeof(recvSockAddr)) == SOCKET_ERROR)
     {
         puts("Socket connect error");
         closesocket(Socket);
         WSACleanup();
         return;
     }
-    puts("Connected.");
-}
 
-void sendRequest(SOCKET Socket, const char* host)
-{
     char data[200];
 
-    sprintf(data, "GET /var/3 HTTP/1.1\r\nHost:%s\r\n\r\n", host);
-
-    puts("Sending request...");
+    sprintf(data, "GET /test/var/6?format=json HTTP/1.1\r\nHost:%s\r\n\r\n", host);
     send(Socket, data, strlen(data), 0);
-    puts("Request send.");
-}
 
-char* receiveReply(SOCKET Socket)
-{
     char reply[20000];
     if(recv(Socket, reply, 20000, 0) == SOCKET_ERROR)
     {
@@ -60,95 +67,22 @@ char* receiveReply(SOCKET Socket)
         WSACleanup();
         return 1;
     }
-    puts("Reply received!\n");
-    return reply;
-}
+    puts(reply);
+    char stringJSON[100];
+    strcpy(stringJSON, getString(Socket, reply));
 
-void sendSecret(SOCKET Socket, const char* host, char* reply)
-{
-    char data[200];
-    char secret[50];
-
-    strcpy(secret, strstr(reply, "secret"));
-    sprintf(data, "GET /var/3?%s HTTP/1.1\r\nHost:%s\r\n\r\n", secret, host);
-
-    puts("Sending secret-request...");
-    send(Socket, data, strlen(data), 0);
-    puts("Secret-request send.");
+    return stringJSON;
 }
 
 char* getString(SOCKET Socket, char* reply)
 {
-    char numbers[40];
+    char stringJSON[40];
     char* str;
     reply = strstr(reply, "Content-Length:");
     str = strtok(reply, "\n");
     str = strtok(NULL, "\n");
     str = strtok(NULL, "\n");
-    strcpy(numbers, str);
-    numbers[strlen(numbers)] = '\0';
-    return numbers;
-}
-
-int getArraySize(const char* numbers)
-{
-    int size = 0;
-    char* str = numbers;
-    while(*str != NULL)
-    {
-        if(*str == ' ')
-            size++;
-        *str++;
-    }
-    size++;
-    return size;
-}
-
-char* sortArray(char* numbers, int size)
-{
-    char* str, temp[10];
-    register int i, j;
-    int position = 0;
-    int intArr[size], minimal, tmp;
-
-    str = strtok(numbers, " ");
-    while(str != 0)
-    {
-        intArr[position] = atoi(str);
-        position++;
-        str = strtok(NULL, " ");
-    }
-
-    for(i = 0; i<size - 1; i++)
-        for(j = 0; j < size -1; j++)
-            if(intArr[j] > intArr[j+1])
-            {
-                tmp = intArr[j];
-                intArr[j] = intArr[j+1];
-                intArr[j+1] = tmp;
-            }
-
-    for(i = 0; i<position; i++)
-    {
-        if(i == 0)
-        {
-            itoa(intArr[i], numbers, 10);
-            continue;
-        }
-        strcat(numbers, " ");
-        itoa(intArr[i], temp, 10);
-        strcat(numbers, temp);
-    }
-    numbers[strlen(numbers)] = '\0';
-    return numbers;
-}
-
-void postToServer(SOCKET Socket, const char* host, char* message)
-{
-    char result[20];
-    char data[200];
-    sprintf(result, "result=%s", message);
-    result[strlen(result)] = '\0';
-    sprintf(data, "POST %s/var/3 HTTP/1.1\r\nContent-Length: %i\r\n\r\n%s\r\n", host, strlen(result), result);
-    send(Socket, data, strlen(data), 0);
+    strcpy(stringJSON, str);
+    stringJSON[strlen(stringJSON)] = '\0';
+    return stringJSON;
 }

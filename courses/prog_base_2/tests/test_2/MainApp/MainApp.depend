@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1464424450 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\main.c
+1464430493 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -10,11 +10,14 @@
 	"http/http.h"
 	"client/client.h"
 
-1459740840 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.c
+1464430269 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.c
 	"client.h"
-
-1459739068 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.h
+	"../socket/socket.h"
 	<winsock2.h>
+
+1464427956 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.h
+	<winsock2.h>
+	"../socket/socket.h"
 
 1463925664 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\http\http.c
 	<stdlib.h>
@@ -62,7 +65,7 @@
 	"worker/worker.h"
 	"read.h"
 
-1464424823 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\server\server.c
+1464428518 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\server\server.c
 	<stdlib.h>
 	"../socket/socket.h"
 	"server.h"
@@ -73,7 +76,7 @@
 	"../socket/socket.h"
 	"../worker/worker.h"
 
-1464423357 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.c
+1464428242 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>

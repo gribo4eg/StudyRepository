@@ -2,11 +2,12 @@
 #define CLIENT_H_INCLUDED
 
 #include <winsock2.h>
+#include "../socket/socket.h"
 
 int initializeWinsock(WSADATA wsa);
 SOCKET createSocket(void);
 void connectToServer(SOCKET Socket, SOCKADDR_IN receiveSocketAddr);
-void sendRequest(SOCKET Socket, const char *host);
+void sendRequest(socket_t* socket, const char *host);
 void sendSecret(SOCKET Socket, const char* host, char* reply);
 char* receiveReply(SOCKET Socket);
 char* getString(SOCKET Socket, char* reply);

@@ -1,0 +1,84 @@
+# depslib dependency file v1.0
+1464424450 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	"read.h"
+	"sqlite3.h"
+	"list.h"
+	"socket/socket.h"
+	"http/http.h"
+	"client/client.h"
+
+1459740840 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.c
+	"client.h"
+
+1459739068 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.h
+	<winsock2.h>
+
+1463925664 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\http\http.c
+	<stdlib.h>
+	<stdio.h>
+	<stddef.h>
+	<string.h>
+	"http.h"
+
+1463293074 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\http\http.h
+
+1463293074 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\json\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1463293074 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\json\cjson.h
+
+1463926278 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\socket\socket_win.c
+	<winsock2.h>
+	"socket.h"
+
+1463293074 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\socket\socket.h
+
+1463955757 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\read.h
+	"worker/worker.h"
+
+1464423174 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.h
+
+1450771366 c:\repository\repos1\courses\prog_base_2\tests\test_2\sqlite3.h
+	<stdarg.h>
+
+1463293074 c:\repository\repos1\courses\prog_base_2\tests\test_2\liblinkedlist\list.h
+	<stdlib.h>
+
+1464423347 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\read.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"JSON/cJSON.h"
+	"worker/worker.h"
+	"read.h"
+
+1464424823 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\server\server.c
+	<stdlib.h>
+	"../socket/socket.h"
+	"server.h"
+	"../http/http.h"
+
+1464423542 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\server\server.h
+	"../http/http.h"
+	"../socket/socket.h"
+	"../worker/worker.h"
+
+1464423357 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\worker\worker.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<windows.h>
+	"worker.h"
+	"../JSON/cJSON.h"
+

@@ -1,0 +1,23 @@
+[
+	{
+        "name": "George",
+		"surname": "Horn",
+		"birthdate": "1990-12-11",
+		"experience": 5,
+		"rating": 2.4
+	},
+	{
+		"name": "Emily",
+		"surname": "Wiggins",
+		"birthdate": "1993-05-13",
+		"experience": 4,
+		"rating": 4.0
+	},
+	{
+		"name": "Claude",
+		"surname": "Jefferson",
+		"birthdate": "1989-10-24",
+		"experience": 8,
+		"rating": 5.3
+	}
+]

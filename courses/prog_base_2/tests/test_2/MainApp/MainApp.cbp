@@ -17,6 +17,7 @@
 					<Add directory="../LibLinkedList" />
 				</Compiler>
 				<Linker>
+					<Add option="-lws2_32" />
 					<Add library="../libsiqlite3.a" />
 					<Add library="../LibLinkedList/bin/Debug/libLibLinkedList.a" />
 				</Linker>
@@ -41,9 +42,30 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="JSON/cJSON.h" />
+		<Unit filename="client/client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client/client.h" />
+		<Unit filename="http/http.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="http/http.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="server/server.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="server/server.h" />
+		<Unit filename="socket/socket.h" />
+		<Unit filename="socket/socket_win.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="worker.json" />
+		<Unit filename="worker/worker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="worker/worker.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

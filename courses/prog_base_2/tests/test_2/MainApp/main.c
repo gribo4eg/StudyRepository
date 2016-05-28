@@ -7,6 +7,7 @@
 #include "list.h"
 #include "socket/socket.h"
 #include "http/http.h"
+#include "database.h"
 #include "client/client.h"
 
 #define WORKERS_MAX 7
@@ -33,7 +34,6 @@ int main()
     char toReturn[100];
     strcpy(toReturn, secondTask(hostName));
 
-    puts(toReturn);
 
     while(true){
         puts("Waiting for client...");
@@ -65,12 +65,14 @@ int main()
                     break;
                 }
             }
+
         socket_free(client);
     }
 
     socket_free(server);
 
     worker_free(myWorker);
+    autor_free(myAuthor);
     lib_free();
 
     return 0;

@@ -17,6 +17,8 @@ void autor_fill(autor_t* autor, char* name, char* quote, char* date);
 char* autor_getName(autor_t* autor);
 char* autor_getQuote(autor_t* autor);
 char* autor_getDate(autor_t* autor);
+void autor_fromJSON(autor_t* autor, char* text);
+char* autor_makeAutorJSON(autor_t* autor);
 
 void worker_fill(worker_t* worker, char* name, char* surname, int var);
 

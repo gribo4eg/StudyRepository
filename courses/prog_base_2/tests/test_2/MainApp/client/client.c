@@ -6,7 +6,7 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
-char* getStringJSON(SOCKET Socket, char* reply);
+static char* getStringJSON(SOCKET Socket, char* reply);
 
 void sendRequest(socket_t* client, const char* host)
 {
@@ -76,7 +76,7 @@ char* secondTask(const char* host)
     return stringJSON;
 }
 
-char* getStringJSON(SOCKET Socket, char* reply)
+static char* getStringJSON(SOCKET Socket, char* reply)
 {
     char JSON[400];
     char* str;

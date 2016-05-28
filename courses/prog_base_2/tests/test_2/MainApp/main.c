@@ -17,6 +17,7 @@ int main()
     lib_init();
 
     worker_t* myWorker = worker_new();
+    autor_t* myAuthor = autor_new();
 
     worker_fill(myWorker, "Sasha", "Voloshchenko", 6);
     char* worker = worker_makeWorkerJSON(myWorker);
@@ -53,7 +54,9 @@ int main()
             server_info(client, worker);
         }if(!strcmp(request.uri, "/external"))
         {
-            server_info(client, toReturn);
+            autor_fromJSON(myAuthor, toReturn);
+            char* sendd = autor_makeAutorJSON(myAuthor);
+            server_info(client, sendd);
         }
         if(kbhit()){
                 char e = getch();
@@ -69,5 +72,6 @@ int main()
 
     worker_free(myWorker);
     lib_free();
+
     return 0;
 }

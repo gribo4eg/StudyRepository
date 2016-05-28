@@ -19,7 +19,7 @@ struct autor_s
 {
     char name[100];
     char quote[500];
-    struct tm date;
+    char date[100];
 };
 
 worker_t* worker_new(void){
@@ -34,10 +34,7 @@ autor_t* autor_new(void){
     autor_t * autor = malloc(sizeof(struct autor_s));
     strcpy(autor->name, "");
     strcpy(autor->quote, "");
-    memset(&autor->date, 0, sizeof(autor->date));
-    autor->date.tm_year = 0;
-    autor->date.tm_mday = 0;
-    autor->date.tm_mon = 0;
+    strcpy(autor->date, "");
     return autor;
 }
 
@@ -60,29 +57,15 @@ char* autor_getQuote(autor_t* autor){
 }
 
 char* autor_getDate(autor_t* autor){
-    char buffer[300];
-    sprintf(buffer, "%i-%i-%i", autor->date.tm_year,
-                                autor->date.tm_mon,
-                                autor->date.tm_mday);
-    return buffer;
+    return autor->date;
 }
 
 
 void autor_fill(autor_t* autor, char* name, char* quote, char* date){
-    char* str = NULL;
-    char buffer[300];
 
     strcpy(autor->name, name);
     strcpy(autor->quote, quote);
-
-    strcpy(buffer, date);
-
-    str = strtok(buffer, "-");
-    autor->date.tm_year = atoi(str);
-    str = strtok(NULL, "-");
-    autor->date.tm_mon = atoi(str);
-    str = strtok(NULL, "\0");
-    autor->date.tm_mday = atoi(str);
+    strcpy(autor->date, date);
 }
 
 char* worker_getName(worker_t* worker)
@@ -128,11 +111,9 @@ char* autor_makeAutorJSON(autor_t* autor){
     char buffer[300];
     cJSON* workerJsn = cJSON_CreateObject();
 
-    cJSON_AddItemToObject(workerJsn, "Name", cJSON_CreateString(autor->name));
+    cJSON_AddItemToObject(workerJsn, "Author", cJSON_CreateString(autor->name));
     cJSON_AddItemToObject(workerJsn, "Quote", cJSON_CreateString(autor->quote));
-    sprintf(buffer, "%i-%i-%i", autor->date.tm_year,
-                                autor->date.tm_mon,
-                                autor->date.tm_mday);
+    cJSON_AddItemToObject(workerJsn, "Date", cJSON_CreateString(autor->date));
 
     inJsn = cJSON_Print(workerJsn);
     cJSON_Delete(workerJsn);
@@ -141,11 +122,19 @@ char* autor_makeAutorJSON(autor_t* autor){
 
 void autor_fromJSON(autor_t* autor, char* text)
 {
-    cJSON * jList = cJSON_Parse(text);
-}
-{
+    cJSON* jList = cJSON_CreateObject();
+    jList = cJSON_Parse(text);
+    char* name = cJSON_GetObjectItem(jList, "author")->valuestring;
+    char* quote = cJSON_GetObjectItem(jList, "quote")->valuestring;
 
+    time_t date;
+    struct tm* ourDate;
+
+    time(&date);
+    ourDate = localtime(&date);
+    autor_fill(autor, name, quote, asctime(ourDate));
 }
+
 
 
 

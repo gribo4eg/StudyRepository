@@ -89,17 +89,3 @@ char* getStringJSON(SOCKET Socket, char* reply)
     return JSON;
 }
 
-/*char* makeJSON(char* data){
-    char* inJsn = NULL;
-    char buffer[300];
-    cJSON* workerJsn = cJSON_CreateObject();
-
-    sprintf(buffer, "%i-%i-%i", worker->birthdate.tm_year,
-                                worker->birthdate.tm_mon,
-                                worker->birthdate.tm_mday);
-    cJSON_AddItemToObject(workerJsn, "Birth date", cJSON_CreateString(buffer));
-
-    inJsn = cJSON_Print(workerJsn);
-    cJSON_Delete(workerJsn);
-    return inJsn;
-}*/

@@ -50,7 +50,7 @@ char* worker_getSurname(worker_t* worker){
 }
 
 char* worker_getBirthdate(worker_t* worker){
-    char buffer[256];
+    char buffer[300];
     sprintf(buffer, "%i-%i-%i", worker->birthdate.tm_year,
                                 worker->birthdate.tm_mon,
                                 worker->birthdate.tm_mday);
@@ -67,7 +67,7 @@ double worker_getRate(worker_t* worker){
 
 void worker_fill(worker_t* worker, int id, char* name, char* surname, char* birthdate, int exp, double rating){
     char* str = NULL;
-    char buffer[256];
+    char buffer[300];
     worker->id = id;
 
     strcpy(worker->name, name);
@@ -87,7 +87,7 @@ void worker_fill(worker_t* worker, int id, char* name, char* surname, char* birt
 
 char* worker_makeWorkerJSON(worker_t *worker){
     char* inJsn = NULL;
-    char buffer[256];
+    char buffer[300];
     cJSON* workerJsn = cJSON_CreateObject();
 
     cJSON_AddItemToObject(workerJsn, "Id", cJSON_CreateNumber(worker->id));
@@ -112,40 +112,28 @@ void worker_print(worker_t * worker){
         worker->exp, worker->rating);
 }
 
-void worker_parseWorker(worker_t** workers){
-    FILE* fp = fopen("worker.json", "r");
-    char buffer[10000];
-    char line[100];
-
-    while(fgets(line, 100, fp) != NULL)
-    {
-        strcat(buffer, line);
-    }
-    fclose(fp);
-
-    cJSON* textJsn = cJSON_Parse(buffer);
-    if(!textJsn){
-        printf("Some troubles with [%s]\n", cJSON_GetErrorPtr());
-        return;
-    }
-
-    for(int i = 0; i<cJSON_GetArraySize(textJsn); i++)
-    {
-
-        cJSON* workerJsn = cJSON_GetArrayItem(textJsn, i);
-        int id = cJSON_GetObjectItem(workerJsn, "id")->valueint;
-        char* name = cJSON_GetObjectItem(workerJsn, "name")->valuestring;
-        char* surname = cJSON_GetObjectItem(workerJsn, "surname")->valuestring;
-        char* birthdate = cJSON_GetObjectItem(workerJsn, "birthdate")->valuestring;
-        int experience = cJSON_GetObjectItem(workerJsn, "experience")->valueint;
-        double rating = cJSON_GetObjectItem(workerJsn, "rating")->valuedouble;
-
-        worker_fill(workers[i], id, name, surname, birthdate, experience, rating);
-    }
-
-    cJSON_Delete(textJsn);
+char* worker_getWorker(worker_t* worker)
+{
+    char one[500];
+    sprintf(one,
+            "        Id: %i\n"
+            "      Name: %s\n"
+            "   Surname: %s\n"
+            "Birth date: %i-%i-%i\n"
+            "Experience: %i\n"
+            "    Rating: %.2f\n\n",
+            worker->id, worker->name, worker->surname, worker->birthdate.tm_year,
+            worker->birthdate.tm_mon, worker->birthdate.tm_mday,
+            worker->exp, worker->rating);
+    return one;
 }
 
 int worker_workersCount(worker_t** workers){
-    return sizeof(workers)/sizeof(workers[0]);
+    int count = 0;
+    for(int i = 0; i<MAX_WORKERS; i++){
+        if(worker_getId(workers[i]) >= 0){
+            count++;
+        }
+    }
+    return count;
 }

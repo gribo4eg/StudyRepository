@@ -1,6 +1,8 @@
 #ifndef WORKER_H_INCLUDED
 #define WORKER_H_INCLUDED
 
+#define MAX_WORKERS 7
+
 typedef struct worker_s worker_t;
 
 worker_t * worker_new(void);
@@ -18,7 +20,6 @@ double worker_getRate(worker_t*);
 int worker_workersCount(worker_t** workers);
 
 char* worker_makeWorkerJSON(worker_t *worker);
-void worker_parseWorker(worker_t** workers);
 void worker_print(worker_t *worker);
 
 #endif // WORKER_H_INCLUDED

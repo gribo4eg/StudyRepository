@@ -28,6 +28,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-lws2_32" />
 				</Linker>
 			</Target>
 		</Build>
@@ -45,6 +46,11 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="post.html" />
+		<Unit filename="read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="read.h" />
 		<Unit filename="server/server.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -53,14 +59,11 @@
 		<Unit filename="socket/socket_win.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="worker.json" />
 		<Unit filename="worker/worker.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="worker/worker.h" />
-		<Unit filename="worker/worker.json">
-			<Option compile="1" />
-			<Option link="1" />
-		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

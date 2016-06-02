@@ -326,7 +326,7 @@ static void server_post(http_request_t request, socket_t* client, worker_t** wor
 
     str = birthdate;
 
-   if(strlen(birthdate) > 10 || str[4] != '-' || str[7] != '-' || isdigit(birthdate[0])==0 || isdigit(experience[0] == 0 || experience != NULL || isdigit(rating[0])==0 || rating != NULL))
+   if(strlen(birthdate) > 10 || str[4] != '-' || str[7] != '-' || isdigit(birthdate[0])==0 || isdigit(experience[0]) == 0 || isdigit(rating[0])==0)
     {
         server_send(client, "Wrong data!"
                     "<p><a href=\"/workers/new/\">Back to POST</a></p>");

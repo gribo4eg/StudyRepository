@@ -47,14 +47,14 @@
 	<winsock2.h>
 	"socket.h"
 
-1464818107 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\server\server.c
+1464866734 source:c:\repository\repos1\courses\prog_base_2\labs\lab4\server\server.c
 	<stdlib.h>
 	"../socket/socket.h"
 	"../worker/worker.h"
 	"server.h"
 	"../http/http.h"
 
-1463939783 c:\repository\repos1\courses\prog_base_2\labs\lab4\server\server.h
+1464866844 c:\repository\repos1\courses\prog_base_2\labs\lab4\server\server.h
 	"../http/http.h"
 	"../socket/socket.h"
 	"../worker/worker.h"

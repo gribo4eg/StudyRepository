@@ -46,7 +46,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="post.html" />
 		<Unit filename="read.c">
 			<Option compilerVar="CC" />
 		</Unit>

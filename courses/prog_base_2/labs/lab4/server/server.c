@@ -67,7 +67,7 @@ static char* server_getAllWorkersHTML(worker_t** workers)
             sprintf(one,
                     "     <p>Id: %i<br>"
                     "     Name: <a href=\"/workers/%i\">%s</a><br>"
-                    "     <a href=\"/workers/delete/%i\">Delete worker</a>"
+                    "     <a href=\"/workers/delete/%i\">Free worker</a>"
                     "     <br><br></p>",
                     i, worker_getId(workers[i]), worker_getName(workers[i]),
                     worker_getId(workers[i]));
@@ -138,7 +138,7 @@ static char* server_getWorkerHTML(worker_t* worker)
             "Birth date: %s<br>"
             "Experience: %i<br>"
             "    Rating: %.2f<br><br>"
-            "<p><a href=\"/workers/delete/%i\">Delete</a></p>",
+            "<p><a href=\"/workers/delete/%i\">Free</a></p>",
             worker_getId(worker), worker_getName(worker),
             worker_getSurname(worker), worker_getBirthdate(worker),
             worker_getExp(worker), worker_getRate(worker),
@@ -285,7 +285,7 @@ static void server_postHTML(socket_t* client, worker_t** workers)
     char toSend[2000] = "";
     sprintf(toSend,
             "<html><head><title>Post</title></head>"
-            "<body><h1>Post request</h1>"
+            "<body><h1>New worker</h1>"
             "<form action=\"/api/workers/%i\" method=\"POST\">"
             "Name:<br><input type=\"text\" name=\"name\"><br>"
             "Surname:<br><input type=\"text\" name=\"surname\"><br>"
@@ -317,18 +317,19 @@ static void server_post(http_request_t request, socket_t* client, worker_t** wor
     char* experience = http_request_getArg(&request, "experience");
     char* rating = http_request_getArg(&request, "rating");
 
-    if(name == " " || surname == " " || birthdate == " ")
+    if(strlen(name) <= 1 || strlen(surname) <= 1 || strlen(birthdate) <= 1)
     {
         server_send(client, "Name/Surname/Birthday wasn't filled in"
-                            "<p><a href=\"/workers/\">All workers</a></p>");
+                            "<p><a href=\"/workers/new/\">Back to POST</a></p>");
         return;
     }
 
     str = birthdate;
 
-   if(strlen(str) > 10 || str[4] != '-' || str[7] != '-')
+   if(strlen(birthdate) > 10 || str[4] != '-' || str[7] != '-' || isdigit(birthdate[0])==0 || isdigit(experience[0] == 0 || experience != NULL || isdigit(rating[0])==0 || rating != NULL))
     {
-        server_send(client, "Wrong data");
+        server_send(client, "Wrong data!"
+                    "<p><a href=\"/workers/new/\">Back to POST</a></p>");
         return;
     }
 
@@ -371,7 +372,7 @@ static void server_send(socket_t* client, const char* smth)
 {
     char homeBuf[800];
     sprintf(homeBuf,
-            "HTTP/1.1 404 \n"
+            "HTTP/1.1 200 OK\n"
             "Content-Type: text/html\n"
             "Content-Length: %i\n"
             "\n%s", strlen(smth), smth);

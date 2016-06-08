@@ -2,6 +2,7 @@
 #define CREATURES_H
 
 #include <SFML/Graphics.hpp>
+#include "map.h"
 
 using namespace sf;
 using namespace std;
@@ -13,6 +14,7 @@ private:
 public:
     float width, heigth, speed_x, speed_y, speed;
     int direction;
+    int score;
     string imageName;
     Image image;
     Texture texture;
@@ -20,9 +22,10 @@ public:
     //Creatures(string, float, float, float, float);
 
     Creatures(string file, float X, float Y,
-            float Width, float Height)
+            float Width, float Height)      //CONSTRUCTOR
     {
         direction = 0;
+        score = 0;
         imageName = file;
         speed = 0; speed_x = 0;
         speed_y = 0;
@@ -31,14 +34,14 @@ public:
         width = Width;
         heigth = Height;
         image.loadFromFile("images/" + imageName);
-        image.createMaskFromColor(Color(255, 255, 255));
+        image.createMaskFromColor(Color(102, 17, 189));
 
         texture.loadFromImage(image);
 
         sprite.setTexture(texture);
         sprite.setTextureRect(IntRect(0, 0, width, heigth));
         sprite.setPosition(x, y);
-        sprite.setScale(0.4, 0.4);
+        sprite.setScale(1, 1);
     }
 
     void position(float time)
@@ -68,14 +71,42 @@ public:
 
         speed = 0;
         sprite.setPosition(x, y);
+        interactiveWithMap();
     }
 
-    float getPlayerCoordX()
+    void interactiveWithMap()//collision with map
+    {
+        for(int i = y/32; i < (y + heigth)/32; i++)
+        {
+            for(int j = x/32; j < (x + width)/32; j++)
+            {
+                if(TileMap[i][j] == '0')
+                {
+                    if(speed_y > 0)
+                        y = i*32 - heigth;
+                    if(speed_y < 0)
+                        y = i*32 + 32;
+                    if(speed_x > 0)
+                        x = j*32 - width;
+                    if(speed_x < 0)
+                        x = j*32 + 32;
+                }
+
+                if(TileMap[i][j] =='s' && Keyboard::isKeyPressed(Keyboard::Space))
+                {
+                    TileMap[i][j] = ' ';
+                    score++;
+                }
+            }
+        }
+    }
+
+    float getPlayerCoordX()//get x coord
     {
         return x;
     }
 
-    float getPlayerCoordY()
+    float getPlayerCoordY()//get y coord
     {
         return y;
     }

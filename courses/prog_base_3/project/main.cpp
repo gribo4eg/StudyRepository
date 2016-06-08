@@ -9,7 +9,8 @@ using namespace sf;
 
 int main(void)
 {
-    RenderWindow window(VideoMode(1280, 720), "TerraX!");
+    RenderWindow window(VideoMode(1270, 700), "TerraX!");
+
 
     Image map_image;
     map_image.loadFromFile("images/map.png");
@@ -18,13 +19,13 @@ int main(void)
     Sprite s_map;
     s_map.setTexture(map);
 
-    view.reset(FloatRect(0, 0, 640, 480));
+    view.reset(FloatRect(0, 0, 580, 460));//0,0,640,480
 
     float CurrentFrame = 0;
 
     Clock clock;
 
-    Creatures enemy("mob.png", 200, 200, 115, 195);
+    Creatures hero("hero.png", 100, 100, 87.5, 60);
 
     while (window.isOpen())
     {
@@ -32,7 +33,7 @@ int main(void)
 
         float time = clock.getElapsedTime().asMicroseconds();
         clock.restart();
-        time = time/700;
+        time = time/800;
 
         while (window.pollEvent(event))
         {
@@ -40,49 +41,70 @@ int main(void)
                 window.close();
         }
 
+
+
         if(Keyboard::isKeyPressed(Keyboard::Left))
         {
-            enemy.direction = 1; enemy.speed = 0.1;
+            hero.direction = 1; hero.speed = 0.1;
             CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 6)
-                CurrentFrame -= 6;
-            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 10, 115, 195));
-            getPlayerCoordForView(enemy.getPlayerCoordX(), enemy.getPlayerCoordY());
+            if(CurrentFrame > 4)
+                CurrentFrame -= 4;
+            hero.sprite.setTextureRect(IntRect(87.5 * int(CurrentFrame)+87.5, 0, -87.5, 65));
+            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
         }
 
-        if(Keyboard::isKeyPressed(Keyboard::Right))
+        else if(Keyboard::isKeyPressed(Keyboard::Right))
         {
-            enemy.direction = 0;
-            enemy.speed = 0.1;
+            hero.direction = 0;
+            hero.speed = 0.1;
             CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 6)
-                CurrentFrame -= 6;
-            enemy.sprite.setTextureRect(IntRect(115 * int(CurrentFrame), 210, 115, 195));
-            getPlayerCoordForView(enemy.getPlayerCoordX(), enemy.getPlayerCoordY());
+            if(CurrentFrame > 4)
+                CurrentFrame -= 4;
+            hero.sprite.setTextureRect(IntRect(87.5 * int(CurrentFrame), 0, 87.5, 65));
+            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
         }
 
-        if(Keyboard::isKeyPressed(Keyboard::Down))
+        else if(Keyboard::isKeyPressed(Keyboard::Down))
         {
-            enemy.direction = 2; enemy.speed = 0.1;
-            CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 6)
-                CurrentFrame -= 6;
-            enemy.sprite.setTextureRect(IntRect(0 * int(CurrentFrame), 10, 115, 195));
-            getPlayerCoordForView(enemy.getPlayerCoordX(), enemy.getPlayerCoordY());
+            hero.direction = 2; hero.speed = 0.1;
+            hero.sprite.setTextureRect(IntRect(0, 252, 55, 63));
+            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
         }
 
-        if(Keyboard::isKeyPressed(Keyboard::Up))
+        else if(Keyboard::isKeyPressed(Keyboard::Up))
         {
-            enemy.direction = 3; enemy.speed = 0.1;
-            CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 6)
-                CurrentFrame -= 6;
-            enemy.sprite.setTextureRect(IntRect(0 * int(CurrentFrame), 10, 115, 195));
-            getPlayerCoordForView(enemy.getPlayerCoordX(), enemy.getPlayerCoordY());
+            hero.direction = 3; hero.speed = 0.1;
+            hero.sprite.setTextureRect(IntRect(0, 252, 55, 63));
+            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
         }
 
-        enemy.position(time);
-        viewMap(time);
+        else if(Keyboard::isKeyPressed(Keyboard::Space))
+        {
+            hero.speed = 0;
+            CurrentFrame += 0.005 * time;
+            if(CurrentFrame > 3)
+                CurrentFrame -=3;
+            if(hero.direction == 0)
+                hero.sprite.setTextureRect(IntRect(91.3 * int(CurrentFrame), 130, 91.3, 78));
+            else
+                hero.sprite.setTextureRect(IntRect(91.3 * int(CurrentFrame)+91.3, 130, -91.3, 78));
+            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
+        }
+
+        else
+        {
+            hero.speed = 0;
+            CurrentFrame += 0.005 * time;
+            if(CurrentFrame > 3)
+                CurrentFrame -= 3;
+            if(hero.direction == 0)
+                hero.sprite.setTextureRect(IntRect(83.5 * int(CurrentFrame), 60, 83.5, 70));
+            else //if(hero.direction == 1)
+                hero.sprite.setTextureRect(IntRect(83.5 * int(CurrentFrame)+83.5, 60, -83.5, 70));
+            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
+        }
+
+        hero.position(time);
 
         window.setView(view);
         window.clear(Color(128,106,89));
@@ -101,7 +123,7 @@ int main(void)
                 window.draw(s_map);
             }
 
-        window.draw(enemy.sprite);
+        window.draw(hero.sprite);
         window.display();
     }
 

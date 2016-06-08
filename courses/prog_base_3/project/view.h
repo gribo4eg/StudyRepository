@@ -3,31 +3,18 @@
 
 using namespace sf;
 
-sf::View view;
+View view;
 
 void getPlayerCoordForView(float x, float y)
 {
-    view.setCenter(x+100, y);
+    float tmpX = x, tmpY = y;
+
+    if(x < 300) tmpX = 300;
+    if(y < 240) tmpY = 240;
+    if(y > 554) tmpY = 554;
+
+    view.setCenter(tmpX, tmpY);
 }
 
-void viewMap(float time)
-{
-    if(Keyboard::isKeyPressed(Keyboard::D))
-    {
-        view.move(0.1 * time, 0);
-    }
-    if(Keyboard::isKeyPressed(Keyboard::A))
-    {
-        view.move(-0.1 * time, 0);
-    }
-    if(Keyboard::isKeyPressed(Keyboard::S))
-    {
-        view.move(0, 0.1 * time);
-    }
-    if(Keyboard::isKeyPressed(Keyboard::W))
-    {
-        view.move(0, -0.1 * time);
-    }
-}
 
 #endif // VIEW_H_INCLUDED

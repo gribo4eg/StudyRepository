@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1464437856 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\main.c
+1464440005 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
@@ -8,6 +8,7 @@
 	"list.h"
 	"socket/socket.h"
 	"http/http.h"
+	"database.h"
 	"client/client.h"
 
 1464438601 source:c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\client\client.c
@@ -84,4 +85,7 @@
 	<windows.h>
 	"worker.h"
 	"../JSON/cJSON.h"
+
+1464440052 c:\repository\repos1\courses\prog_base_2\tests\test_2\mainapp\database.h
+	"worker/worker.h"
 

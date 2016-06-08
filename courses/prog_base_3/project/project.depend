@@ -380,7 +380,7 @@
 	<string>
 	<vector>
 
-1463346399 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1465404694 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
 	<SFML/Graphics.hpp>
 	"Creatures.h"
 	"map.h"
@@ -389,8 +389,9 @@
 1460929657 source:c:\repository\repos1\courses\prog_base_3\project\creatures.cpp
 	"Creatures.h"
 
-1463344789 c:\repository\repos1\courses\prog_base_3\project\creatures.h
+1465406343 c:\repository\repos1\courses\prog_base_3\project\creatures.h
 	<SFML/Graphics.hpp>
+	"map.h"
 
 1429780453 c:\libs\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -770,8 +771,8 @@
 	<string>
 	<vector>
 
-1463332347 c:\repository\repos1\courses\prog_base_3\project\map.h
+1465406205 c:\repository\repos1\courses\prog_base_3\project\map.h
 	<SFML\Graphics.hpp>
 
-1463347955 c:\repository\repos1\courses\prog_base_3\project\view.h
+1465404911 c:\repository\repos1\courses\prog_base_3\project\view.h
 

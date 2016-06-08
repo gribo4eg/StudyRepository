@@ -58,8 +58,9 @@
 
 1463293074 c:\repository\repos1\courses\prog_base_2\labs\lab5\socket\socket.h
 
-1464975495 c:\repository\repos1\courses\prog_base_2\labs\lab5\server\server.h
+1465200385 c:\repository\repos1\courses\prog_base_2\labs\lab5\server\server.h
 	"../http/http.h"
+	"../database.h"
 	"../socket/socket.h"
 	"../worker/worker.h"
 

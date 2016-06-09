@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <sstream>
 
 #include "Creatures.h"
 #include "map.h"
@@ -7,21 +8,39 @@
 using namespace std;
 using namespace sf;
 
+void drawText();
+
 int main(void)
 {
     RenderWindow window(VideoMode(1270, 700), "TerraX!");
 
+    Font font;
+    font.loadFromFile("quant.ttf");
+    Text text("", font, 15);
+    text.setColor(Color::Red);
+    text.setStyle(Text::Bold);
 
-    Image map_image;
+    Image map_image, icon, help_image;
     map_image.loadFromFile("images/map.png");
-    Texture map;
+    icon.loadFromFile("images/icon.png");
+    help_image.loadFromFile("images/help.png");
+
+    Texture map, help_texture;
     map.loadFromImage(map_image);
-    Sprite s_map;
+    help_texture.loadFromImage(help_image);
+
+    Sprite s_map, s_help;
     s_map.setTexture(map);
+    s_help.setTexture(help_texture);
+    s_help.setTextureRect(IntRect(0, 0, 1000, 626));
+    s_help.setScale(0.3f, 0.3f);
+
+    window.setIcon(32, 32, icon.getPixelsPtr());
 
     view.reset(FloatRect(0, 0, 580, 460));//0,0,640,480
 
     float CurrentFrame = 0;
+    bool helpCheck = true;
 
     Clock clock;
 
@@ -39,71 +58,18 @@ int main(void)
         {
             if (event.type == Event::Closed || Keyboard::isKeyPressed(Keyboard::Escape))
                 window.close();
+
         }
 
+        if(hero.life){
 
-
-        if(Keyboard::isKeyPressed(Keyboard::Left))
-        {
-            hero.direction = 1; hero.speed = 0.1;
-            CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 4)
-                CurrentFrame -= 4;
-            hero.sprite.setTextureRect(IntRect(87.5 * int(CurrentFrame)+87.5, 0, -87.5, 65));
-            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
         }
-
-        else if(Keyboard::isKeyPressed(Keyboard::Right))
-        {
-            hero.direction = 0;
-            hero.speed = 0.1;
-            CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 4)
-                CurrentFrame -= 4;
-            hero.sprite.setTextureRect(IntRect(87.5 * int(CurrentFrame), 0, 87.5, 65));
-            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
-        }
-
-        else if(Keyboard::isKeyPressed(Keyboard::Down))
-        {
-            hero.direction = 2; hero.speed = 0.1;
-            hero.sprite.setTextureRect(IntRect(0, 252, 55, 63));
-            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
-        }
-
-        else if(Keyboard::isKeyPressed(Keyboard::Up))
-        {
-            hero.direction = 3; hero.speed = 0.1;
-            hero.sprite.setTextureRect(IntRect(0, 252, 55, 63));
-            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
-        }
-
-        else if(Keyboard::isKeyPressed(Keyboard::Space))
-        {
-            hero.speed = 0;
-            CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 3)
-                CurrentFrame -=3;
-            if(hero.direction == 0)
-                hero.sprite.setTextureRect(IntRect(91.3 * int(CurrentFrame), 130, 91.3, 78));
-            else
-                hero.sprite.setTextureRect(IntRect(91.3 * int(CurrentFrame)+91.3, 130, -91.3, 78));
-            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
-        }
-
         else
         {
-            hero.speed = 0;
-            CurrentFrame += 0.005 * time;
-            if(CurrentFrame > 3)
-                CurrentFrame -= 3;
-            if(hero.direction == 0)
-                hero.sprite.setTextureRect(IntRect(83.5 * int(CurrentFrame), 60, 83.5, 70));
-            else //if(hero.direction == 1)
-                hero.sprite.setTextureRect(IntRect(83.5 * int(CurrentFrame)+83.5, 60, -83.5, 70));
+            hero.direction = STAY; hero.speed = 0;
+            hero.sprite.setTextureRect(IntRect(0, 210, 85, 42));
             getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
         }
-
         hero.position(time);
 
         window.setView(view);
@@ -121,6 +87,34 @@ int main(void)
 
                 s_map.setPosition(j*32, i*32);
                 window.draw(s_map);
+            }
+
+
+
+        ostringstream heroScore, heroHealth;
+        heroScore << hero.score;
+        text.setString("Score:"+heroScore.str());
+        text.setPosition(view.getCenter().x + 195, view.getCenter().y - 210);
+        window.draw(text);
+
+        heroHealth << hero.health;
+        text.setString("Health:"+heroHealth.str());
+        text.setPosition(view.getCenter().x - 268, view.getCenter().y - 210);
+        window.draw(text);
+
+        if(helpCheck)
+        {
+            text.setString("Press TAB while playing to get HELP!");
+            text.setPosition(view.getCenter().x -200, view.getCenter().y +100);
+            window.draw(text);
+        }
+
+        if(Keyboard::isKeyPressed(Keyboard::Tab) && hero.life)
+            {
+                helpCheck = false;
+                s_help.setPosition(view.getCenter().x - 100,
+                                   view.getCenter().y );
+                window.draw(s_help);
             }
 
         window.draw(hero.sprite);

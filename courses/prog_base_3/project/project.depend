@@ -380,8 +380,9 @@
 	<string>
 	<vector>
 
-1465404694 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1465506661 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
 	<SFML/Graphics.hpp>
+	<sstream>
 	"Creatures.h"
 	"map.h"
 	"view.h"
@@ -389,7 +390,7 @@
 1460929657 source:c:\repository\repos1\courses\prog_base_3\project\creatures.cpp
 	"Creatures.h"
 
-1465406343 c:\repository\repos1\courses\prog_base_3\project\creatures.h
+1465508238 c:\repository\repos1\courses\prog_base_3\project\creatures.h
 	<SFML/Graphics.hpp>
 	"map.h"
 

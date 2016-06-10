@@ -41,11 +41,15 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="include/SubjectClass.h" />
+		<Unit filename="enemyClass.cpp" />
+		<Unit filename="enemyClass.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="map.h" />
+		<Unit filename="playerClass.cpp" />
 		<Unit filename="playerClass.h" />
-		<Unit filename="src/SubjectClass.cpp" />
+		<Unit filename="subjectClass.cpp" />
+		<Unit filename="subjectClass.h" />
+		<Unit filename="view.cpp" />
 		<Unit filename="view.h" />
 		<Extensions>
 			<code_completion />

@@ -380,10 +380,11 @@
 	<string>
 	<vector>
 
-1465564609 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1465592509 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
 	<SFML/Graphics.hpp>
 	<sstream>
 	"playerClass.h"
+	"enemyClass.h"
 	"map.h"
 	"view.h"
 
@@ -772,31 +773,43 @@
 	<string>
 	<vector>
 
-1465406205 c:\repository\repos1\courses\prog_base_3\project\map.h
+1465592509 c:\repository\repos1\courses\prog_base_3\project\map.h
 	<SFML\Graphics.hpp>
 
 1465564042 c:\repository\repos1\courses\prog_base_3\project\view.h
 	<SFML/Graphics.hpp>
 
-1465567763 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
+1465573476 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
 	<SFML/Graphics.hpp>
+	"subjectClass.h"
+	"view.h"
 
 1465559648 c:\repository\repos1\courses\prog_base_3\project\include\subjectclass.h
 
-1465564254 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
+1465592548 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
 	<SFML/Graphics.hpp>
 	"playerClass.h"
+	"subjectClass.h"
 	"map.h"
 
 1465564189 source:c:\repository\repos1\courses\prog_base_3\project\view.cpp
 	<SFML/Graphics.hpp>
 	"view.h"
 
-1465566969 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
+1465592526 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
 	<SFML/Graphics.hpp>
 	"enemyClass.h"
+	"subjectClass.h"
 	"map.h"
 
-1465566906 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
+1465573702 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
 	<SFML/Graphics.hpp>
+	"subjectClass.h"
+
+1465574636 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
+	<SFML/Graphics.hpp>
+
+1465574631 source:c:\repository\repos1\courses\prog_base_3\project\subjectclass.cpp
+	<SFML/Graphics.hpp>
+	"subjectClass.h"
 

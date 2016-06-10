@@ -2,8 +2,11 @@
 #include <sstream>
 
 #include "playerClass.h"
-#include "map.h"
+#include "enemyClass.h"
+#include "level.h"
 #include "view.h"
+#include <vector>
+#include <list>
 
 using namespace std;
 using namespace sf;
@@ -22,7 +25,11 @@ int main(void)
     text.setColor(Color::Red);
     text.setStyle(Text::Bold);
 
-    Image map_image, icon, help_image;
+    Image map_image, icon, help_image, hero_image, enemy_image;
+    hero_image.loadFromFile("images/hero.png");
+    enemy_image.loadFromFile("images/4330675.png");
+    hero_image.createMaskFromColor(Color(102, 17, 189));
+
     map_image.loadFromFile("images/map.png");
     icon.loadFromFile("images/icon.png");
     help_image.loadFromFile("images/help.png");
@@ -46,7 +53,8 @@ int main(void)
 
     Clock clock;
 
-    Player hero("hero.png", 100, 100, 87.5, 60);
+    Player hero(hero_image, 100, 100, 87.5, 60, "Player");
+    Enemy enemy(enemy_image, 600, 200, 124, 210, "Enemy1");
 
     while (window.isOpen())
     {
@@ -64,35 +72,26 @@ int main(void)
         }
 
 
-        if(hero.life){
-            getPlayerCoordForView(&view, hero.x, hero.y);
-        }
-        else
-        {
-            //hero.state = STAY;
-            hero.speed = 0;
-            hero.sprite.setTextureRect(IntRect(0, 210, 85, 42));
-            getPlayerCoordForView(&view, hero.x, hero.y);
-        }
-
+        hero.position(&view, time);
+        enemy.position(time);
 
         window.setView(view);
         window.clear(Color(128,106,89));
 
-        for(int i = 0; i<HEIGHT_MAP; i++)
+     /*   for(int i = 0; i<HEIGHT_MAP; i++)
             for(int j = 0; j<WIDTH_MAP; j++)
             {
-                if(TileMap[i][j] == ' ')
+                if(MyTileMap[i][j] == ' ')
                     s_map.setTextureRect(IntRect(0, 0, 32, 32));
-                if(TileMap[i][j] == 's')
+                if(MyTileMap[i][j] == 's')
                     s_map.setTextureRect(IntRect(32, 0, 32, 32));
-                if(TileMap[i][j] == '0')
+                if(MyTileMap[i][j] == '0')
                     s_map.setTextureRect(IntRect(64, 0, 32, 32));
 
                 s_map.setPosition(j*32, i*32);
                 window.draw(s_map);
             }
-
+*/
 
 
         ostringstream heroScore, heroHealth;

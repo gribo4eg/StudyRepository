@@ -1,35 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include "playerClass.h"
+#include "subjectClass.h"
 #include "map.h"
 
 using namespace sf;
 
-Player::Player(string file, float X, float Y,
-              float Width, float Height)
+Player::Player(Image &image, float X, float Y, float Width, float Height, string Name):
+    Subject(image, X, Y, Width, Height, Name)
     {
         state = STAY;
         score = 0;
-        life = true;
-        gravity = false;
-        health = 100;
-        imageName = file;
-        speed = 0;
-        speed_x = 0;
-        speed_y = 0;
-        x = X;
-        y = Y;
-        width = Width;
-        heigth = Height;
-        image.loadFromFile("images/" + imageName);
-        image.createMaskFromColor(Color(102, 17, 189));
 
-        texture.loadFromImage(image);
-
-        sprite.setTexture(texture);
-        sprite.setTextureRect(IntRect(0, 0, width, heigth));
-        sprite.setPosition(x, y);
-        sprite.setScale(1, 1);
-        sprite.setOrigin(width/2, heigth/2);
+        sprite.setTextureRect(IntRect(0, 0, width, height));
     }
 
    void Player::control()
@@ -92,10 +74,16 @@ Player::Player(string file, float X, float Y,
         y += speed_y * time;
         interactiveWithMap(0, speed_y);
 
-        sprite.setPosition(x + width/2, y + heigth/2);
+        sprite.setPosition(x + width/2, y + height/2);
 
-        if(health <= 0)
+        if(health <= 0){
             life = false;
+            sprite.setTextureRect(IntRect(0, 210, 85, 42));
+            getPlayerCoordForView(view, x, y);
+        }
+
+        if(!movement)
+            speed = 0;
 
         if(life)
             getPlayerCoordForView(view, x, y);
@@ -105,14 +93,14 @@ Player::Player(string file, float X, float Y,
 
   void  Player::interactiveWithMap(float dx, float dy)//collision with map
     {
-        for(int i = y/32; i < (y + heigth)/32; i++)
+        for(int i = y/32; i < (y + height)/32; i++)
         {
             for(int j = x/32; j < (x + width)/32; j++)
             {
-                if(TileMap[i][j] == '0')
+              /*  if(MyTileMap[i][j] == '0')
                 {
                     if(dy > 0){
-                        y = i*32 - heigth;
+                        y = i*32 - height;
                         speed_y = 0;
                         gravity = true;
                     }
@@ -124,7 +112,7 @@ Player::Player(string file, float X, float Y,
                         x = j*32 - width;
                     if(dx < 0)
                         x = j*32 + 32;
-                }
+                }*/
                 //else
                     //gravity = false;
             }

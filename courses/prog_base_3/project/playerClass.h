@@ -3,26 +3,19 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "subjectClass.h"
 #include "view.h"
 
 using namespace sf;
 using namespace std;
 
-class Player
+class Player: public Subject
 {
 public:
     enum { LEFT, RIGHT, UP, DOWN, JUMP, STAY } state;
-    float width, heigth, speed_x, speed_y, speed, x, y;
-    bool life, gravity;
-    int health;
     int score;
-    string imageName;
-    Image image;
-    Texture texture;
-    Sprite sprite;
 
-    Player(string file, float X, float Y,
-              float Width, float Height);
+    Player(Image &image, float X, float Y, float Width, float Height, string Name);
 
     void control();
 

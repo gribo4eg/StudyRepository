@@ -41,9 +41,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Creatures.h" />
+		<Unit filename="include/SubjectClass.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="map.h" />
+		<Unit filename="playerClass.h" />
+		<Unit filename="src/SubjectClass.cpp" />
 		<Unit filename="view.h" />
 		<Extensions>
 			<code_completion />

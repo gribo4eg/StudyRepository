@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>
 
-#include "Creatures.h"
+#include "playerClass.h"
 #include "map.h"
 #include "view.h"
 
@@ -12,7 +12,9 @@ void drawText();
 
 int main(void)
 {
-    RenderWindow window(VideoMode(1270, 700), "TerraX!");
+    RenderWindow window(VideoMode(1270, 700), "TerraX!");// Style::Fullscreen);
+
+    View view;
 
     Font font;
     font.loadFromFile("quant.ttf");
@@ -44,7 +46,7 @@ int main(void)
 
     Clock clock;
 
-    Creatures hero("hero.png", 100, 100, 87.5, 60);
+    Player hero("hero.png", 100, 100, 87.5, 60);
 
     while (window.isOpen())
     {
@@ -61,16 +63,18 @@ int main(void)
 
         }
 
-        if(hero.life){
 
+        if(hero.life){
+            getPlayerCoordForView(&view, hero.x, hero.y);
         }
         else
         {
-            hero.direction = STAY; hero.speed = 0;
+            //hero.state = STAY;
+            hero.speed = 0;
             hero.sprite.setTextureRect(IntRect(0, 210, 85, 42));
-            getPlayerCoordForView(hero.getPlayerCoordX(), hero.getPlayerCoordY());
+            getPlayerCoordForView(&view, hero.x, hero.y);
         }
-        hero.position(time);
+
 
         window.setView(view);
         window.clear(Color(128,106,89));

@@ -380,10 +380,10 @@
 	<string>
 	<vector>
 
-1465506661 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1465564609 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
 	<SFML/Graphics.hpp>
 	<sstream>
-	"Creatures.h"
+	"playerClass.h"
 	"map.h"
 	"view.h"
 
@@ -775,5 +775,28 @@
 1465406205 c:\repository\repos1\courses\prog_base_3\project\map.h
 	<SFML\Graphics.hpp>
 
-1465404911 c:\repository\repos1\courses\prog_base_3\project\view.h
+1465564042 c:\repository\repos1\courses\prog_base_3\project\view.h
+	<SFML/Graphics.hpp>
+
+1465567763 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
+	<SFML/Graphics.hpp>
+
+1465559648 c:\repository\repos1\courses\prog_base_3\project\include\subjectclass.h
+
+1465564254 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
+	<SFML/Graphics.hpp>
+	"playerClass.h"
+	"map.h"
+
+1465564189 source:c:\repository\repos1\courses\prog_base_3\project\view.cpp
+	<SFML/Graphics.hpp>
+	"view.h"
+
+1465566969 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
+	<SFML/Graphics.hpp>
+	"enemyClass.h"
+	"map.h"
+
+1465566906 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
+	<SFML/Graphics.hpp>
 

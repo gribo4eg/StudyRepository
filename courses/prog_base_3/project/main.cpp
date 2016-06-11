@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <sstream>
 #include <iostream>
 #include "playerClass.h"
@@ -20,6 +21,15 @@ int main(void)
 
     Level level;
     level.LoadFromFile("map.tmx");
+
+    SoundBuffer jumpBuf;
+    jumpBuf.loadFromFile("sounds/jump.ogg");
+    Sound jump(jumpBuf);
+
+    Music music;
+    music.openFromFile("sounds/main.ogg");
+    music.setLoop(true);
+    music.play();
 
     View view;
 
@@ -82,8 +92,11 @@ int main(void)
 
         }
 
-        if(hero.life)
+        if(hero.life){
             hero.position(&view, time);
+            if(Keyboard::isKeyPressed(Keyboard::Up))
+                jump.play();
+        }
 
         for(countOf = subjects.begin(); countOf != subjects.end();)
         {
@@ -94,9 +107,10 @@ int main(void)
             {
                 countOf = subjects.erase(countOf);
                 delete s;
+                hero.score++;
                 if(hero.x > 650)
                 {
-                    subjects.push_back(new Enemy(enemy_image, level, rand()%100 + 60, 750, 75.8, 108, "Enemy"));
+                    subjects.push_back(new Enemy(enemy_image, level, 1000 + rand()%2129, 308, 75.8, 108, "Enemy"));
                     countNew = subjects.end();
                     countNew--;
                     Subject *sNew = *countNew;
@@ -104,7 +118,7 @@ int main(void)
                 }
                 else
                 {
-                    subjects.push_back(new Enemy(enemy_image, level, rand()%100 + 60, 750, 75.8, 108, "Enemy"));
+                    subjects.push_back(new Enemy(enemy_image, level, 1000 + rand()%2129, 22, 75.8, 108, "Enemy"));
                     countNew = subjects.end();
                     countNew--;
                     Subject *sNew = *countNew;

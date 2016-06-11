@@ -35,7 +35,7 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
             else if(Keyboard::isKeyPressed(Keyboard::Down))
             {
                 state = DOWN;
-                speed = 0.1;
+                speed = 0.2;
             }
 
             else if(Keyboard::isKeyPressed(Keyboard::Up) && gravity)
@@ -84,6 +84,7 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         if(health <= 0){
             life = false;
             sprite.setTextureRect(IntRect(0, 210, 85, 42));
+            sprite.setPosition(x, y + 60);
             getPlayerCoordForView(view, x, y);
         }
 
@@ -108,14 +109,13 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
                 {
                     if(dy > 0)
                     {
-                        y = obj[i].rect.top - height;
+                        y += speed_y;
                         speed_y = 0;
                         gravity = true;
                     }
                     if(dy < 0)
                     {
-                        y = obj[i].rect.top + obj[i].rect.height;
-                        speed_y = 0;
+                        y -= speed_x;
                     }
                 }
                 if(obj[i].name == "Solid")

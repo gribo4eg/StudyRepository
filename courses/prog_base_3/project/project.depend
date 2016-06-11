@@ -380,8 +380,9 @@
 	<string>
 	<vector>
 
-1465664060 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1465679839 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
 	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
 	<sstream>
 	<iostream>
 	"playerClass.h"
@@ -783,7 +784,7 @@
 1465564042 c:\repository\repos1\courses\prog_base_3\project\view.h
 	<SFML/Graphics.hpp>
 
-1465596654 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
+1465676984 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
 	<SFML/Graphics.hpp>
 	"subjectClass.h"
 	"level.h"
@@ -791,7 +792,7 @@
 
 1465559648 c:\repository\repos1\courses\prog_base_3\project\include\subjectclass.h
 
-1465664201 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
+1465677567 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
 	<SFML/Graphics.hpp>
 	"playerClass.h"
 	"TinyXML/tinyxml.h"
@@ -799,24 +800,24 @@
 	"level.h"
 	<vector>
 
-1465646799 source:c:\repository\repos1\courses\prog_base_3\project\view.cpp
+1465677154 source:c:\repository\repos1\courses\prog_base_3\project\view.cpp
 	<SFML/Graphics.hpp>
 	"view.h"
 
-1465663907 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
+1465676945 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
 	<SFML/Graphics.hpp>
 	"enemyClass.h"
 	"level.h"
 	"subjectClass.h"
 	"map.h"
 
-1465658051 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
+1465676984 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
 	<SFML/Graphics.hpp>
 	"level.h"
 	<vector>
 	"subjectClass.h"
 
-1465658078 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
+1465676984 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
 	<SFML/Graphics.hpp>
 	"level.h"
 	<vector>
@@ -874,4 +875,107 @@
 	<stddef.h>
 	"tinyxml.h"
 	<windows.h>
+
+1429780453 c:\libs\sfml\include\sfml\audio.hpp
+	<SFML/System.hpp>
+	<SFML/Audio/InputSoundFile.hpp>
+	<SFML/Audio/Listener.hpp>
+	<SFML/Audio/Music.hpp>
+	<SFML/Audio/OutputSoundFile.hpp>
+	<SFML/Audio/Sound.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundBufferRecorder.hpp>
+	<SFML/Audio/SoundFileFactory.hpp>
+	<SFML/Audio/SoundFileReader.hpp>
+	<SFML/Audio/SoundFileWriter.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/Audio/SoundStream.hpp>
+
+1429780453 c:\libs\sfml\include\sfml\audio\inputsoundfile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+
+1429780453 c:\libs\sfml\include\sfml\audio\export.hpp
+	<SFML/Config.hpp>
+
+1429780453 c:\libs\sfml\include\sfml\audio\listener.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/Vector3.hpp>
+
+1436034025 c:\libs\sfml\include\sfml\audio\music.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundStream.hpp>
+	<SFML/Audio/InputSoundFile.hpp>
+	<SFML/System/Mutex.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundstream.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<SFML/System/Mutex.hpp>
+	<cstdlib>
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundsource.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Vector3.hpp>
+
+1429780453 c:\libs\sfml\include\sfml\audio\alresource.hpp
+	<SFML/Audio/Export.hpp>
+
+1429780453 c:\libs\sfml\include\sfml\audio\outputsoundfile.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/System/NonCopyable.hpp>
+	<string>
+
+1429780453 c:\libs\sfml\include\sfml\audio\sound.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundSource.hpp>
+	<SFML/System/Time.hpp>
+	<cstdlib>
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundbuffer.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Time.hpp>
+	<string>
+	<vector>
+	<set>
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundbufferrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/SoundBuffer.hpp>
+	<SFML/Audio/SoundRecorder.hpp>
+	<vector>
+
+1436034025 c:\libs\sfml\include\sfml\audio\soundrecorder.hpp
+	<SFML/Audio/Export.hpp>
+	<SFML/Audio/AlResource.hpp>
+	<SFML/System/Thread.hpp>
+	<SFML/System/Time.hpp>
+	<vector>
+	<string>
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundfilefactory.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
+	<vector>
+	<SFML/Audio/SoundFileFactory.inl>
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundfilefactory.inl
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundfilereader.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
+
+1429780453 c:\libs\sfml\include\sfml\audio\soundfilewriter.hpp
+	<SFML/Audio/Export.hpp>
+	<string>
 

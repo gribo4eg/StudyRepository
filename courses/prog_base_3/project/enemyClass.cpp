@@ -73,7 +73,6 @@ void Enemy::position(View *view, float time)
     sprite.setPosition(x + width/2, y + height/2);
     if(health <=0){
         life = false;
-
     }
 
     speed_y += 0.0015*time;

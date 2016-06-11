@@ -1,17 +1,20 @@
 #include <SFML/Graphics.hpp>
 #include "playerClass.h"
+#include "TinyXML/tinyxml.h"
 #include "subjectClass.h"
-#include "map.h"
+#include "level.h"
+#include <vector>
 
 using namespace sf;
 
-Player::Player(Image &image, float X, float Y, float Width, float Height, string Name):
+Player::Player(Image &image, Level &level, float X, float Y, float Width, float Height, string Name):
     Subject(image, X, Y, Width, Height, Name)
     {
+        obj = level.GetAllObjects();
         state = STAY;
         score = 0;
 
-        sprite.setTextureRect(IntRect(0, 0, width, height));
+        sprite.setTextureRect(IntRect(0, 60, width, height));
     }
 
    void Player::control()
@@ -85,36 +88,43 @@ Player::Player(Image &image, float X, float Y, float Width, float Height, string
         if(!movement)
             speed = 0;
 
+        getPlayerCoordForView(view, x, y);
+
         if(life)
             getPlayerCoordForView(view, x, y);
 
-        speed_y += 0.0015 * time;
+        speed_y += 0.0005 * time;
     }
 
   void  Player::interactiveWithMap(float dx, float dy)//collision with map
     {
-        for(int i = y/32; i < (y + height)/32; i++)
+        for(int i = 0; i<obj.size(); i++)
         {
-            for(int j = x/32; j < (x + width)/32; j++)
+            if(getRect().intersects(obj[i].rect))
             {
-              /*  if(MyTileMap[i][j] == '0')
+                if(obj[i].name == "Solid")
                 {
-                    if(dy > 0){
-                        y = i*32 - height;
+
+                    if(dy > 0)
+                    {
+                        y = obj[i].rect.top - height;
                         speed_y = 0;
                         gravity = true;
                     }
-                    if(dy < 0){
-                        y = i*32 + 32;
+                    if(dy < 0)
+                    {
+                        y = obj[i].rect.top + obj[i].rect.height;
                         speed_y = 0;
                     }
                     if(dx > 0)
-                        x = j*32 - width;
+                    {
+                        x = obj[i].rect.left - width;
+                    }
                     if(dx < 0)
-                        x = j*32 + 32;
-                }*/
-                //else
-                    //gravity = false;
+                    {
+                        x = obj[i].rect.left + obj[i].rect.width;
+                    }
+                }
             }
         }
     }

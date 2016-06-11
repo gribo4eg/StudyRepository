@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "subjectClass.h"
+#include "level.h"
 #include "view.h"
 
 using namespace sf;
@@ -15,7 +16,7 @@ public:
     enum { LEFT, RIGHT, UP, DOWN, JUMP, STAY } state;
     int score;
 
-    Player(Image &image, float X, float Y, float Width, float Height, string Name);
+    Player(Image &image, Level &level, float X, float Y, float Width, float Height, string Name);
 
     void control();
 

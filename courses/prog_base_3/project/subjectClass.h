@@ -2,6 +2,8 @@
 #define SUBJECTCLASS_H_INCLUDED
 
 #include <SFML/Graphics.hpp>
+#include "level.h"
+#include <vector>
 
 using namespace sf;
 using namespace std;
@@ -9,6 +11,7 @@ using namespace std;
 class Subject
 {
 public:
+    vector<Object> obj;
     float width, height, speed_x, speed_y, speed, x, y, moveTime;
     bool life, movement, gravity;
     int health;
@@ -16,7 +19,12 @@ public:
     Sprite sprite;
     string name;
 
-    Subject(Image &image, float X, float Y,int Width,int Height, string Name);
+    FloatRect getRect()
+    {
+        return FloatRect(x, y, width, height);
+    }
+
+    Subject(Image &image, float X, float Y, float Width, float Height, string Name);
 };
 
 #endif // SUBJECTCLASS_H_INCLUDED

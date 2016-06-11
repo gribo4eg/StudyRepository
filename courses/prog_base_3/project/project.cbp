@@ -41,8 +41,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="TinyXML/tinystr.cpp" />
+		<Unit filename="TinyXML/tinystr.h" />
+		<Unit filename="TinyXML/tinyxml.cpp" />
+		<Unit filename="TinyXML/tinyxml.h" />
+		<Unit filename="TinyXML/tinyxmlerror.cpp" />
+		<Unit filename="TinyXML/tinyxmlparser.cpp" />
 		<Unit filename="enemyClass.cpp" />
 		<Unit filename="enemyClass.h" />
+		<Unit filename="level.cpp" />
+		<Unit filename="level.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="map.h" />
 		<Unit filename="playerClass.cpp" />

@@ -28,283 +28,299 @@ it freely, subject to the following restrictions:
    source distribution.
 *********************************************************************/
 
-#include "level.h"
-
+#include <string>
+#include <vector>
+#include <map>
+#include <SFML/Graphics.hpp>
 #include <iostream>
-#include <tinyxml.h>
+#include "TinyXML/tinyxml.h"
+#include "level.h"
 
 int Object::GetPropertyInt(std::string name)
 {
-    int i;
-    i = atoi(properties[name].c_str());
-
-    return i;
+	return atoi(properties[name].c_str());
 }
 
 float Object::GetPropertyFloat(std::string name)
 {
-    float f;
-    f = strtod(properties[name].c_str(), NULL);
-
-    return f;
+	return strtod(properties[name].c_str(), NULL);
 }
 
 std::string Object::GetPropertyString(std::string name)
 {
-    return properties[name];
-}
-
-Level::Level()
-{
-    //ctor
-}
-
-Level::~Level()
-{
-    //dtor
+	return properties[name];
 }
 
 bool Level::LoadFromFile(std::string filename)
 {
-    TiXmlDocument levelFile(filename.c_str());
+	TiXmlDocument levelFile(filename.c_str());
 
-    if (!levelFile.LoadFile())
-    {
-        std::cout << "Loading level \"" << filename << "\" failed." << std::endl;
-        return false;
-    }
+	if (!levelFile.LoadFile())
+	{
+		std::cout << "Loading level \"" << filename << "\" failed." << std::endl;
+	}
 
-    //Map element. This is the root element for the whole file.
-    TiXmlElement *map;
-    map = levelFile.FirstChildElement("map");
 
-    //Set up misc map properties.
-    width = atoi(map->Attribute("width"));
-    height = atoi(map->Attribute("height"));
-    tileWidth = atoi(map->Attribute("tilewidth"));
-    tileHeight = atoi(map->Attribute("tileheight"));
+	TiXmlElement *map;
+	map = levelFile.FirstChildElement("map");
 
-    //Tileset stuff
-    TiXmlElement *tilesetElement;
-    tilesetElement = map->FirstChildElement("tileset");
-    firstTileID = atoi(tilesetElement->Attribute("firstgid"));
 
-    //Tileset image
-    TiXmlElement *image;
-    image = tilesetElement->FirstChildElement("image");
-    std::string imagepath = image->Attribute("source");
+	width = atoi(map->Attribute("width"));
+	height = atoi(map->Attribute("height"));
+	tileWidth = atoi(map->Attribute("tilewidth"));
+	tileHeight = atoi(map->Attribute("tileheight"));
 
-    if (!tilesetImage.LoadFromFile(imagepath))//Load the tileset image
-    {
-        std::cout << "Failed to load tile sheet." << std::endl;
-        return false;
-    }
 
-    tilesetImage.CreateMaskFromColor(sf::Color(255, 0, 255));
-    tilesetImage.SetSmooth(false);
+	TiXmlElement *tilesetElement;
+	tilesetElement = map->FirstChildElement("tileset");
+	firstTileID = atoi(tilesetElement->Attribute("firstgid"));
 
-    //Columns and rows (of tileset image)
-    int columns = tilesetImage.GetWidth() / tileWidth;
-    int rows = tilesetImage.GetHeight() / tileHeight;
 
-    std::vector <sf::Rect<int> > subRects;//container of subrects (to divide the tilesheet image up)
+	TiXmlElement *image;
+	image = tilesetElement->FirstChildElement("image");
+	std::string imagepath = image->Attribute("source");
 
-    //tiles/subrects are counted from 0, left to right, top to bottom
-    for (int y = 0; y < rows; y++)
-    {
-        for (int x = 0; x < columns; x++)
-        {
-            sf::Rect <int> rect;
-            rect.Top = y * tileHeight;
-            rect.Bottom = y * tileHeight + tileHeight;
-            rect.Left = x * tileWidth;
-            rect.Right = x * tileWidth + tileWidth;
-            subRects.push_back(rect);
-        }
-    }
 
-    //Layers
-    TiXmlElement *layerElement;
-    layerElement = map->FirstChildElement("layer");
-    while (layerElement)
-    {
-        Layer layer;
-        if (layerElement->Attribute("opacity") != NULL)//check if opacity attribute exists
-        {
-            float opacity = strtod(layerElement->Attribute("opacity"), NULL);//convert the (string) opacity element to float
-            layer.opacity = 255 * opacity;
-        }
-        else
-        {
-            layer.opacity = 255;//if the attribute doesnt exist, default to full opacity
-        }
+	sf::Image img;
 
-        //Tiles
-        TiXmlElement *layerDataElement;
-        layerDataElement = layerElement->FirstChildElement("data");
+	if (!img.loadFromFile(imagepath))
+	{
+		std::cout << "Failed to load tile sheet." << std::endl;
+		return false;
+	}
 
-        if (layerDataElement == NULL)
-        {
-            std::cout << "Bad map. No layer information found." << std::endl;
-        }
 
-        TiXmlElement *tileElement;
-        tileElement = layerDataElement->FirstChildElement("tile");
+	img.createMaskFromColor(sf::Color(255, 255, 255));
+	tilesetImage.loadFromImage(img);
+	tilesetImage.setSmooth(false);
 
-        if (tileElement == NULL)
-        {
-            std::cout << "Bad map. No tile information found." << std::endl;
-            return false;
-        }
 
-        int x = 0;
-        int y = 0;
+	int columns = tilesetImage.getSize().x / tileWidth;
+	int rows = tilesetImage.getSize().y / tileHeight;
 
-        while (tileElement)
-        {
-            int tileGID = atoi(tileElement->Attribute("gid"));
-            int subRectToUse = tileGID - firstTileID;//Work out the subrect ID to 'chop up' the tilesheet image.
-            if (subRectToUse >= 0)//we only need to (and only can) create a sprite/tile if there is one to display
-            {
-                sf::Sprite sprite;//sprite for the tile
-                sprite.SetImage(tilesetImage);
-                sprite.SetSubRect(subRects[subRectToUse]);
-                sprite.SetPosition(x * tileWidth, y * tileHeight);
 
-                sprite.SetColor(sf::Color(255, 255, 255, layer.opacity));//Set opacity of the tile.
+	std::vector<sf::Rect<int> > subRects;
 
-                //add tile to layer
-                layer.tiles.push_back(sprite);
-            }
+	for (int y = 0; y < rows; y++)
+	for (int x = 0; x < columns; x++)
+	{
+		sf::Rect<int> rect;
 
-            tileElement = tileElement->NextSiblingElement("tile");
+		rect.top = y * tileHeight;
+		rect.height = tileHeight;
+		rect.left = x * tileWidth;
+		rect.width = tileWidth;
 
-            //increment x, y
-            x++;
-            if (x >= width)//if x has "hit" the end (right) of the map, reset it to the start (left)
-            {
-                x = 0;
-                y++;
-                if (y >= height)
-                {
-                    y = 0;
-                }
-            }
-        }
+		subRects.push_back(rect);
+	}
 
-        layers.push_back(layer);
 
-        layerElement = layerElement->NextSiblingElement("layer");
-    }
+	TiXmlElement *layerElement;
+	layerElement = map->FirstChildElement("layer");
+	while (layerElement)
+	{
+		Layer layer;
 
-    //Objects
-    TiXmlElement *objectGroupElement;
-    if (map->FirstChildElement("objectgroup") != NULL)//Check that there is atleast one object layer
-    {
-        objectGroupElement = map->FirstChildElement("objectgroup");
-        while (objectGroupElement)//loop through object layers
-        {
-            TiXmlElement *objectElement;
-            objectElement = objectGroupElement->FirstChildElement("object");
-            while (objectElement)//loop through objects
-            {
-                std::string objectType;
-                if (objectElement->Attribute("type") != NULL)
-                {
-                    objectType = objectElement->Attribute("type");
-                }
-                std::string objectName;
-                if (objectElement->Attribute("name") != NULL)
-                {
-                    objectName = objectElement->Attribute("name");
-                }
-                int x = atoi(objectElement->Attribute("x"));
-                int y = atoi(objectElement->Attribute("y"));
-                int width = atoi(objectElement->Attribute("width"));
-                int height = atoi(objectElement->Attribute("height"));
 
-                Object object;
-                object.name = objectName;
-                object.type = objectType;
+		if (layerElement->Attribute("opacity") != NULL)
+		{
+			float opacity = strtod(layerElement->Attribute("opacity"), NULL);
+			layer.opacity = 255 * opacity;
+		}
+		else
+		{
+			layer.opacity = 255;
+		}
 
-                sf::Rect <int> objectRect;
-                objectRect.Top = y;
-                objectRect.Left = x;
-                objectRect.Bottom = y + height;
-                objectRect.Right = x + width;
 
-                if (objectType == "solid")
-                {
-                    solidObjects.push_back(objectRect);
-                }
+		TiXmlElement *layerDataElement;
+		layerDataElement = layerElement->FirstChildElement("data");
 
-                object.rect = objectRect;
+		if (layerDataElement == NULL)
+		{
+			std::cout << "Bad map. No layer information found." << std::endl;
+		}
 
-                TiXmlElement *properties;
-                properties = objectElement->FirstChildElement("properties");
-                if (properties != NULL)
-                {
-                    TiXmlElement *prop;
-                    prop = properties->FirstChildElement("property");
-                    if (prop != NULL)
-                    {
-                        while(prop)
-                        {
-                            std::string propertyName = prop->Attribute("name");
-                            std::string propertyValue = prop->Attribute("value");
 
-                            object.properties[propertyName] = propertyValue;
+		TiXmlElement *tileElement;
+		tileElement = layerDataElement->FirstChildElement("tile");
 
-                            prop = prop->NextSiblingElement("property");
-                        }
-                    }
-                }
+		if (tileElement == NULL)
+		{
+			std::cout << "Bad map. No tile information found." << std::endl;
+			return false;
+		}
 
-                objects.push_back(object);
+		int x = 0;
+		int y = 0;
 
-                objectElement = objectElement->NextSiblingElement("object");
-            }
-            objectGroupElement = objectGroupElement->NextSiblingElement("objectgroup");
-        }
-    }
-    else
-    {
-        std::cout << "No object layers found..." << std::endl;
-    }
+		while (tileElement)
+		{
+			int tileGID = atoi(tileElement->Attribute("gid"));
+			int subRectToUse = tileGID - firstTileID;
 
-    return true;
+
+			if (subRectToUse >= 0)
+			{
+				sf::Sprite sprite;
+				sprite.setTexture(tilesetImage);
+				sprite.setTextureRect(subRects[subRectToUse]);
+				sprite.setPosition(x * tileWidth, y * tileHeight);
+				sprite.setColor(sf::Color(255, 255, 255, layer.opacity));
+
+				layer.tiles.push_back(sprite);
+			}
+
+			tileElement = tileElement->NextSiblingElement("tile");
+
+			x++;
+			if (x >= width)
+			{
+				x = 0;
+				y++;
+				if (y >= height)
+					y = 0;
+			}
+		}
+
+		layers.push_back(layer);
+
+		layerElement = layerElement->NextSiblingElement("layer");
+	}
+
+
+	TiXmlElement *objectGroupElement;
+
+
+	if (map->FirstChildElement("objectgroup") != NULL)
+	{
+		objectGroupElement = map->FirstChildElement("objectgroup");
+		while (objectGroupElement)
+		{
+
+			TiXmlElement *objectElement;
+			objectElement = objectGroupElement->FirstChildElement("object");
+
+			while (objectElement)
+			{
+
+				std::string objectType;
+				if (objectElement->Attribute("type") != NULL)
+				{
+					objectType = objectElement->Attribute("type");
+				}
+				std::string objectName;
+				if (objectElement->Attribute("name") != NULL)
+				{
+					objectName = objectElement->Attribute("name");
+				}
+				int x = atoi(objectElement->Attribute("x"));
+				int y = atoi(objectElement->Attribute("y"));
+
+				int width, height;
+
+				sf::Sprite sprite;
+				sprite.setTexture(tilesetImage);
+				sprite.setTextureRect(sf::Rect<int>(0, 0, 0, 0));
+				sprite.setPosition(x, y);
+
+				if (objectElement->Attribute("width") != NULL)
+				{
+					width = atoi(objectElement->Attribute("width"));
+					height = atoi(objectElement->Attribute("height"));
+				}
+				else
+				{
+					width = subRects[atoi(objectElement->Attribute("gid")) - firstTileID].width;
+					height = subRects[atoi(objectElement->Attribute("gid")) - firstTileID].height;
+					sprite.setTextureRect(subRects[atoi(objectElement->Attribute("gid")) - firstTileID]);
+				}
+
+
+				Object object;
+				object.name = objectName;
+				object.type = objectType;
+				object.sprite = sprite;
+
+				sf::Rect <float> objectRect;
+				objectRect.top = y;
+				objectRect.left = x;
+				objectRect.height = height;
+				objectRect.width = width;
+				object.rect = objectRect;
+
+
+				TiXmlElement *properties;
+				properties = objectElement->FirstChildElement("properties");
+				if (properties != NULL)
+				{
+					TiXmlElement *prop;
+					prop = properties->FirstChildElement("property");
+					if (prop != NULL)
+					{
+						while (prop)
+						{
+							std::string propertyName = prop->Attribute("name");
+							std::string propertyValue = prop->Attribute("value");
+
+							object.properties[propertyName] = propertyValue;
+
+							prop = prop->NextSiblingElement("property");
+						}
+					}
+				}
+
+
+				objects.push_back(object);
+
+				objectElement = objectElement->NextSiblingElement("object");
+			}
+			objectGroupElement = objectGroupElement->NextSiblingElement("objectgroup");
+		}
+	}
+	else
+	{
+		std::cout << "No object layers found..." << std::endl;
+	}
+
+	return true;
 }
 
 Object Level::GetObject(std::string name)
 {
-    for (int i = 0; i < objects.size(); i++)
-    {
-        if (objects[i].name == name)
-        {
-            return objects[i];
-        }
-    }
+
+	for (int i = 0; i < objects.size(); i++)
+	if (objects[i].name == name)
+		return objects[i];
 }
 
-void Level::SetDrawingBounds(sf::Rect<float> bounds)
+std::vector<Object> Level::GetObjects(std::string name)
 {
-    drawingBounds = bounds;
 
-    //Adjust the rect so that tiles are drawn just off screen, so you don't see them disappearing.
-    drawingBounds.Top -= tileHeight;
-    drawingBounds.Left -= tileWidth;
+	std::vector<Object> vec;
+	for (int i = 0; i < objects.size(); i++)
+	if (objects[i].name == name)
+		vec.push_back(objects[i]);
+
+	return vec;
+}
+
+
+std::vector<Object> Level::GetAllObjects()
+{
+	return objects;
+};
+
+
+sf::Vector2i Level::GetTileSize()
+{
+	return sf::Vector2i(tileWidth, tileHeight);
 }
 
 void Level::Draw(sf::RenderWindow &window)
 {
-    for (int layer = 0; layer < layers.size(); layer++)
-    {
-        for (int tile = 0; tile < layers[layer].tiles.size(); tile++)
-        {
-            if (drawingBounds.Contains(layers[layer].tiles[tile].GetPosition().x, layers[layer].tiles[tile].GetPosition().y))
-            {
-                window.Draw(layers[layer].tiles[tile]);
-            }
-        }
-    }
+
+	for (int layer = 0; layer < layers.size(); layer++)
+	for (int tile = 0; tile < layers[layer].tiles.size(); tile++)
+		window.draw(layers[layer].tiles[tile]);
 }

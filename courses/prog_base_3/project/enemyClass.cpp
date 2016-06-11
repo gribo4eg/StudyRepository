@@ -1,44 +1,53 @@
 #include <SFML/Graphics.hpp>
 #include "enemyClass.h"
+#include "level.h"
 #include "subjectClass.h"
 #include "map.h"
 
 using namespace std;
 using namespace sf;
 
-Enemy::Enemy(sf::Image &image, float X, float Y,
+Enemy::Enemy(sf::Image &image, Level &level, float X, float Y,
               float Width, float Height, string Name):
                   Subject(image, X, Y, Width, Height, Name)
 {
+    obj = level.GetAllObjects();
     sprite.setTextureRect(IntRect(0, 0, width, height));
     speed_x = 0.1;
 }
 
 void Enemy::interactiveWithMap(float dx, float dy)
 {
-    for(int i = y/32; i < (y + height)/32; i++)
+    for(int i = 0; i<obj.size(); i++)
         {
-            for(int j = x/32; j < (x + width)/32; j++)
+            if(getRect().intersects(obj[i].rect))
             {
-              /*  if(MyTileMap[i][j] == '0')
+                if(obj[i].name == "Solid")
                 {
-                    if(dy > 0){
-                        y = i*32 - height;
+                    if(dy > 0)
+                    {
+                        y = obj[i].rect.top - height;
+                        speed_y = 0;
+                        gravity = true;
                     }
-                    if(dy < 0){
-                        y = i*32 + 32;
+                    if(dy < 0)
+                    {
+                        y = obj[i].rect.top + obj[i].rect.height;
+                        speed_y = 0;
                     }
-                    if(dx > 0){
-                        x = j*32 - width;
+                    if(dx > 0)
+                    {
+                        x = obj[i].rect.left - width;
                         speed_x = -0.1;
-                        sprite.scale(-1, 1);
+                        sprite.setScale(-1, 1);
                     }
-                    if(dx < 0){
-                        x = j*32 + 32;
+                    if(dx < 0)
+                    {
+                        x = obj[i].rect.left + obj[i].rect.width;
                         speed_x = 0.1;
-                        sprite.scale(-1, 1);
+                        sprite.setScale(-1, 1);
                     }
-                }*/
+                }
             }
         }
 }

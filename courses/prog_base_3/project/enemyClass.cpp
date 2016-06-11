@@ -11,9 +11,13 @@ Enemy::Enemy(sf::Image &image, Level &level, float X, float Y,
               float Width, float Height, string Name):
                   Subject(image, X, Y, Width, Height, Name)
 {
-    obj = level.GetAllObjects();
-    sprite.setTextureRect(IntRect(0, 0, width, height));
-    speed_x = 0.1;
+    obj = level.GetObjects("Solid");
+    if(name == "Enemy1"){
+        sprite.setTextureRect(IntRect(0, 0, width, height));
+        sprite.setScale(0.5, 0.5);
+        //sprite.setPosition(x + width/2, y + height/2);
+        speed_x = 0.1;
+    }
 }
 
 void Enemy::interactiveWithMap(float dx, float dy)
@@ -39,13 +43,13 @@ void Enemy::interactiveWithMap(float dx, float dy)
                     {
                         x = obj[i].rect.left - width;
                         speed_x = -0.1;
-                        sprite.setScale(-1, 1);
+                        sprite.setScale(-0.5, 0.5);
                     }
                     if(dx < 0)
                     {
                         x = obj[i].rect.left + obj[i].rect.width;
                         speed_x = 0.1;
-                        sprite.setScale(-1, 1);
+                        sprite.setScale(-0.5, 0.5);
                     }
                 }
             }
@@ -54,17 +58,19 @@ void Enemy::interactiveWithMap(float dx, float dy)
 
 void Enemy::position(float time)
 {
-    moveTime += time;
-    if(moveTime > 4000)
-    {
-        speed_x *=-1;
-        moveTime = 0;
-    }
-    interactiveWithMap(speed_x, 0);
-    x += speed_x * time;
+    if(name == "Enemy1"){
+        moveTime += time;
+        if(moveTime > 3000)
+        {
+            speed_x *=-1;
+            moveTime = 0;
+        }
+        interactiveWithMap(speed_x, 0);
+        x += speed_x * time;
 
-    sprite.setPosition(x + width/2, y + height/2);
-    if(health <=0)
-        life = false;
+        sprite.setPosition(x + width/2, y + height/2);
+        if(health <=0)
+            life = false;
+    }
 
 }

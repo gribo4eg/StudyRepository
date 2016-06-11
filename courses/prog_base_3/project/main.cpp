@@ -29,9 +29,8 @@ int main(void)
     text.setStyle(Text::Bold);
 
     Image icon, help_image, hero_image, enemy_image;
-    hero_image.loadFromFile("images/hero.png");
-    enemy_image.loadFromFile("images/4330675.png");
-    hero_image.createMaskFromColor(Color(102, 17, 189));
+    hero_image.loadFromFile("images/hero (2).png");
+    enemy_image.loadFromFile("images/mob.png");
 
 
     icon.loadFromFile("images/icon.png");
@@ -56,8 +55,8 @@ int main(void)
     Object player = level.GetObject("Player");
     Object enemyObj = level.GetObject("Enemy");
 
-    Player hero(hero_image, level, player.rect.left, player.rect.top, 87.5, 60, "Player");
-    Enemy enemy(enemy_image, level, enemyObj.rect.left, enemyObj.rect.top, 124, 210, "Enemy1");
+    Player hero(hero_image, level, player.rect.left, player.rect.top, 76.2, 60, "Player");
+    Enemy enemy(enemy_image, level, 600, 511, 110, 203, "Enemy1");
 
     while (window.isOpen())
     {

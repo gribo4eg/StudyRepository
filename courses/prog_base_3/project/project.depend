@@ -380,7 +380,7 @@
 	<string>
 	<vector>
 
-1465611432 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1465648401 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
 	<SFML/Graphics.hpp>
 	<sstream>
 	<iostream>
@@ -790,7 +790,7 @@
 
 1465559648 c:\repository\repos1\courses\prog_base_3\project\include\subjectclass.h
 
-1465611565 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
+1465648619 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
 	<SFML/Graphics.hpp>
 	"playerClass.h"
 	"TinyXML/tinyxml.h"
@@ -798,11 +798,11 @@
 	"level.h"
 	<vector>
 
-1465612594 source:c:\repository\repos1\courses\prog_base_3\project\view.cpp
+1465646799 source:c:\repository\repos1\courses\prog_base_3\project\view.cpp
 	<SFML/Graphics.hpp>
 	"view.h"
 
-1465610854 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
+1465648547 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
 	<SFML/Graphics.hpp>
 	"enemyClass.h"
 	"level.h"

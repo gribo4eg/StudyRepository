@@ -14,7 +14,7 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         state = STAY;
         score = 0;
 
-        sprite.setTextureRect(IntRect(0, 60, width, height));
+        sprite.setTextureRect(IntRect(0, 50, width, height));
     }
 
    void Player::control()
@@ -52,6 +52,8 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         control();
         switch(state)
         {
+        case JUMP:
+            break;
         case RIGHT:
             speed_x = speed;
             //speed_y = 0;
@@ -65,8 +67,6 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
             //speed_y = speed;
             break;
         case UP:
-            break;
-        case JUMP:
             break;
         case STAY:
             break;
@@ -93,7 +93,7 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         if(life)
             getPlayerCoordForView(view, x, y);
 
-        speed_y += 0.0005 * time;
+        speed_y += 0.0015 * time;
     }
 
   void  Player::interactiveWithMap(float dx, float dy)//collision with map

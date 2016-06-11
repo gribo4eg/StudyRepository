@@ -52,8 +52,6 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         control();
         switch(state)
         {
-        case JUMP:
-            break;
         case RIGHT:
             speed_x = speed;
             //speed_y = 0;
@@ -64,9 +62,13 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
             break;
         case DOWN:
             //speed_x = 0;
-            //speed_y = speed;
+            speed_y = speed;
+            break;
+        case JUMP:
             break;
         case UP:
+            //speed_x = 0;
+            speed_y = -speed;
             break;
         case STAY:
             break;
@@ -102,6 +104,20 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         {
             if(getRect().intersects(obj[i].rect))
             {
+                if(obj[i].name == "Stair" )
+                {
+                    if(dy > 0)
+                    {
+                        y = obj[i].rect.top - height;
+                        speed_y = 0;
+                        gravity = true;
+                    }
+                    if(dy < 0)
+                    {
+                        y = obj[i].rect.top + obj[i].rect.height;
+                        speed_y = 0;
+                    }
+                }
                 if(obj[i].name == "Solid")
                 {
 

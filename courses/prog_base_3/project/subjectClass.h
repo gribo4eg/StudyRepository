@@ -25,6 +25,8 @@ public:
     }
 
     Subject(Image &image, float X, float Y, float Width, float Height, string Name);
+
+    virtual void position(View *view, float time) = 0;
 };
 
 #endif // SUBJECTCLASS_H_INCLUDED

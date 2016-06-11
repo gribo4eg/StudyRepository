@@ -3,6 +3,7 @@
 #include <iostream>
 #include "playerClass.h"
 #include "enemyClass.h"
+#include "subjectClass.h"
 #include "level.h"
 #include "view.h"
 #include <vector>
@@ -30,7 +31,7 @@ int main(void)
 
     Image icon, help_image, hero_image, enemy_image;
     hero_image.loadFromFile("images/hero (2).png");
-    enemy_image.loadFromFile("images/mob.png");
+    enemy_image.loadFromFile("images/mob(3).png");
 
 
     icon.loadFromFile("images/icon.png");
@@ -52,11 +53,19 @@ int main(void)
 
     Clock clock;
 
+    std::list<Subject*> subjects;
+    std::list<Subject*>::iterator countOf;
+
+    vector<Object> enemies = level.GetObjects("Enemy");
+    for(int i = 0; i < enemies.size(); i++)
+        subjects.push_back(new Enemy(enemy_image, level, enemies[i].rect.left, enemies[i].rect.top, 75.8, 108, "Enemy"));
+
+
     Object player = level.GetObject("Player");
-    Object enemyObj = level.GetObject("Enemy");
+
 
     Player hero(hero_image, level, player.rect.left, player.rect.top, 76.2, 60, "Player");
-    Enemy enemy(enemy_image, level, 600, 511, 110, 203, "Enemy1");
+
 
     while (window.isOpen())
     {
@@ -73,9 +82,60 @@ int main(void)
 
         }
 
+        if(hero.life)
+            hero.position(&view, time);
 
-        hero.position(&view, time);
-        enemy.position(time);
+        for(countOf = subjects.begin(); countOf != subjects.end();)
+        {
+            Subject *s = *countOf;
+            s->position(&view, time);
+            list<Subject*>::iterator countNew;
+            if(s->life == false)
+            {
+                countOf = subjects.erase(countOf);
+                delete s;
+                if(hero.x > 650)
+                {
+                    subjects.push_back(new Enemy(enemy_image, level, rand()%100 + 60, 750, 75.8, 108, "Enemy"));
+                    countNew = subjects.end();
+                    countNew--;
+                    Subject *sNew = *countNew;
+                    sNew->health = 100;
+                }
+                else
+                {
+                    subjects.push_back(new Enemy(enemy_image, level, rand()%100 + 60, 750, 75.8, 108, "Enemy"));
+                    countNew = subjects.end();
+                    countNew--;
+                    Subject *sNew = *countNew;
+                    sNew->speed_x = -0.1;
+                    sNew->health = 100;
+                }
+            }
+
+            else
+                countOf++;
+        }
+
+        for(countOf = subjects.begin(); countOf != subjects.end(); countOf++)
+        {
+            Subject *s = *countOf;
+            if(s->getRect().intersects(hero.getRect()))
+            {
+                if(hero.speed_y > 0 && hero.gravity == false)
+                {
+                    s->speed_x = 0;
+                    hero.speed_y = -0.2;
+                    s->health /= 2;
+                }
+                else
+                {
+                    hero.health /= 2;
+                }
+            }
+        }
+
+
 
         window.setView(view);
         window.clear(Color(255, 255, 255));
@@ -110,7 +170,10 @@ int main(void)
             }
 
         window.draw(hero.sprite);
-        window.draw(enemy.sprite);
+
+        for(countOf = subjects.begin(); countOf != subjects.end(); countOf++)
+           window.draw((*countOf)->sprite);
+
         window.display();
     }
 

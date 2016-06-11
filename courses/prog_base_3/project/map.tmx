@@ -5429,13 +5429,20 @@
   <object name="Solid" x="1195" y="134" width="316" height="19"/>
   <object name="Solid" x="0" y="62" width="16" height="672"/>
   <object name="Solid" x="1584" y="39" width="16" height="672"/>
-  <object name="Player" x="369" y="611" width="57" height="93"/>
-  <object name="Enemy" x="600" y="511" width="110" height="180"/>
+  <object name="Solid" x="192" y="640" width="64" height="64"/>
+  <object name="Solid" x="928" y="640" width="64" height="64"/>
+  <object name="Solid" x="352" y="64" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="Stairs" width="50" height="27">
   <object name="Stair" x="476" y="388" width="58" height="325"/>
   <object name="Stair" x="1470" y="387" width="58" height="325"/>
   <object name="Stair" x="991" y="132" width="57" height="274"/>
   <object name="Stair" x="190" y="96" width="58" height="335"/>
+ </objectgroup>
+ <objectgroup name="Subject" width="50" height="27">
+  <object name="Player" x="369" y="611" width="57" height="93"/>
+  <object name="Enemy" x="648" y="593" width="76" height="108"/>
+  <object name="Enemy" x="312" y="309" width="76" height="108"/>
+  <object name="Enemy" x="1153" y="593" width="76" height="108"/>
  </objectgroup>
 </map>

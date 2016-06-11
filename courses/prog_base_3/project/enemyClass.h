@@ -14,7 +14,7 @@ public:
     Enemy(Image &image, Level &level, float X, float Y, float Width, float Height, string Name);
 
     void interactiveWithMap(float dx, float dy);
-    void position(float time);
+    void position(View *view, float time);
 
 };
 

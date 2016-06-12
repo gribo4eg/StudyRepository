@@ -13,23 +13,30 @@
 using namespace std;
 using namespace sf;
 
-void drawText();
+void menu(RenderWindow &window);
 
 int main(void)
 {
-    RenderWindow window(VideoMode(1270, 700), "TerraX!");// Style::Fullscreen);
+    RenderWindow window(VideoMode(1376, 768), "TerraX!");// sf::Style::Fullscreen);
 
     Level level;
     level.LoadFromFile("map.tmx");
-
-    SoundBuffer jumpBuf;
-    jumpBuf.loadFromFile("sounds/jump.ogg");
-    Sound jump(jumpBuf);
 
     Music music;
     music.openFromFile("sounds/main.ogg");
     music.setLoop(true);
     music.play();
+
+    Image icon;
+    icon.loadFromFile("images/icon.png");
+    window.setIcon(32, 32, icon.getPixelsPtr());
+
+
+    menu(window);
+
+    SoundBuffer jumpBuf;
+    jumpBuf.loadFromFile("sounds/jump.ogg");
+    Sound jump(jumpBuf);
 
     View view;
 
@@ -39,12 +46,11 @@ int main(void)
     text.setColor(Color::Red);
     text.setStyle(Text::Bold);
 
-    Image icon, help_image, hero_image, enemy_image;
+    Image help_image, hero_image, enemy_image;
+    help_image.loadFromFile("images/help.png");
     hero_image.loadFromFile("images/hero (2).png");
     enemy_image.loadFromFile("images/mob(3).png");
 
-
-    icon.loadFromFile("images/icon.png");
     help_image.loadFromFile("images/help.png");
 
     Texture help_texture;
@@ -55,7 +61,7 @@ int main(void)
     s_help.setTextureRect(IntRect(0, 0, 1000, 626));
     s_help.setScale(0.3f, 0.3f);
 
-    window.setIcon(32, 32, icon.getPixelsPtr());
+
 
     view.reset(FloatRect(0, 0, 580, 460));//0,0,640,480
 
@@ -192,4 +198,58 @@ int main(void)
     }
 
     return 0;
+}
+
+void menu(RenderWindow &window)
+{
+    Texture menuBackG, startButText, exitButText;
+    menuBackG.loadFromFile("images/menu/post.bmp");
+    startButText.loadFromFile("images/menu/startButton.png");
+    exitButText.loadFromFile("images/menu/exitButton.png");
+
+    Sprite menuBG(menuBackG), start(startButText);
+    Sprite exit(exitButText);
+
+    bool isMenu = true;
+    int menuNum = 0;
+    menuBG.setPosition(0, 0);
+    start.setPosition(530, 300);
+    exit.setPosition(525, 500);
+
+    while(isMenu)
+    {
+        start.setColor(Color::White);
+        exit.setColor(Color::White);
+        menuNum = 0;
+
+        if(IntRect(530, 300, 300, 100).contains(Mouse::getPosition(window)))
+        {
+            start.setColor(Color::Red);
+            menuNum = 1;
+        }
+        if(IntRect(525, 500, 300, 100).contains(Mouse::getPosition(window)))
+        {
+            exit.setColor(Color::Red);
+            menuNum = 2;
+        }
+
+
+        if(Mouse::isButtonPressed(Mouse::Left))
+        {
+            if(menuNum == 1)
+                isMenu = false;
+
+            if(menuNum == 2)
+            {
+                window.close();
+                isMenu = false;
+            }
+        }
+
+        window.draw(menuBG);
+        window.draw(start);
+        window.draw(exit);
+
+        window.display();
+    }
 }

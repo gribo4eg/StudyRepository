@@ -21,6 +21,7 @@
 					<Add library="sfml-graphics" />
 					<Add library="sfml-window" />
 					<Add library="sfml-system" />
+					<Add library="sfml-audio" />
 					<Add directory="C:/Libs/SFML/lib" />
 				</Linker>
 			</Target>
@@ -49,6 +50,8 @@
 		<Unit filename="TinyXML/tinyxmlparser.cpp" />
 		<Unit filename="enemyClass.cpp" />
 		<Unit filename="enemyClass.h" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game.h" />
 		<Unit filename="level.cpp" />
 		<Unit filename="level.h" />
 		<Unit filename="main.cpp" />

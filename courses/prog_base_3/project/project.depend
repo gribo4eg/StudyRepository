@@ -380,18 +380,8 @@
 	<string>
 	<vector>
 
-1465690801 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
-	<SFML/Graphics.hpp>
-	<SFML/Audio.hpp>
-	<sstream>
-	<iostream>
-	"playerClass.h"
-	"enemyClass.h"
-	"subjectClass.h"
-	"level.h"
-	"view.h"
-	<vector>
-	<list>
+1465693411 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+	"game.h"
 
 1460929657 source:c:\repository\repos1\courses\prog_base_3\project\creatures.cpp
 	"Creatures.h"
@@ -978,4 +968,20 @@
 1429780453 c:\libs\sfml\include\sfml\audio\soundfilewriter.hpp
 	<SFML/Audio/Export.hpp>
 	<string>
+
+1465693404 c:\repository\repos1\courses\prog_base_3\project\game.h
+
+1465693298 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
+	"game.h"
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<sstream>
+	<iostream>
+	"playerClass.h"
+	"enemyClass.h"
+	"subjectClass.h"
+	"level.h"
+	"view.h"
+	<vector>
+	<list>
 

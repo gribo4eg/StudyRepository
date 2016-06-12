@@ -774,7 +774,7 @@
 1465564042 c:\repository\repos1\courses\prog_base_3\project\view.h
 	<SFML/Graphics.hpp>
 
-1465676984 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
+1465698303 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
 	<SFML/Graphics.hpp>
 	"subjectClass.h"
 	"level.h"
@@ -782,7 +782,7 @@
 
 1465559648 c:\repository\repos1\courses\prog_base_3\project\include\subjectclass.h
 
-1465677567 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
+1465698529 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
 	<SFML/Graphics.hpp>
 	"playerClass.h"
 	"TinyXML/tinyxml.h"
@@ -971,7 +971,7 @@
 
 1465693404 c:\repository\repos1\courses\prog_base_3\project\game.h
 
-1465693298 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
+1465696470 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
 	"game.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>

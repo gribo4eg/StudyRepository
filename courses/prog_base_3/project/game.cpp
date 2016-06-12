@@ -35,9 +35,11 @@ bool letsRock()
 
     menu(window);
 
-    SoundBuffer jumpBuf;
+    SoundBuffer jumpBuf, attackBuf;
     jumpBuf.loadFromFile("sounds/jump.ogg");
+    attackBuf.loadFromFile("sounds/swordAttack.ogg");
     Sound jump(jumpBuf);
+    Sound attack(attackBuf);
 
     View view;
 
@@ -103,6 +105,8 @@ bool letsRock()
             hero.position(&view, time);
             if(Keyboard::isKeyPressed(Keyboard::Up))
                 jump.play();
+            if(Keyboard::isKeyPressed(Keyboard::Space))
+                attack.play();
         }
 
         for(countOf = subjects.begin(); countOf != subjects.end();)

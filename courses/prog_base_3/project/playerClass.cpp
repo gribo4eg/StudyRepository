@@ -13,6 +13,7 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         obj = level.GetAllObjects();
         state = STAY;
         score = 0;
+        currentFrame = 0;
 
         sprite.setTextureRect(IntRect(0, 50, width, height));
     }
@@ -31,7 +32,6 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
                 state = RIGHT;
                 speed = 0.1;
             }
-
             else if(Keyboard::isKeyPressed(Keyboard::Down))
             {
                 state = DOWN;
@@ -93,9 +93,55 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
 
         getPlayerCoordForView(view, x, y);
 
-        if(life)
-            getPlayerCoordForView(view, x, y);
+        if(life){
+            if(Keyboard::isKeyPressed(Keyboard::Left))
+            {
+                state = LEFT;
+                speed = 0.1;
+                gravity = false;
+                currentFrame += 0.005 * time;
+                if(currentFrame > 4)
+                    currentFrame -= 4;
+                sprite.setTextureRect(IntRect(74.25 * int(currentFrame)+74.25, 0, -74.25, 48));
+                sprite.setPosition(x + 45, y + 50);
 
+            }
+            else if(Keyboard::isKeyPressed(Keyboard::Right))
+            {
+                state = RIGHT;
+                speed = 0.1;
+                gravity = false;
+                currentFrame += 0.005 * time;
+                if(currentFrame > 4)
+                    currentFrame -= 4;
+                sprite.setTextureRect(IntRect(74.25 * int(currentFrame), 0, 74.25, 48));
+                sprite.setPosition(x + 45, y + 50);
+            }
+            else if(Keyboard::isKeyPressed(Keyboard::Space))
+            {
+                speed = 0;
+                currentFrame += 0.005 * time;
+                if(currentFrame > 3)
+                    currentFrame -= 3;
+                if(state == RIGHT)
+                    sprite.setTextureRect(IntRect(82*int(currentFrame), 112,82, 76));
+                else
+                    sprite.setTextureRect(IntRect(82*int(currentFrame) + 82, 112, -82, 76));
+            }
+            else
+            {
+                speed = 0;
+                currentFrame += 0.005 * time;
+                if(currentFrame > 3)
+                    currentFrame -= 3;
+                if(state == RIGHT)
+                    sprite.setTextureRect(IntRect(76 * int(currentFrame), 50, 76, 61));
+                else //if(hero.direction == 1)
+                    sprite.setTextureRect(IntRect(76 * int(currentFrame)+76, 50, -76, 61));
+            }
+
+            getPlayerCoordForView(view, x, y);
+        }
         speed_y += 0.0015 * time;
     }
 

@@ -153,11 +153,12 @@ bool letsRock()
             {
                 if(Keyboard::isKeyPressed(Keyboard::Space))
                 {
-                    s->health -= 10;
+                    s->health -= 5;
+
                 }
                 else
                 {
-                    if(attackTimer > 2000){
+                    if(attackTimer > 2500){
                         hero.health -= 20;
                         attackTimer = 0;
                     }

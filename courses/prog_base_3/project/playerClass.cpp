@@ -13,7 +13,6 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         obj = level.GetAllObjects();
         state = STAY;
         score = 0;
-        currentFrame = 0;
 
         sprite.setTextureRect(IntRect(0, 50, width, height));
     }
@@ -41,7 +40,7 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
             else if(Keyboard::isKeyPressed(Keyboard::Up) && gravity)
             {
                 state = JUMP;
-                speed_y = -0.6;
+                speed_y = -0.56;
                 gravity = false;
             }
         }
@@ -84,12 +83,11 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
         if(health <= 0){
             life = false;
             sprite.setTextureRect(IntRect(0, 210, 85, 42));
-            sprite.setPosition(x, y + 60);
             getPlayerCoordForView(view, x, y);
         }
 
-        if(!movement)
-            speed = 0;
+       if(!movement)
+          speed = 0;
 
         getPlayerCoordForView(view, x, y);
 
@@ -190,3 +188,6 @@ Player::Player(Image &image, Level &level, float X, float Y, float Width, float 
             }
         }
     }
+
+
+

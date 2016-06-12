@@ -774,7 +774,7 @@
 1465564042 c:\repository\repos1\courses\prog_base_3\project\view.h
 	<SFML/Graphics.hpp>
 
-1465698303 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
+1465725705 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
 	<SFML/Graphics.hpp>
 	"subjectClass.h"
 	"level.h"
@@ -782,7 +782,7 @@
 
 1465559648 c:\repository\repos1\courses\prog_base_3\project\include\subjectclass.h
 
-1465698529 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
+1465730559 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
 	<SFML/Graphics.hpp>
 	"playerClass.h"
 	"TinyXML/tinyxml.h"
@@ -794,25 +794,25 @@
 	<SFML/Graphics.hpp>
 	"view.h"
 
-1465676945 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
+1465729278 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
 	<SFML/Graphics.hpp>
 	"enemyClass.h"
 	"level.h"
 	"subjectClass.h"
 	"map.h"
 
-1465676984 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
+1465728271 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
 	<SFML/Graphics.hpp>
 	"level.h"
 	<vector>
 	"subjectClass.h"
 
-1465676984 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
+1465725698 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
 	<SFML/Graphics.hpp>
 	"level.h"
 	<vector>
 
-1465611194 source:c:\repository\repos1\courses\prog_base_3\project\subjectclass.cpp
+1465725717 source:c:\repository\repos1\courses\prog_base_3\project\subjectclass.cpp
 	<SFML/Graphics.hpp>
 	"subjectClass.h"
 
@@ -971,7 +971,7 @@
 
 1465693404 c:\repository\repos1\courses\prog_base_3\project\game.h
 
-1465696470 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
+1465730513 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
 	"game.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>

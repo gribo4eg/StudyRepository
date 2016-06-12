@@ -52,7 +52,7 @@ bool letsRock()
     Image help_image, hero_image, enemy_image;
     help_image.loadFromFile("images/help.png");
     hero_image.loadFromFile("images/hero (2).png");
-    enemy_image.loadFromFile("images/mob(3).png");
+    enemy_image.loadFromFile("images/mob2.png");
 
     help_image.loadFromFile("images/help.png");
 
@@ -69,6 +69,7 @@ bool letsRock()
     view.reset(FloatRect(0, 0, 580, 460));//0,0,640,480
 
     bool helpCheck = true;
+    float attackTimer = 0;
 
     Clock clock;
 
@@ -77,7 +78,7 @@ bool letsRock()
 
     vector<Object> enemies = level.GetObjects("Enemy");
     for(int i = 0; i < enemies.size(); i++)
-        subjects.push_back(new Enemy(enemy_image, level, enemies[i].rect.left, enemies[i].rect.top, 75.8, 108, "Enemy"));
+        subjects.push_back(new Enemy(enemy_image, level, enemies[i].rect.left, enemies[i].rect.top, 71, 106, "Enemy"));
 
 
     Object player = level.GetObject("Player");
@@ -93,6 +94,7 @@ bool letsRock()
         float time = clock.getElapsedTime().asMicroseconds();
         clock.restart();
         time = time/800;
+        attackTimer += time;
 
         while (window.pollEvent(event))
         {
@@ -101,8 +103,10 @@ bool letsRock()
 
         }
 
+
         if(hero.life){
             hero.position(&view, time);
+
             if(Keyboard::isKeyPressed(Keyboard::Up))
                 jump.play();
             if(Keyboard::isKeyPressed(Keyboard::Space))
@@ -121,7 +125,7 @@ bool letsRock()
                 hero.score++;
                 if(hero.x > 650)
                 {
-                    subjects.push_back(new Enemy(enemy_image, level, 1000 + rand()%2129, 308, 75.8, 108, "Enemy"));
+                    subjects.push_back(new Enemy(enemy_image, level, 1000 + rand()%2129, 308, 71, 106, "Enemy"));
                     countNew = subjects.end();
                     countNew--;
                     Subject *sNew = *countNew;
@@ -129,7 +133,7 @@ bool letsRock()
                 }
                 else
                 {
-                    subjects.push_back(new Enemy(enemy_image, level, 1000 + rand()%2129, 22, 75.8, 108, "Enemy"));
+                    subjects.push_back(new Enemy(enemy_image, level, 1000 + rand()%2129, 22, 71, 106, "Enemy"));
                     countNew = subjects.end();
                     countNew--;
                     Subject *sNew = *countNew;
@@ -147,15 +151,16 @@ bool letsRock()
             Subject *s = *countOf;
             if(s->getRect().intersects(hero.getRect()))
             {
-                if(hero.speed_y > 0 && hero.gravity == false)
+                if(Keyboard::isKeyPressed(Keyboard::Space))
                 {
-                    s->speed_x = 0;
-                    hero.speed_y = -0.2;
-                    s->health /= 2;
+                    s->health -= 10;
                 }
                 else
                 {
-                    hero.health /= 2;
+                    if(attackTimer > 2000){
+                        hero.health -= 20;
+                        attackTimer = 0;
+                    }
                 }
             }
         }
@@ -174,7 +179,10 @@ bool letsRock()
         text.setPosition(view.getCenter().x + 195, view.getCenter().y - 210);
         window.draw(text);
 
+    if(hero.health >=0)
         heroHealth << hero.health;
+    else
+        heroHealth << "0";
         text.setString("Health:"+heroHealth.str());
         text.setPosition(view.getCenter().x - 268, view.getCenter().y - 210);
         window.draw(text);

@@ -15,7 +15,6 @@ class Player: public Subject
 public:
     enum { LEFT, RIGHT, UP, DOWN, JUMP, STAY } state;
     int score;
-    float currentFrame;
 
     Player(Image &image, Level &level, float X, float Y, float Width, float Height, string Name);
 

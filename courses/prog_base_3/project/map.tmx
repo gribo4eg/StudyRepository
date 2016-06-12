@@ -5445,10 +5445,10 @@
  </objectgroup>
  <objectgroup name="Subject" width="50" height="27">
   <object name="Player" x="188" y="560" width="77" height="60"/>
-  <object name="Enemy" x="648" y="593" width="76" height="108"/>
-  <object name="Enemy" x="312" y="309" width="76" height="108"/>
-  <object name="Enemy" x="1365" y="311" width="76" height="108"/>
-  <object name="Enemy" x="1136" y="593" width="76" height="108"/>
-  <object name="Enemy" x="849" y="57" width="76" height="108"/>
+  <object name="Enemy" x="648" y="593" width="70" height="106"/>
+  <object name="Enemy" x="312" y="309" width="70" height="106"/>
+  <object name="Enemy" x="1365" y="311" width="70" height="106"/>
+  <object name="Enemy" x="1136" y="593" width="70" height="106"/>
+  <object name="Enemy" x="849" y="57" width="70" height="106"/>
  </objectgroup>
 </map>

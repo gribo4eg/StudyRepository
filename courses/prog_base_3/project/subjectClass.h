@@ -13,6 +13,7 @@ class Subject
 public:
     vector<Object> obj;
     float width, height, speed_x, speed_y, speed, x, y, moveTime;
+    float currentFrame;
     bool life, movement, gravity;
     int health;
     Texture texture;

@@ -13,10 +13,8 @@ Enemy::Enemy(Image &image, Level &level, float X, float Y,
 {
     obj = level.GetAllObjects();
     sprite.setTextureRect(IntRect(0, 0, width, height));
-    //sprite.setScale(1, 1);
-    //sprite.setPosition(x + width/2, y + height/2);
     speed_x = 0.1;
-
+    state = right;
 }
 
 void Enemy::interactiveWithMap(float dx, float dy)
@@ -42,12 +40,14 @@ void Enemy::interactiveWithMap(float dx, float dy)
                     {
                         x = obj[i].rect.left - width;
                         speed_x = -0.1;
+                        state = right;
                         sprite.setScale(-1, 1);
                     }
                     if(dx < 0)
                     {
                         x = obj[i].rect.left + obj[i].rect.width;
                         speed_x = 0.1;
+                        state = left;
                         sprite.setScale(-1, 1);
                     }
                 }
@@ -63,12 +63,26 @@ void Enemy::position(View *view, float time)
     {
         speed_x *=-1;
         moveTime = 0;
+        if(state == right){
+            state = left;
+        }
+        else{
+            state = right;
+        }
     }
     interactiveWithMap(speed_x, 0);
     x += speed_x * time;
 
     y += speed_y * time;
     interactiveWithMap(0, speed_y);
+
+    currentFrame += 0.005*time;
+    if(currentFrame > 6)
+        currentFrame -= 6;
+    if(state == left)
+        sprite.setTextureRect(IntRect(71*int(currentFrame), 0, 71, 106));
+    else
+        sprite.setTextureRect(IntRect(71*int(currentFrame)+71, 0, -71, 106));
 
     sprite.setPosition(x + width/2, y + height/2);
     if(health <=0){

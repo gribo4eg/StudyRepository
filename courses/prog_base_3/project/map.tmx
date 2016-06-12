@@ -4412,14 +4412,14 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="761"/>
    <tile gid="762"/>
    <tile gid="763"/>
-   <tile gid="764"/>
+   <tile gid="767"/>
+   <tile gid="766"/>
+   <tile gid="767"/>
+   <tile gid="768"/>
+   <tile gid="769"/>
    <tile gid="771"/>
    <tile gid="772"/>
    <tile gid="773"/>
@@ -4449,14 +4449,14 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="761"/>
    <tile gid="762"/>
    <tile gid="763"/>
    <tile gid="764"/>
    <tile gid="766"/>
    <tile gid="767"/>
+   <tile gid="768"/>
+   <tile gid="769"/>
    <tile gid="768"/>
    <tile gid="769"/>
    <tile gid="766"/>
@@ -4476,14 +4476,14 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="792"/>
    <tile gid="793"/>
    <tile gid="794"/>
-   <tile gid="795"/>
+   <tile gid="798"/>
+   <tile gid="797"/>
+   <tile gid="798"/>
+   <tile gid="799"/>
+   <tile gid="800"/>
    <tile gid="802"/>
    <tile gid="803"/>
    <tile gid="804"/>
@@ -4513,14 +4513,14 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="792"/>
    <tile gid="793"/>
    <tile gid="794"/>
    <tile gid="795"/>
    <tile gid="797"/>
    <tile gid="798"/>
+   <tile gid="799"/>
+   <tile gid="800"/>
    <tile gid="799"/>
    <tile gid="800"/>
    <tile gid="797"/>
@@ -4540,20 +4540,18 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="823"/>
    <tile gid="824"/>
    <tile gid="825"/>
-   <tile gid="826"/>
+   <tile gid="829"/>
+   <tile gid="828"/>
+   <tile gid="829"/>
+   <tile gid="830"/>
+   <tile gid="831"/>
    <tile gid="833"/>
    <tile gid="834"/>
    <tile gid="835"/>
    <tile gid="836"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -4585,6 +4583,8 @@
    <tile gid="826"/>
    <tile gid="828"/>
    <tile gid="829"/>
+   <tile gid="830"/>
+   <tile gid="831"/>
    <tile gid="830"/>
    <tile gid="831"/>
    <tile gid="828"/>
@@ -10263,24 +10263,6 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Solid" width="64" height="32">
-  <object name="Solid" x="2" y="680" width="172" height="87"/>
-  <object name="Solid" x="3" y="781" width="2042" height="10"/>
-  <object name="Solid" x="1164" y="685" width="72" height="78"/>
-  <object name="Solid" x="397" y="397" width="69" height="66"/>
-  <object name="Solid" x="1582" y="303" width="67" height="69"/>
-  <object name="Solid" x="124" y="495" width="493" height="11"/>
-  <object name="Solid" x="722" y="497" width="118" height="9"/>
-  <object name="Solid" x="6" y="145" width="128" height="9"/>
-  <object name="Solid" x="249" y="144" width="237" height="10"/>
-  <object name="Solid" x="730" y="173" width="395" height="12"/>
-  <object name="Solid" x="1233" y="175" width="64" height="13"/>
-  <object name="Solid" x="1663" y="132" width="174" height="15"/>
-  <object name="Solid" x="1774" y="560" width="176" height="14"/>
-  <object name="Solid" x="1171" y="399" width="305" height="11"/>
-  <object name="Solid" x="2046" y="1" width="3" height="787"/>
-  <object name="Solid" x="-3" y="-19" width="3" height="787"/>
- </objectgroup>
  <objectgroup name="Stair" width="64" height="32">
   <object name="Stair" x="1175" y="163" width="13" height="214"/>
   <object name="Stair" x="182" y="130" width="16" height="348"/>
@@ -10289,12 +10271,12 @@
   <object name="Stair" x="1875" y="134" width="14" height="411"/>
  </objectgroup>
  <objectgroup name="Subject" width="64" height="32">
-  <object name="Player" x="235" y="668" width="76" height="60"/>
+  <object name="Player" x="323" y="669" width="76" height="60"/>
   <object name="Enemy" x="1848" y="668" width="71" height="106"/>
   <object name="Enemy" x="397" y="284" width="71" height="106"/>
-  <object name="Enemy" x="441" y="32" width="71" height="106"/>
+  <object name="Enemy" x="34" y="32" width="71" height="106"/>
   <object name="Enemy" x="911" y="59" width="71" height="106"/>
-  <object name="Enemy" x="1714" y="17" width="71" height="106"/>
+  <object name="Enemy" x="1501" y="21" width="71" height="106"/>
   <object name="Enemy" x="1359" y="285" width="71" height="106"/>
   <object name="Enemy" x="1166" y="573" width="71" height="106"/>
  </objectgroup>
@@ -12350,4 +12332,22 @@
    <tile gid="0"/>
   </data>
  </layer>
+ <objectgroup name="Solid" width="64" height="32">
+  <object name="Solid" x="2" y="680" width="172" height="87"/>
+  <object name="Solid" x="3" y="781" width="2042" height="10"/>
+  <object name="Solid" x="1164" y="685" width="72" height="78"/>
+  <object name="Solid" x="397" y="397" width="69" height="66"/>
+  <object name="Solid" x="1582" y="303" width="67" height="69"/>
+  <object name="Solid" x="124" y="495" width="493" height="11"/>
+  <object name="Solid" x="737" y="497" width="118" height="9"/>
+  <object name="Solid" x="6" y="145" width="128" height="9"/>
+  <object name="Solid" x="249" y="144" width="237" height="10"/>
+  <object name="Solid" x="667" y="173" width="468" height="11"/>
+  <object name="Solid" x="1233" y="175" width="85" height="14"/>
+  <object name="Solid" x="1523" y="140" width="307" height="13"/>
+  <object name="Solid" x="1735" y="560" width="198" height="13"/>
+  <object name="Solid" x="1171" y="399" width="305" height="11"/>
+  <object name="Solid" x="2040" y="-5" width="6" height="787"/>
+  <object name="Solid" x="-3" y="-9" width="8" height="796"/>
+ </objectgroup>
 </map>

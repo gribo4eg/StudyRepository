@@ -16,7 +16,7 @@ public:
     enum { LEFT, RIGHT, UP, DOWN, JUMP, STAY } state;
     int score;
 
-    Player(Image &image, Level &level, float X, float Y, float Width, float Height, string Name);
+    Player(Image &image, Level &level, float X, float Y, float Width, float Height);
 
     void control();
 

@@ -7,8 +7,8 @@
 
 using namespace sf;
 
-Player::Player(Image &image, Level &level, float X, float Y, float Width, float Height, string Name):
-    Subject(image, X, Y, Width, Height, Name)
+Player::Player(Image &image, Level &level, float X, float Y, float Width, float Height):
+    Subject(image, X, Y, Width, Height)
     {
         obj = level.GetAllObjects();
         state = STAY;

@@ -8,13 +8,13 @@ using namespace std;
 using namespace sf;
 
 Enemy::Enemy(Image &image, Level &level, float X, float Y,
-              float Width, float Height, string Name):
-                  Subject(image, X, Y, Width, Height, Name)
+              float Width, float Height):
+                  Subject(image, X, Y, Width, Height)
 {
     obj = level.GetAllObjects();
     sprite.setTextureRect(IntRect(0, 0, width, height));
     speed_x = 0.1;
-    state = right;
+    stateEnemy = true;//1- right, 0-left
 }
 
 void Enemy::interactiveWithMap(float dx, float dy)
@@ -40,14 +40,14 @@ void Enemy::interactiveWithMap(float dx, float dy)
                     {
                         x = obj[i].rect.left - width;
                         speed_x = -0.1;
-                        state = right;
+                        stateEnemy = true;
                         sprite.setScale(-1, 1);
                     }
                     if(dx < 0)
                     {
                         x = obj[i].rect.left + obj[i].rect.width;
                         speed_x = 0.1;
-                        state = left;
+                        stateEnemy = false;
                         sprite.setScale(-1, 1);
                     }
                 }
@@ -57,18 +57,12 @@ void Enemy::interactiveWithMap(float dx, float dy)
 
 void Enemy::position(View *view, float time)
 {
-
     moveTime += time;
-    if(moveTime > 3500)
+    if(moveTime > 3425)
     {
         speed_x *=-1;
         moveTime = 0;
-        if(state == right){
-            state = left;
-        }
-        else{
-            state = right;
-        }
+        stateEnemy = !stateEnemy;
     }
     interactiveWithMap(speed_x, 0);
     x += speed_x * time;
@@ -79,7 +73,7 @@ void Enemy::position(View *view, float time)
     currentFrame += 0.005*time;
     if(currentFrame > 6)
         currentFrame -= 6;
-    if(state == left)
+    if(!stateEnemy)
         sprite.setTextureRect(IntRect(71*int(currentFrame), 0, 71, 106));
     else
         sprite.setTextureRect(IntRect(71*int(currentFrame)+71, 0, -71, 106));

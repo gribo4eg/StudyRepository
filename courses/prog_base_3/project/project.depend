@@ -380,8 +380,9 @@
 	<string>
 	<vector>
 
-1465693411 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
+1465764445 source:c:\repository\repos1\courses\prog_base_3\project\main.cpp
 	"game.h"
+	"SFML/Audio.hpp"
 
 1460929657 source:c:\repository\repos1\courses\prog_base_3\project\creatures.cpp
 	"Creatures.h"
@@ -774,7 +775,7 @@
 1465564042 c:\repository\repos1\courses\prog_base_3\project\view.h
 	<SFML/Graphics.hpp>
 
-1465725705 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
+1465759492 c:\repository\repos1\courses\prog_base_3\project\playerclass.h
 	<SFML/Graphics.hpp>
 	"subjectClass.h"
 	"level.h"
@@ -782,7 +783,7 @@
 
 1465559648 c:\repository\repos1\courses\prog_base_3\project\include\subjectclass.h
 
-1465730559 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
+1465759494 source:c:\repository\repos1\courses\prog_base_3\project\playerclass.cpp
 	<SFML/Graphics.hpp>
 	"playerClass.h"
 	"TinyXML/tinyxml.h"
@@ -794,25 +795,25 @@
 	<SFML/Graphics.hpp>
 	"view.h"
 
-1465730619 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
+1465759463 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
 	<SFML/Graphics.hpp>
 	"enemyClass.h"
 	"level.h"
 	"subjectClass.h"
 	"map.h"
 
-1465728271 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
+1465759464 c:\repository\repos1\courses\prog_base_3\project\enemyclass.h
 	<SFML/Graphics.hpp>
 	"level.h"
 	<vector>
 	"subjectClass.h"
 
-1465725698 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
+1465759440 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
 	<SFML/Graphics.hpp>
 	"level.h"
 	<vector>
 
-1465725717 source:c:\repository\repos1\courses\prog_base_3\project\subjectclass.cpp
+1465759441 source:c:\repository\repos1\courses\prog_base_3\project\subjectclass.cpp
 	<SFML/Graphics.hpp>
 	"subjectClass.h"
 
@@ -971,7 +972,7 @@
 
 1465693404 c:\repository\repos1\courses\prog_base_3\project\game.h
 
-1465733092 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
+1465764408 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
 	"game.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
@@ -982,6 +983,13 @@
 	"subjectClass.h"
 	"level.h"
 	"view.h"
+	"godBlessRandom.h"
 	<vector>
 	<list>
+
+1465753488 c:\repository\repos1\courses\prog_base_3\project\godblessrandom.h
+
+1465753663 source:c:\repository\repos1\courses\prog_base_3\project\godblessrandom.cpp
+	"godBlessRandom.h"
+	<cstdlib>
 

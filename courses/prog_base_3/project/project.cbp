@@ -52,6 +52,8 @@
 		<Unit filename="enemyClass.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="game.h" />
+		<Unit filename="godBlessRandom.cpp" />
+		<Unit filename="godBlessRandom.h" />
 		<Unit filename="level.cpp" />
 		<Unit filename="level.h" />
 		<Unit filename="main.cpp" />

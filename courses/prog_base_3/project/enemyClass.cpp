@@ -13,7 +13,8 @@ Enemy::Enemy(Image &image, Level &level, float X, float Y,
 {
     obj = level.GetAllObjects();
     sprite.setTextureRect(IntRect(0, 0, width, height));
-    speed_x = 0.1;
+    speed = 0.08;
+    speed_x = 0.08;
     stateEnemy = true;//1- right, 0-left
 }
 
@@ -39,14 +40,14 @@ void Enemy::interactiveWithMap(float dx, float dy)
                     if(dx > 0)
                     {
                         x = obj[i].rect.left - width;
-                        speed_x = -0.1;
+                        speed_x = -0.08;
                         stateEnemy = true;
                         sprite.setScale(-1, 1);
                     }
                     if(dx < 0)
                     {
                         x = obj[i].rect.left + obj[i].rect.width;
-                        speed_x = 0.1;
+                        speed_x = 0.08;
                         stateEnemy = false;
                         sprite.setScale(-1, 1);
                     }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>FilmInfo</title>
+        <link rel="stylesheet" href="/stylesheets/index.css">
+    </head>
+    <body>
+        <h1>Welcome to FilmInfo!</h1>
+        <div class="body">
+            <% if(user){%>
+                <div class="text-img">
+                    <img class="mainuserimage" src="data:image/jpg;base64,<%=user.avatar.toString('base64')%>"/>
+                    <div id="user">
+                        Hello, <a href="/users/userpage/<%=user._id%>"><b><%=user.nickname%></b></a>
+                    </div>
+                </div>
+            <%}%>
+            <div class="name"><b>Random site news</b></div>
+            <div class="posters">
+                <div class="responsive">
+                    <div class="img">
+                        <a href="/films/<%=film._id%>"><img src="data:image/jpg;base64,<%= film.poster.toString('base64')%>"/></a>
+                        <div class="desc">
+                            <%=film.title%>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="responsive">
+                    <div class="img">
+                        <a href="/actors/<%=actor._id%>"><img src="data:image/jpg;base64,<%= actor.photos[0].toString('base64')%>"/></a>
+                        <div class="desc">
+                            <%=actor.name%>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="addinfo">
+                <% if(!user){%>
+                    <p>Heey, you should to <a href="/users/login">login</a> or
+                        <a href="/users/register">registrate</a> to see more feachers!</p>
+                <%}%>
+            </div>
+        </div>
+    </body>
+</html>

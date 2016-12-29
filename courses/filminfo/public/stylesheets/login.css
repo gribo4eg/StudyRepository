@@ -1,0 +1,78 @@
+form {
+    border: 3px solid #9a989d;
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    background: rgba(53, 185, 50, 0.72);
+}
+
+.form {
+    margin-left: 23%;
+    margin-right: 23%;
+}
+
+.form-update{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+input[type=text], input[type=password], input[type=date],
+input[type=file], input[type=number], textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    font-size: 15px;
+    display: inline-block;
+    border: 3px solid #3854a7;
+    box-sizing: border-box;
+}
+
+#warning{
+    color: rgb(255, 0, 0);
+    background-color: rgb(215, 113, 113);
+    font-size: 30px;
+}
+
+textarea{resize: none}
+
+input[type=file]{padding-right: 1px; background-color: rgba(56, 84, 167, 0.72)}
+
+button {
+    background-color: #3854a7;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 18%;
+    border-radius: 50%;
+}
+
+.avatar-update{width: 30%; border: 2px solid #3854a7}
+.avatar-add{width: 40%; border: 3px solid #3854a7; border-radius: 50%;}
+
+.container {
+    padding: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 200px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+}
+
+.left{float: left;}
+.right{float: right}
+.center-top input{text-align: center}
+.center-bot{float: none; margin-top: 27%}

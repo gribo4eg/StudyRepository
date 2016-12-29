@@ -1,0 +1,23 @@
+body{
+    background-image: url(/images/background.jpg);
+}
+
+h2{
+    text-align: center;
+    background-color: #ff7300;
+    border: 3px solid green;
+    margin: -55px 0 70px 40px;
+}
+
+.back{
+    width: 70px;
+    border-radius: 100px;
+}
+
+.back:hover{
+    transform: scale(1.1);
+}
+
+.back:active{
+    transform: scale(0.9);
+}

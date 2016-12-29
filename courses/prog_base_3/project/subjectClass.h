@@ -18,7 +18,6 @@ public:
     int health;
     Texture texture;
     Sprite sprite;
-    string name;
 
     FloatRect getRect()
     {

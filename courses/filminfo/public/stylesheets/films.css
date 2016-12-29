@@ -1,0 +1,70 @@
+.posters{
+    margin: -3em 0 0 -2em;
+    text-align: center;
+}
+
+div.img {
+    border: 2px solid #ccc;
+}
+
+div.img:hover {
+    border: 2px solid red;
+}
+
+div.img img {
+    width: 100%;
+    height: 285px;
+}
+
+div.desc {
+    padding: 15px;
+    background: white;
+    color: black;
+    text-align: center;
+}
+
+.fail{
+    text-align: center;
+    border: 3px solid red;
+    background-color: rgb(222, 72, 72);
+}
+
+.searchfield{
+    text-align: center;
+    margin-top: -1%;
+    margin-bottom: 5%;
+}
+
+.responsive {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+
+    /* Отступы между блоками */
+    margin: 2em 0 0 2em;
+    width: 220px;
+}
+
+div.container {
+    text-align: center;
+    padding: 0.01em 16px;
+    margin-top: 5%
+}
+
+div.container ul{
+    border: 4px solid #ef1e1e;
+    background-color: #d43f3f
+}
+
+.pagination li{
+    -webkit-transition:background-color .25s,
+    color .15s,box-shadow .25s,opacity 0.25s,
+    filter 0.25s,border 0.15s;
+    transition:background-color .25s,color .15s,box-shadow .15s,opacity .25s,filter .25s,border .15s
+}
+
+.pagination{display:inline-block;padding:0;margin:0}
+.pagination li{display:inline}
+.pagination li a{text-decoration:none;color:#3854a7;float:left;padding:8px 16px}
+.pagination li a:hover{background-color:#3854a7; color:#ff0000}
+.current{background-color: #16dd2a}

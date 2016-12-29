@@ -794,7 +794,7 @@
 	<SFML/Graphics.hpp>
 	"view.h"
 
-1465768877 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
+1465806460 source:c:\repository\repos1\courses\prog_base_3\project\enemyclass.cpp
 	<SFML/Graphics.hpp>
 	"enemyClass.h"
 	"level.h"
@@ -807,7 +807,7 @@
 	<vector>
 	"subjectClass.h"
 
-1465759440 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
+1465805897 c:\repository\repos1\courses\prog_base_3\project\subjectclass.h
 	<SFML/Graphics.hpp>
 	"level.h"
 	<vector>
@@ -971,7 +971,7 @@
 
 1465783929 c:\repository\repos1\courses\prog_base_3\project\game.h
 
-1465783787 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
+1466333072 source:c:\repository\repos1\courses\prog_base_3\project\game.cpp
 	"game.h"
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>

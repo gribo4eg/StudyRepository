@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><%=doc.title%></title>
+
+        <link rel="stylesheet" href="/stylesheets/object.css">
+    </head>
+    <body>
+        <a href="<%=back_url%>"><img class="back" src="/images/back.png" alt="Back"/></a>
+        <h2><%=doc.title%></h2>
+
+        <div class="body">
+            <% if(user) {%>
+                <div class="buttons">
+                    <% if(!already) {%>
+                        <form action="/films/subscribe/<%=doc._id%>" method="post">
+                            <button class="button subscribe">Subscribe</button>
+                        </form>
+                    <%} else {%>
+                        <form action="/films/unsubscribe/<%=doc._id%>" method="post">
+                            <button class="button subscribe">Unsubscribe</button>
+                        </form>
+                    <%}%>
+                    <% if(user.statusAdmin) {%>
+                        <form action="/films/update/<%=doc._id%>" method="get">
+                            <button class="button update">Update film</button>
+                        </form>
+                        <button id='myBtn' class="button delete">Delete film</button>
+                        <div id="myModal-delete" class="modal-delete">
+
+                            <!-- Modal content -->
+                            <div class="modal-delete-content">
+                                <div class="modal-delete-header">
+                                    <span class="modal-delete-close">&times;</span>
+                                    <h2>Delete Film</h2>
+                                </div>
+                                <div class="modal-delete-body">
+                                    <form action="/films/delete/<%=doc._id%>" method="get">
+                                        <p>Are you sure?</p>
+                                        <input type="submit" id="acceptDelete" class="button delete" value="Delete"/>
+                                        <input type="button" id="cancelDelete" class="button subscribe" value="Cancel"/>
+                                    </form>
+                                </div>
+                                <div class="modal-delete-footer">
+                                    <h3>Pls leave me alive x_x</h3>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                </div>
+            <%}%>
+            <div class="image-text">
+                <img class="mainimage" src="data:image/jpg;base64,<%=doc.poster.toString('base64')%>"/>
+
+                <dl class="about">
+                    <dt>Film title:</dt><dd><%=doc.title%></dd>
+                    <dt>Director:</dt><dd><%=doc.director%></dd>
+                    <dt>Genres:</dt><dd>
+                    <% for (var i = 0; i < doc.genres.length; i++) {%>
+                        <%=(doc.genres[i].name) %><%=(i==doc.genres.length-1 ? ' ' : ' , ')%>
+                    <%}%></dd>
+                    <dt>Actors:</dt><dd>
+                    <% for (var i = 0; i < doc.actors.length; i++) {%>
+                        <a href="/actors/<%=doc.actors[i]._id%>"><%=(doc.actors[i].name) %></a><%=(i==doc.actors.length-1 ? '...' : ' , ')%>
+                    <%}%></dd>
+                    <dt>Budget:</dt><dd><%=doc.budget%> 000 000</dd>
+                    <dt>Duration:</dt><dd><%=doc.duration%> minutes</dd>
+                    <dt>Premiere:</dt><dd><%=doc.date%></dd>
+                </dl>
+                <div class="plot"><dt>Plot:</dt><dd><%=doc.plot%></dd></div>
+            </div>
+
+            <div class="cont">
+            <div class="row">
+                <% for(var i = 0; i < doc.screens.length; i++) {%>
+                  <div class="column">
+                      <img class="coolimg" src="data:image/jpg;base64,<%=doc.screens[i].toString('base64')%>"
+                      style="width:100%" onclick="openModal();currentSlide(<%=i+1%>)" class="hover-shadow cursor">
+                  </div>
+                <%}%>
+            </div>
+            </div>
+
+            <div class="video">
+                <div class="video-text"><label><b>Trailer</b></label></div>
+                <iframe width="560" height="315" src="<%=doc.trailer%>" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+          <span class="close cursor" onclick="closeModal()">&times;</span>
+          <div class="modal-content">
+              <% for (var i = 0, len = doc.screens.length; i < doc.screens.length; i++) {%>
+                  <div class="mySlides">
+                    <div class="numbertext"><%=(i+1)%> / <%=len%></div>
+                    <img class="coolimg modal-img"
+                        src="data:image/jpg;base64,<%=doc.screens[i].toString('base64')%>" style="width:100%">
+                  </div>
+              <%}%>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            <div class="caption-container">
+              <p id="caption"></p>
+            </div>
+
+            <% for (var i = 0; i < doc.screens.length; i++) {%>
+                <div class="column">
+                  <img class="demo cursor" class="coolimg"
+                    src="data:image/jpg;base64,<%=doc.screens[i].toString('base64')%>"
+                    style="width:100%" onclick="currentSlide(<%=i+1%>)">
+                </div>
+            <%}%>
+          </div>
+        </div>
+
+        <script src="/javascript/modalpictures.js"></script>
+        <script src="/javascript/deleteModal.js"></script>
+    </body>
+</html>

@@ -160,7 +160,7 @@ bool letsRock()
                 {
                     if(attackTimer > 2300)
                     {
-                        hero.health -= 5 + rand()%10;
+                        hero.health -= 5 + rand()%12;
                         attackTimer = 0;
                     }
                 }

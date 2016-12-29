@@ -421,7 +421,7 @@ void server_answerRequest(http_request_t request, socket_t* client, worker_t** w
             server_post(request, client, workers);
         }
     }
-    else if(!strcmp(request.uri, "/api/workers") || !strcmp(request.uri, "/api/workers/"))
+    else if(!strcmp(request.uri, "/api/workers"))
     {
         server_sendWorkersJSON(client, workers);
     }

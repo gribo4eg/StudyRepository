@@ -1,0 +1,27 @@
+{
+  "name": "filminfo",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "~1.15.1",
+    "busboy-body-parser": "^0.2.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "e": "0.0.4",
+    "ejs": "^2.5.2",
+    "express": "~4.13.4",
+    "express-ejs-layouts": "^2.2.0",
+    "express-session": "^1.14.2",
+    "express-validator": "^2.21.0",
+    "mongoose": "^4.6.8",
+    "morgan": "~1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.3.0"
+  }
+}

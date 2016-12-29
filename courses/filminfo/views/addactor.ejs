@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Add Actor</title>
+
+        <link rel="stylesheet" href="/stylesheets/login.css">
+    </head>
+    <body>
+        <a href="/users/userpage/<%=user._id%>"><img class="back" src="/images/back.png" alt="Back"/></a>
+        <h2>New Actor</h2>
+
+        <form class="form-add" action='/actors/newactor' method="post" enctype="multipart/form-data">
+            <div class="imgcontainer">
+                <img src="/images/newactor.jpg" alt="New Actor" class="avatar-add">
+            </div>
+            <div class="center-top">
+                <label><b>Name</b></label>
+                <input type='text' name='name' required/>
+            </div>
+            <div class="left">
+                <label><b>Hometown</b></label>
+                <input type='text' name='hometown' required/>
+            </div>
+            <div class="right">
+                <label><b>Birthdate</b></label>
+                <input type="date" name="birthdate" required/>
+            </div>
+            <div class="center-bot">
+                <label><b>Photo</b></label>
+                <input type='file' name='photo' required/>
+            </div>
+            <label><b>Photos from films</b></label>
+            <input type='file' name='screens' multiple required/>
+            <label><b>Biography</b></label>
+            <textarea rows="6" cols="50" type='text' name='biography' required></textarea>
+            <button type='submit' value="Upload form" class=''>Add actor</button>
+        </form>
+
+    </body>
+</html>

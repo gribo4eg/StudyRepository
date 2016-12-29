@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Update Film</title>
+
+        <link rel="stylesheet" href="/stylesheets/login.css">
+    </head>
+    <body>
+        <a href="/films/<%=film._id%>"><img class="back" src="/images/back.png" alt="Back"/></a>
+        <h2>Update Film</h2>
+
+        <form class="form-update" action='/films/update/<%=film._id%>' method="post" enctype="multipart/form-data">
+            <div class="imgcontainer">
+                <img src="data:image/jpg;base64,<%=film.poster.toString('base64')%>" alt="Update film" class="avatar-update">
+            </div>
+            <label>*leave fields empty if you dont want to change them</label>
+            <div class="center-top">
+                <label><b>Title</b></label>
+                <input type='text' name='title' placeholder="<%=film.title%>"/>
+            </div>
+            <div class="left">
+                <label><b>Director</b></label>
+                <input type='text' name='director' placeholder="<%=film.director%>"/>
+            </div>
+            <div class="right">
+                <label><b>Budget</b></label>
+                <input type="number" name="budget" placeholder="<%=film.budget%>"/>
+            </div>
+            <div class="left">
+                <label><b>Duration</b></label>
+                <input type="number" name="duration" placeholder="<%=film.duration%>"/>
+            </div>
+            <div class="right">
+                <label><b>Premiere</b></label>
+                <input type="date" name="date" value="<%=film.date%>"/>
+            </div>
+            <div class="center-bot">
+                <label><b>Plot</b></label>
+                <textarea rows="6" cols="50" type='text' name='plot'><%=film.plot%></textarea>
+            </div>
+            <label><b>Actors *write 'name surname', separate actors by ';'</b></label>
+            <input type="text" name="actors" value="<%=actors%>">
+            <label><b>Trailer link</b></label>
+            <input type='text' name='link' placeholder="<%=film.trailer%>"/>
+            <div class="left">
+                <label><b>Poster</b></label>
+                <input type='file' name='poster' value="poster"/>
+            </div>
+            <% for (var i = 1; i <= 5; i++) {%>
+                <% if(i%2 == 0) {%>
+                    <div class="left">
+                <%} else {%>
+                    <div class="right">
+                <%}%>
+                    <label><b>Screen <%=i%></b></label>
+                    <input type='file' name='screen<%=i%>'/>
+                </div>
+            <%}%>
+            <button type='submit' value="Upload form" class=''>Update film</button>
+        </form>
+
+    </body>
+</html>

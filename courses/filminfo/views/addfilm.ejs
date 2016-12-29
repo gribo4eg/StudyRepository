@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Add Film</title>
+
+        <link rel="stylesheet" href="/stylesheets/login.css">
+    </head>
+    <body>
+        <a href="/users/userpage/<%=user._id%>"><img class="back" src="/images/back.png" alt="Back"/></a>
+        <h2>New Film</h2>
+
+        <form class="form-add" action='/films/newfilm' method="post" enctype="multipart/form-data">
+            <div class="imgcontainer">
+                <img src="/images/newfilm.jpg" alt="New film" class="avatar-add">
+            </div>
+            <div class="center-top">
+                <span id="warning"></span><br/>
+                <label><b>Title</b></label>
+                <input type='text' name='title' id='title' oninput="validation(this.id)" required/>
+                <span id="titleWarn"></span>
+            </div>
+            <label><b>Genres *write genres, separate them by ';'</b></label>
+            <input type="text" name="genres" id='genres' oninput="validation(this.id)" required>
+            <span id="genresWarn"></span>
+            <div class="left">
+                <label><b>Director</b></label>
+                <input type='text' name='director' id='director' oninput="validation(this.id)" required/>
+                <span id="directorWarn"></span>
+            </div>
+            <div class="right">
+                <label><b>Budget</b></label>
+                <input type="number" name="budget" id='budget' oninput="validation(this.id)" required/>
+                <span id="budgetWarn"></span>
+            </div>
+            <div class="left">
+                <label><b>Duration</b></label>
+                <input type="number" name="duration" id='duration' oninput="validation(this.id)" required/>
+                <span id="durationWarn"></span>
+            </div>
+            <div class="right">
+                <label><b>Premiere</b></label>
+                <input type="date" name="date" id='date' oninput="validation(this.id)" required/>
+                <span id="dateWarn"></span>
+            </div>
+            <div class="center-bot">
+                <label><b>Poster</b></label>
+                <input type='file' name='poster' value="poster" required/>
+            </div>
+            <label><b>Screens</b></label>
+            <input type='file' name='screens' value="screens" multiple required/>
+            <label><b>Plot</b></label>
+            <textarea rows="6" cols="50" type='text' name='plot'></textarea>
+            <label><b>Trailer link</b></label>
+            <input type='text' name='link' required/>
+            <button type='submit' id='button' disabled="true">Add film</button>
+        </form>
+
+        <script src="/javascript/newfilmvalid.js"></script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/stylesheets/menubar.css">
+        <link rel="stylesheet" href="/stylesheets/forall.css">
+    </head>
+    <body>
+        <div class="menubar">
+            <img id="animated" src="/images/disc.png"/>
+            FilmInfo
+            <a class="menubut" href="/">Home</a>
+            <a class="menubut" href="/films?page=1">Films</a>
+            <a class="menubut" href="/actors?page=1">Actors</a>
+            <%if(!user){%>
+                <a class="menubut" href="/users/register">Registration</a>
+                <a class="menubut" href="/users/login">Log in</a>
+            <%} else {%>
+                <a class="menubut" href="/users/userpage/<%=user._id%>"><%=user.nickname%> page</a>
+                <a class="menubut" href="/users/logout">Log out</a>
+            <%}%>
+        </div>
+        <%-body%>
+    </body>
+</html>

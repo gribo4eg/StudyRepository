@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Actors</title>
+
+        <link rel="stylesheet" href="/stylesheets/films.css">
+    </head>
+    <body>
+        <a href="<%=back_url%>"><img class="back" src="/images/back.png" alt="Back"/></a>
+        <h2>Actors</h2>
+        <div class="posters">
+
+            <% for (var i = 0, j = 0; i < doc.length ; i++) { %>
+                <div class="responsive">
+                    <div class="img">
+                        <a href="/actors/<%=doc[i]._id%>"><img src="data:image/jpg;base64,<%=doc[i].photos[j].toString('base64')%>"/></a>
+                        <div class="desc">
+                            <%=doc[i].name%>
+                        </div>
+
+                    </div>
+                </div>
+            <%}%>
+
+        </div>
+
+        <div class="container">
+            <ul class="pagination">
+                <% for (var i = 1; i <= pages.all; i++) {%>
+                    <% if (i == pages.current) {%>
+                        <li><a class="current" href="#"><%=i%></a></li>
+                    <%} else {%>
+                        <li><a href="/actors?page=<%=i%>"><%=i%></a></li>
+                    <%}%>
+                <%}%>
+            </ul>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FluentDataContract</id>
+    <version>1.0.2</version>
+    <title />
+    <authors>GeorgeR</authors>
+    <owners>GeorgeR</owners>
+    <projectUrl>http://fluentdatacontract.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides a fluent configuration API to apply commonly needed serialization options to a POCO (and it's properties).
+
+Follows same conventions and principals as FluentValidator.</description>
+    <releaseNotes>-.Property is now .IncludeProperty (.Property marked as obsolete to keep compatibility)
+- Added .ExcludeProperty/.ExcludeProperties
+- Fixed NullValue and DefaultValue handling at object level not affecting properties
+- Added IncludeAllProperties</releaseNotes>
+    <tags>Fluent DataContract Serialization</tags>
+  </metadata>
+</package>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FluentDataContract.Adapters.Json</id>
+    <version>1.0.2</version>
+    <title>FluentDataContract.Adapters.Json</title>
+    <authors>GeorgeR</authors>
+    <owners>GeorgeR</owners>
+    <projectUrl>http://fluentdatacontract.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Json.NET Adapter for FluentDataContract. Use FluentContractResolver as the IContractResolver.</description>
+    <summary />
+    <releaseNotes>- Added Project URL, Tags</releaseNotes>
+    <tags>Fluent DataContract Serialization Json</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="4.5.7" />
+      <dependency id="FluentDataContract" version="1.0.1" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.TeamFoundation.VersionControl.All</id>
+    <version>12.0.30723.2</version>
+    <title>Microsoft.TeamFoundation.VersionControl.All</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>https://nuget.org/packages/Microsoft.TeamFoundation.VersionControl.All</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The Microsoft.TeamFoundation namespace provides classes and interfaces to work with artifacts (Artifact) in Team Foundation. This namespace also contains classes that represent general information about Visual Studio Team Foundation Server, such as TeamFoundationVersion and OperationalDatabaseNames.
+
+      Link to site: https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation(v=vs.120).aspx</description>
+    <summary />
+    <copyright>© Microsoft Corporation 2015. All rights reserved.</copyright>
+    <language>en-US</language>
+    <tags>Microsoft TeamFoundation VersionControl Client Common Integration ControlAdapter Controls UIFeatures Team Foundation TFS</tags>
+  </metadata>
+</package>

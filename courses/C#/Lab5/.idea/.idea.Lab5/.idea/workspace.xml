@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1e7b2009-3a88-4ef7-990a-264bc4426936" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="hideWarnings" value="true" />
+    <option name="HIDE_WARNINGS" value="true" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="View.xaml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Lab5/View.xaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="80" column="41" lean-forward="false" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+              <folding>
+                <marker date="1484273256783" expanded="true" signature="0:4401" ph="&lt;&lt;Window.DataContext&gt;&#10;        &lt;lab5:ViewModel /&gt;&#10;    &lt;/Window.DataContext&gt; &lt;Grid Background=&quot;##FFFBA86E&quot;&gt;&#10;&#10;        &lt;Menu Grid.Row=&quot;0&quot; Margin=&quot;0,0,0,389&quot;&gt;&#10;            &lt;MenuItem Command=&quot;{Binding SaveCommand}&quot; Header=&quot;Save&quot; /&gt;&#10;            &lt;MenuItem Command=&quot;{Binding ExitCommand}&quot; Header=&quot;E_xit&quot; /&gt;&#10;        &lt;/Menu&gt;&#10;        &lt;ListView&#10;            Name=&quot;WtchList&quot;&#10;            Width=&quot;525&quot;&#10;            Height=&quot;191&quot;&#10;            Margin=&quot;10,62,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            ItemsSource=&quot;{Binding Watchmans}&quot;&gt;&#10;            &lt;ListView.View&gt;&#10;                &lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;&#10;            &lt;/ListView.View&gt;&#10;        &lt;/ListView&gt;&#10;        &lt;StackPanel&#10;            Margin=&quot;10,365,10,21&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;Name:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;NameBox&quot; Width=&quot;67&quot; Text=&quot;{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Surname:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;SurnameBox&quot; Width=&quot;103&quot; Text=&quot;{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Age:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;AgeBox&quot; Width=&quot;45&quot; Text=&quot;{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot;/&gt;&#10;            &lt;TextBlock&gt;Weight:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;WeightBox&quot; Width=&quot;50&quot; Text=&quot;{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot; /&gt;&#10;            &lt;Button&#10;                Name=&quot;Addwatch&quot;&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                IsEnabled=&quot;False&quot;&#10;                Command=&quot;{Binding AddWatchmanCommand}&quot;&#10;                Content=&quot;Add Watchman&quot; /&gt;&#10;        &lt;/StackPanel&gt;&#10;        &lt;Label&#10;            Margin=&quot;10,31,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Watchmans List:&quot; /&gt;&#10;        &lt;Label&#10;            Margin=&quot;10,334,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Add new Watchman:&quot; /&gt;&#10;        &lt;Label&#10;            Margin=&quot;10,259,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Change Watchman:&quot; /&gt;&#10;        &lt;Button&#10;            Width=&quot;88&quot;&#10;            Height=&quot;25&quot;&#10;            Margin=&quot;0,260,23,0&quot;&#10;            HorizontalAlignment=&quot;Right&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Click=&quot;CmdDelete&quot;&#10;            Content=&quot;Delete chosen&quot; /&gt;&#10;        &lt;StackPanel&#10;            Name=&quot;UpdList&quot;&#10;            Margin=&quot;10,290,10,96&quot;&#10;            DataContext=&quot;{Binding ElementName=WtchList, Path=SelectedItem, Mode=TwoWay}&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Name:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;67&quot; Text=&quot;{Binding Name}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Surname:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;103&quot; Text=&quot;{Binding Surname}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Age:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;45&quot; Text=&quot;{Binding Age}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Weight:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;50&quot; Text=&quot;{Binding Weight}&quot; /&gt;&#10;            &lt;Button&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                Click=&quot;CmdUpdate&quot;&#10;                Content=&quot;Upd Watchman &quot; /&gt;&#10;        &lt;/StackPanel&gt;&#10;    &lt;/Grid&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="263:336" ph="&lt;&lt;lab5:ViewModel /&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="341:4391" ph="&lt;&lt;Menu Grid.Row=&quot;0&quot; Margin=&quot;0,0,0,389&quot;&gt;&#10;            &lt;MenuItem Command=&quot;{Binding SaveCommand}&quot; Header=&quot;Save&quot; /&gt;&#10;            &lt;MenuItem Command=&quot;{Binding ExitCommand}&quot; Header=&quot;E_xit&quot; /&gt;&#10;        &lt;/Menu&gt; &lt;ListView&#10;            Name=&quot;WtchList&quot;&#10;            Width=&quot;525&quot;&#10;            Height=&quot;191&quot;&#10;            Margin=&quot;10,62,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            ItemsSource=&quot;{Binding Watchmans}&quot;&gt;&#10;            &lt;ListView.View&gt;&#10;                &lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;&#10;            &lt;/ListView.View&gt;&#10;        &lt;/ListView&gt; &lt;StackPanel&#10;            Margin=&quot;10,365,10,21&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;Name:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;NameBox&quot; Width=&quot;67&quot; Text=&quot;{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Surname:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;SurnameBox&quot; Width=&quot;103&quot; Text=&quot;{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Age:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;AgeBox&quot; Width=&quot;45&quot; Text=&quot;{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot;/&gt;&#10;            &lt;TextBlock&gt;Weight:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;WeightBox&quot; Width=&quot;50&quot; Text=&quot;{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot; /&gt;&#10;            &lt;Button&#10;                Name=&quot;Addwatch&quot;&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                IsEnabled=&quot;False&quot;&#10;                Command=&quot;{Binding AddWatchmanCommand}&quot;&#10;                Content=&quot;Add Watchman&quot; /&gt;&#10;        &lt;/StackPanel&gt; &lt;Label&#10;            Margin=&quot;10,31,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Watchmans List:&quot; /&gt; &lt;Label&#10;            Margin=&quot;10,334,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Add new Watchman:&quot; /&gt; &lt;Label&#10;            Margin=&quot;10,259,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Change Watchman:&quot; /&gt; &lt;Button&#10;            Width=&quot;88&quot;&#10;            Height=&quot;25&quot;&#10;            Margin=&quot;0,260,23,0&quot;&#10;            HorizontalAlignment=&quot;Right&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Click=&quot;CmdDelete&quot;&#10;            Content=&quot;Delete chosen&quot; /&gt; &lt;StackPanel&#10;            Name=&quot;UpdList&quot;&#10;            Margin=&quot;10,290,10,96&quot;&#10;            DataContext=&quot;{Binding ElementName=WtchList, Path=SelectedItem, Mode=TwoWay}&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Name:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;67&quot; Text=&quot;{Binding Name}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Surname:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;103&quot; Text=&quot;{Binding Surname}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Age:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;45&quot; Text=&quot;{Binding Age}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Weight:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;50&quot; Text=&quot;{Binding Weight}&quot; /&gt;&#10;            &lt;Button&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                Click=&quot;CmdUpdate&quot;&#10;                Content=&quot;Upd Watchman &quot; /&gt;&#10;        &lt;/StackPanel&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="380:577" ph="&lt;&lt;MenuItem Command=&quot;{Binding SaveCommand}&quot; Header=&quot;Save&quot; /&gt; &lt;MenuItem Command=&quot;{Binding ExitCommand}&quot; Header=&quot;E_xit&quot; /&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="586:1665" ph="&lt;&lt;ListView.View&gt;&#10;                &lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;&#10;            &lt;/ListView.View&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="838:1645" ph="&lt;&lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="870:1616" ph="&lt;&lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt; &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt; &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt; &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="901:1055" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="1076:1236" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="1257:1409" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="1430:1588" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="1674:2757" ph="&lt;&lt;TextBlock&gt;Name:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;NameBox&quot; Width=&quot;67&quot; Text=&quot;{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}&quot; /&gt; &lt;TextBlock&gt;Surname:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;SurnameBox&quot; Width=&quot;103&quot; Text=&quot;{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}&quot; /&gt; &lt;TextBlock&gt;Age:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;AgeBox&quot; Width=&quot;45&quot; Text=&quot;{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot;/&gt; &lt;TextBlock&gt;Weight:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;WeightBox&quot; Width=&quot;50&quot; Text=&quot;{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot; /&gt; &lt;Button&#10;                Name=&quot;Addwatch&quot;&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                IsEnabled=&quot;False&quot;&#10;                Command=&quot;{Binding AddWatchmanCommand}&quot;&#10;                Content=&quot;Add Watchman&quot; /&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="2502:2735" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="2766:2919" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="2928:3084" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="3093:3248" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="3257:3488" ph="&lt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="3497:4379" ph="&lt;&lt;TextBlock&gt;&lt;Run Text=&quot;Name:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;67&quot; Text=&quot;{Binding Name}&quot; /&gt; &lt;TextBlock&gt;&lt;Run Text=&quot;Surname:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;103&quot; Text=&quot;{Binding Surname}&quot; /&gt; &lt;TextBlock&gt;&lt;Run Text=&quot;Age:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;45&quot; Text=&quot;{Binding Age}&quot; /&gt; &lt;TextBlock&gt;&lt;Run Text=&quot;Weight:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;50&quot; Text=&quot;{Binding Weight}&quot; /&gt; &lt;Button&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                Click=&quot;CmdUpdate&quot;&#10;                Content=&quot;Upd Watchman &quot; /&gt;.../&gt;" />
+                <marker date="1484273256783" expanded="true" signature="4210:4357" ph="&lt;.../&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="packages.config" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lab5/packages.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewModel.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lab5/ViewModel.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="54" column="37" lean-forward="false" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+              <folding>
+                <marker date="1484272583264" expanded="true" signature="6:233" ph="..." />
+                <marker date="1484272583264" expanded="true" signature="250:5197" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="279:2198" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="891:962" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="1245:1338" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="1383:1441" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="1687:1878" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="1932:2003" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="2057:2090" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="2147:2192" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="2243:3180" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="2587:2693" ph="{...}" />
+                <marker date="1484272583264" expanded="false" signature="2703:3174" ph="ICommand Members" />
+                <marker date="1484272583264" expanded="true" signature="2977:3047" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="3094:3154" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="3208:5195" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="3477:5188" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="3593:3823" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="3869:4094" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="4143:4371" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="4402:4615" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="4650:4863" ph="{...}" />
+                <marker date="1484272583264" expanded="true" signature="4917:5153" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.xaml.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lab5/View.xaml.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="469">
+              <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+              <folding>
+                <marker date="1484272043478" expanded="true" signature="6:381" ph="..." />
+                <marker date="1484272043478" expanded="true" signature="397:1884" ph="{...}" />
+                <marker date="1484272043478" expanded="true" signature="404:486" ph="/// Логика взаимодействия для MainWindow.xaml ... " />
+                <marker date="1484272043478" expanded="true" signature="531:1882" ph="{...}" />
+                <marker date="1484272043478" expanded="true" signature="601:910" ph="{...}" />
+                <marker date="1484272043478" expanded="true" signature="1231:1875" ph="{...}" />
+                <marker date="1484272043478" expanded="true" signature="1257:1664" ph="{...}" />
+                <marker date="1484272043478" expanded="true" signature="1462:1545" ph="{...}" />
+                <marker date="1484272043478" expanded="true" signature="1566:1650" ph="{...}" />
+                <marker date="1484272043478" expanded="true" signature="1704:1863" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Watchman.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lab5/Watchman.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <marker date="1484271972801" expanded="true" signature="6:212" ph="..." />
+                <marker date="1484271972801" expanded="true" signature="228:1522" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="288:1511" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="430:589" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="641:772" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="702:762" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="991:1077" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="1125:1395" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="1162:1385" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="1207:1337" ph="{...}" />
+                <marker date="1484271972801" expanded="true" signature="1416:1505" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Lab5/Watchman.cs" />
+        <option value="$PROJECT_DIR$/Lab5/View.xaml.cs" />
+        <option value="$PROJECT_DIR$/Lab5/ViewModel.cs" />
+        <option value="$PROJECT_DIR$/Lab5/View.xaml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lab5 (2 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WpfApplication1" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lab5 (2 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lab5" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lab5 (2 projects)" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Lab5" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="View.xaml" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="RunManager" selected=".NET Project.Default">
+    <configuration default="true" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/Lab5/Lab5.csproj" />
+      <option name="PROJECT_KIND" value="Console" />
+      <option name="PROJECT_TFM" value="Default" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Lab5/bin/Release/Lab5.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lab5/bin/Release" />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue=".NET Project.Default" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1e7b2009-3a88-4ef7-990a-264bc4426936" name="Default" comment="" />
+      <created>1484267646129</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1484267646129</updated>
+      <workItem from="1484267655206" duration="5500000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="5500000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UnitTesting" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21229868" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Lab5/App.xaml.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab5/packages.config">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab5/Watchman.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <marker date="1484271972801" expanded="true" signature="6:212" ph="..." />
+            <marker date="1484271972801" expanded="true" signature="228:1522" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="288:1511" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="430:589" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="641:772" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="702:762" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="991:1077" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="1125:1395" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="1162:1385" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="1207:1337" ph="{...}" />
+            <marker date="1484271972801" expanded="true" signature="1416:1505" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab5/View.xaml.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="50" column="57" lean-forward="false" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+          <folding>
+            <marker date="1484272043478" expanded="true" signature="6:381" ph="..." />
+            <marker date="1484272043478" expanded="true" signature="397:1884" ph="{...}" />
+            <marker date="1484272043478" expanded="true" signature="404:486" ph="/// Логика взаимодействия для MainWindow.xaml ... " />
+            <marker date="1484272043478" expanded="true" signature="531:1882" ph="{...}" />
+            <marker date="1484272043478" expanded="true" signature="601:910" ph="{...}" />
+            <marker date="1484272043478" expanded="true" signature="1231:1875" ph="{...}" />
+            <marker date="1484272043478" expanded="true" signature="1257:1664" ph="{...}" />
+            <marker date="1484272043478" expanded="true" signature="1462:1545" ph="{...}" />
+            <marker date="1484272043478" expanded="true" signature="1566:1650" ph="{...}" />
+            <marker date="1484272043478" expanded="true" signature="1704:1863" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab5/ViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="54" column="37" lean-forward="false" selection-start-line="54" selection-start-column="37" selection-end-line="54" selection-end-column="37" />
+          <folding>
+            <marker date="1484272583264" expanded="true" signature="6:233" ph="..." />
+            <marker date="1484272583264" expanded="true" signature="250:5197" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="279:2198" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="891:962" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="1245:1338" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="1383:1441" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="1687:1878" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="1932:2003" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="2057:2090" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="2147:2192" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="2243:3180" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="2587:2693" ph="{...}" />
+            <marker date="1484272583264" expanded="false" signature="2703:3174" ph="ICommand Members" />
+            <marker date="1484272583264" expanded="true" signature="2977:3047" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="3094:3154" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="3208:5195" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="3477:5188" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="3593:3823" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="3869:4094" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="4143:4371" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="4402:4615" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="4650:4863" ph="{...}" />
+            <marker date="1484272583264" expanded="true" signature="4917:5153" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/MVVM/1-WpfApplication1/1-WpfApplication1/WpfApplication1/MainViewModel.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-192">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1484238211013" expanded="true" signature="6:194" ph="..." />
+            <marker date="1484238211013" expanded="true" signature="222:4488" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="280:814" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="295:808" ph="Implementation of INotifyPropertyChanged" />
+            <marker date="1484238211013" expanded="true" signature="480:575" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="656:789" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="859:1796" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="1203:1309" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="1319:1790" ph="ICommand Members" />
+            <marker date="1484238211013" expanded="true" signature="1593:1663" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="1710:1770" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="1844:4486" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="1905:2200" ph="Constructor" />
+            <marker date="1484238211013" expanded="true" signature="2114:2180" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2237:2495" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2263:2485" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2318:2435" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2540:2604" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2663:2708" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2782:3053" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2808:3043" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="2863:2992" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="3108:4472" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="3248:3446" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="3493:3746" ph="{...}" />
+            <marker date="1484238211013" expanded="true" signature="3817:4121" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab5/View.xaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="80" column="41" lean-forward="false" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
+          <folding>
+            <marker date="1484273256783" expanded="true" signature="0:4401" ph="&lt;&lt;Window.DataContext&gt;&#10;        &lt;lab5:ViewModel /&gt;&#10;    &lt;/Window.DataContext&gt; &lt;Grid Background=&quot;##FFFBA86E&quot;&gt;&#10;&#10;        &lt;Menu Grid.Row=&quot;0&quot; Margin=&quot;0,0,0,389&quot;&gt;&#10;            &lt;MenuItem Command=&quot;{Binding SaveCommand}&quot; Header=&quot;Save&quot; /&gt;&#10;            &lt;MenuItem Command=&quot;{Binding ExitCommand}&quot; Header=&quot;E_xit&quot; /&gt;&#10;        &lt;/Menu&gt;&#10;        &lt;ListView&#10;            Name=&quot;WtchList&quot;&#10;            Width=&quot;525&quot;&#10;            Height=&quot;191&quot;&#10;            Margin=&quot;10,62,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            ItemsSource=&quot;{Binding Watchmans}&quot;&gt;&#10;            &lt;ListView.View&gt;&#10;                &lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;&#10;            &lt;/ListView.View&gt;&#10;        &lt;/ListView&gt;&#10;        &lt;StackPanel&#10;            Margin=&quot;10,365,10,21&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;Name:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;NameBox&quot; Width=&quot;67&quot; Text=&quot;{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Surname:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;SurnameBox&quot; Width=&quot;103&quot; Text=&quot;{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Age:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;AgeBox&quot; Width=&quot;45&quot; Text=&quot;{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot;/&gt;&#10;            &lt;TextBlock&gt;Weight:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;WeightBox&quot; Width=&quot;50&quot; Text=&quot;{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot; /&gt;&#10;            &lt;Button&#10;                Name=&quot;Addwatch&quot;&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                IsEnabled=&quot;False&quot;&#10;                Command=&quot;{Binding AddWatchmanCommand}&quot;&#10;                Content=&quot;Add Watchman&quot; /&gt;&#10;        &lt;/StackPanel&gt;&#10;        &lt;Label&#10;            Margin=&quot;10,31,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Watchmans List:&quot; /&gt;&#10;        &lt;Label&#10;            Margin=&quot;10,334,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Add new Watchman:&quot; /&gt;&#10;        &lt;Label&#10;            Margin=&quot;10,259,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Change Watchman:&quot; /&gt;&#10;        &lt;Button&#10;            Width=&quot;88&quot;&#10;            Height=&quot;25&quot;&#10;            Margin=&quot;0,260,23,0&quot;&#10;            HorizontalAlignment=&quot;Right&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Click=&quot;CmdDelete&quot;&#10;            Content=&quot;Delete chosen&quot; /&gt;&#10;        &lt;StackPanel&#10;            Name=&quot;UpdList&quot;&#10;            Margin=&quot;10,290,10,96&quot;&#10;            DataContext=&quot;{Binding ElementName=WtchList, Path=SelectedItem, Mode=TwoWay}&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Name:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;67&quot; Text=&quot;{Binding Name}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Surname:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;103&quot; Text=&quot;{Binding Surname}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Age:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;45&quot; Text=&quot;{Binding Age}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Weight:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;50&quot; Text=&quot;{Binding Weight}&quot; /&gt;&#10;            &lt;Button&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                Click=&quot;CmdUpdate&quot;&#10;                Content=&quot;Upd Watchman &quot; /&gt;&#10;        &lt;/StackPanel&gt;&#10;    &lt;/Grid&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="263:336" ph="&lt;&lt;lab5:ViewModel /&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="341:4391" ph="&lt;&lt;Menu Grid.Row=&quot;0&quot; Margin=&quot;0,0,0,389&quot;&gt;&#10;            &lt;MenuItem Command=&quot;{Binding SaveCommand}&quot; Header=&quot;Save&quot; /&gt;&#10;            &lt;MenuItem Command=&quot;{Binding ExitCommand}&quot; Header=&quot;E_xit&quot; /&gt;&#10;        &lt;/Menu&gt; &lt;ListView&#10;            Name=&quot;WtchList&quot;&#10;            Width=&quot;525&quot;&#10;            Height=&quot;191&quot;&#10;            Margin=&quot;10,62,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            ItemsSource=&quot;{Binding Watchmans}&quot;&gt;&#10;            &lt;ListView.View&gt;&#10;                &lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;&#10;            &lt;/ListView.View&gt;&#10;        &lt;/ListView&gt; &lt;StackPanel&#10;            Margin=&quot;10,365,10,21&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;Name:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;NameBox&quot; Width=&quot;67&quot; Text=&quot;{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Surname:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;SurnameBox&quot; Width=&quot;103&quot; Text=&quot;{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}&quot; /&gt;&#10;            &lt;TextBlock&gt;Age:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;AgeBox&quot; Width=&quot;45&quot; Text=&quot;{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot;/&gt;&#10;            &lt;TextBlock&gt;Weight:&lt;/TextBlock&gt;&#10;            &lt;TextBox Name=&quot;WeightBox&quot; Width=&quot;50&quot; Text=&quot;{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot; /&gt;&#10;            &lt;Button&#10;                Name=&quot;Addwatch&quot;&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                IsEnabled=&quot;False&quot;&#10;                Command=&quot;{Binding AddWatchmanCommand}&quot;&#10;                Content=&quot;Add Watchman&quot; /&gt;&#10;        &lt;/StackPanel&gt; &lt;Label&#10;            Margin=&quot;10,31,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Watchmans List:&quot; /&gt; &lt;Label&#10;            Margin=&quot;10,334,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Add new Watchman:&quot; /&gt; &lt;Label&#10;            Margin=&quot;10,259,0,0&quot;&#10;            HorizontalAlignment=&quot;Left&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Content=&quot;Change Watchman:&quot; /&gt; &lt;Button&#10;            Width=&quot;88&quot;&#10;            Height=&quot;25&quot;&#10;            Margin=&quot;0,260,23,0&quot;&#10;            HorizontalAlignment=&quot;Right&quot;&#10;            VerticalAlignment=&quot;Top&quot;&#10;            Click=&quot;CmdDelete&quot;&#10;            Content=&quot;Delete chosen&quot; /&gt; &lt;StackPanel&#10;            Name=&quot;UpdList&quot;&#10;            Margin=&quot;10,290,10,96&quot;&#10;            DataContext=&quot;{Binding ElementName=WtchList, Path=SelectedItem, Mode=TwoWay}&quot;&#10;            FlowDirection=&quot;LeftToRight&quot;&#10;            Orientation=&quot;Horizontal&quot;&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Name:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;67&quot; Text=&quot;{Binding Name}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Surname:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;103&quot; Text=&quot;{Binding Surname}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Age:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;45&quot; Text=&quot;{Binding Age}&quot; /&gt;&#10;            &lt;TextBlock&gt;&lt;Run Text=&quot;Weight:&quot; /&gt;&lt;/TextBlock&gt;&#10;            &lt;TextBox Width=&quot;50&quot; Text=&quot;{Binding Weight}&quot; /&gt;&#10;            &lt;Button&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                Click=&quot;CmdUpdate&quot;&#10;                Content=&quot;Upd Watchman &quot; /&gt;&#10;        &lt;/StackPanel&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="380:577" ph="&lt;&lt;MenuItem Command=&quot;{Binding SaveCommand}&quot; Header=&quot;Save&quot; /&gt; &lt;MenuItem Command=&quot;{Binding ExitCommand}&quot; Header=&quot;E_xit&quot; /&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="586:1665" ph="&lt;&lt;ListView.View&gt;&#10;                &lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;&#10;            &lt;/ListView.View&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="838:1645" ph="&lt;&lt;GridView&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt;&#10;                    &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;&#10;                &lt;/GridView&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="870:1616" ph="&lt;&lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Name}&quot;&#10;                        Header=&quot;Name&quot; /&gt; &lt;GridViewColumn&#10;                        Width=&quot;150&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Surname}&quot;&#10;                        Header=&quot;Surname&quot; /&gt; &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Age}&quot;&#10;                        Header=&quot;Age&quot; /&gt; &lt;GridViewColumn&#10;                        Width=&quot;100&quot;&#10;                        DisplayMemberBinding=&quot;{Binding Weight}&quot;&#10;                        Header=&quot;Weight&quot; /&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="901:1055" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="1076:1236" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="1257:1409" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="1430:1588" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="1674:2757" ph="&lt;&lt;TextBlock&gt;Name:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;NameBox&quot; Width=&quot;67&quot; Text=&quot;{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}&quot; /&gt; &lt;TextBlock&gt;Surname:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;SurnameBox&quot; Width=&quot;103&quot; Text=&quot;{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}&quot; /&gt; &lt;TextBlock&gt;Age:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;AgeBox&quot; Width=&quot;45&quot; Text=&quot;{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot;/&gt; &lt;TextBlock&gt;Weight:&lt;/TextBlock&gt; &lt;TextBox Name=&quot;WeightBox&quot; Width=&quot;50&quot; Text=&quot;{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}&quot; Validation.ErrorTemplate=&quot;{x:Null}&quot; /&gt; &lt;Button&#10;                Name=&quot;Addwatch&quot;&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                IsEnabled=&quot;False&quot;&#10;                Command=&quot;{Binding AddWatchmanCommand}&quot;&#10;                Content=&quot;Add Watchman&quot; /&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="2502:2735" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="2766:2919" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="2928:3084" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="3093:3248" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="3257:3488" ph="&lt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="3497:4379" ph="&lt;&lt;TextBlock&gt;&lt;Run Text=&quot;Name:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;67&quot; Text=&quot;{Binding Name}&quot; /&gt; &lt;TextBlock&gt;&lt;Run Text=&quot;Surname:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;103&quot; Text=&quot;{Binding Surname}&quot; /&gt; &lt;TextBlock&gt;&lt;Run Text=&quot;Age:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;45&quot; Text=&quot;{Binding Age}&quot; /&gt; &lt;TextBlock&gt;&lt;Run Text=&quot;Weight:&quot; /&gt;&lt;/TextBlock&gt; &lt;TextBox Width=&quot;50&quot; Text=&quot;{Binding Weight}&quot; /&gt; &lt;Button&#10;                Width=&quot;Auto&quot;&#10;                Margin=&quot;10,0,0,0&quot;&#10;                Click=&quot;CmdUpdate&quot;&#10;                Content=&quot;Upd Watchman &quot; /&gt;.../&gt;" />
+            <marker date="1484273256783" expanded="true" signature="4210:4357" ph="&lt;.../&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

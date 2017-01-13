@@ -1,0 +1,112 @@
+﻿<Window
+    x:Class="Lab5.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:lab5="clr-namespace:Lab5"
+    Title="Zoo Staff"
+    Width="553"
+    Height="445">
+    <Window.DataContext>
+        <lab5:ViewModel />
+    </Window.DataContext>
+    <Grid Background="#FFFBA86E">
+
+        <Menu Grid.Row="0" Margin="0,0,0,389">
+            <MenuItem Command="{Binding SaveCommand}" Header="Save" />
+            <MenuItem Command="{Binding ExitCommand}" Header="E_xit" />
+        </Menu>
+        <ListView
+            Name="WtchList"
+            Width="525"
+            Height="191"
+            Margin="10,62,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding Watchmans}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding Name}"
+                        Header="Name" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding Surname}"
+                        Header="Surname" />
+                    <GridViewColumn
+                        Width="100"
+                        DisplayMemberBinding="{Binding Age}"
+                        Header="Age" />
+                    <GridViewColumn
+                        Width="100"
+                        DisplayMemberBinding="{Binding Weight}"
+                        Header="Weight" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel
+            Margin="10,365,10,21"
+            FlowDirection="LeftToRight"
+            Orientation="Horizontal">
+            <TextBlock>Name:</TextBlock>
+            <TextBox Name="NameBox" Width="67" Text="{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}" />
+            <TextBlock>Surname:</TextBlock>
+            <TextBox Name="SurnameBox" Width="103" Text="{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}" />
+            <TextBlock>Age:</TextBlock>
+            <TextBox Name="AgeBox" Width="45" Text="{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}" Validation.ErrorTemplate="{x:Null}"/>
+            <TextBlock>Weight:</TextBlock>
+            <TextBox Name="WeightBox" Width="50" Text="{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}" Validation.ErrorTemplate="{x:Null}" />
+            <Button
+                Name="Addwatch"
+                Width="Auto"
+                Margin="10,0,0,0"
+                IsEnabled="False"
+                Command="{Binding AddWatchmanCommand}"
+                Content="Add Watchman" />
+        </StackPanel>
+        <Label
+            Margin="10,31,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Watchmans List:" />
+        <Label
+            Margin="10,334,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Add new Watchman:" />
+        <Label
+            Margin="10,259,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Change Watchman:" />
+        <Button
+            Width="88"
+            Height="25"
+            Margin="0,260,23,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Click="CmdDelete"
+            Content="Delete chosen" />
+        <StackPanel
+            Name="UpdList"
+            Margin="10,290,10,96"
+            DataContext="{Binding ElementName=WtchList, Path=SelectedItem, Mode=TwoWay}"
+            FlowDirection="LeftToRight"
+            Orientation="Horizontal">
+            <TextBlock><Run Text="Name:" /></TextBlock>
+            <TextBox Width="67" Text="{Binding Name}" />
+            <TextBlock><Run Text="Surname:" /></TextBlock>
+            <TextBox Width="103" Text="{Binding Surname}" />
+            <TextBlock><Run Text="Age:" /></TextBlock>
+            <TextBox Width="45" Text="{Binding Age}" />
+            <TextBlock><Run Text="Weight:" /></TextBlock>
+            <TextBox Width="50" Text="{Binding Weight}" />
+            <Button
+                Width="Auto"
+                Margin="10,0,0,0"
+                Click="CmdUpdate"
+                Content="Upd Watchman " />
+        </StackPanel>
+    </Grid>
+</Window>
+

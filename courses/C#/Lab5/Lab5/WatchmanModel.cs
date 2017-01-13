@@ -20,7 +20,24 @@ namespace Lab5
                 return _instance ?? (_instance = new WatchmanModel());
             }
         }
+        
+        public int Count
+        {
+            get
+            {
+                return _instance.Count;
+            }
+        }
 
+        public int GetWatchmanIndex(Watchman watchman)
+        {
+            return IndexOf(watchman);
+        }
+
+        public void RemoveWatchman(Watchman watchman)
+        {
+            Remove(watchman);
+        }
         private WatchmanModel()
         {
             Watchman[] result;
@@ -46,14 +63,14 @@ namespace Lab5
             }
         }
 
-        public void AddWatchman(string name, string surname, int age, double weight)
+        public void AddWatchman(string name, string surname, int age, int weight)
         {
             Add(new Watchman(name, surname, age, weight));
         }
 
-        public void ChangeWatchman()
+        public void AddWathmanAtPosition(Watchman watch, int pos)
         {
-            _instance.First().Name = "LOL";
+            Insert(pos, watch);
         }
     }
 }

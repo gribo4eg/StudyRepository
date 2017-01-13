@@ -31,9 +31,21 @@ namespace Lab5
             Watchmans = WatchmanModel.GetInstance;
         }
 
-        public ICommand ExitCommand => _exitCommand ?? (_exitCommand = new DelegateCommand(Exit, CanExecuteCommand));
+        public ICommand ExitCommand
+        {
+            get
+            {
+                return _exitCommand ?? (_exitCommand = new DelegateCommand(Exit, CanExecuteCommand)); 
+            }
+        }
 
-        public ICommand SaveCommand => _saveCommand ?? (_saveCommand = new DelegateCommand(Save, CanExecuteCommand));
+        public ICommand SaveCommand
+        {
+            get
+            {
+                return _saveCommand ?? (_saveCommand = new DelegateCommand(Save, CanExecuteCommand));
+            }
+        }
 
         private void Exit(object parameter)
         {
@@ -48,7 +60,13 @@ namespace Lab5
 
         private ICommand _addWatchmanCommand;
 
-        public ICommand AddWatchmanCommand => _addWatchmanCommand ?? (_addWatchmanCommand = new DelegateCommand(AddWatchman, CanExecuteCommand));
+        public ICommand AddWatchmanCommand 
+        {
+            get
+            {
+                return _addWatchmanCommand ?? (_addWatchmanCommand = new DelegateCommand(AddWatchman, CanExecuteCommand));
+            }
+        }
 
         private void AddWatchman(object parameter)
         {
@@ -60,15 +78,24 @@ namespace Lab5
 
         public void DeleteWatchman(object parameter)
         {
-            Watchmans.Remove((Watchman)parameter);
+            Watchmans.RemoveWatchman((Watchman)parameter);
         }
 
         public void UpdateWatchman(object parameter)
         {
-            
+            Watchman watchman = (Watchman)parameter;
+            int index = Watchmans.GetWatchmanIndex(watchman);
+            Watchmans.RemoveWatchman(watchman);
+
+            watchman.Name = WatchmanNameUpdate;
+            watchman.Surname = WatchmanSurnameUpdate;
+            watchman.Age = WatchmanAgeUpdate;
+            watchman.Weight = WatchmanWeightUpdate;
+
+            Watchmans.AddWathmanAtPosition(watchman, index);
         }
 
-        public bool CanExecuteCommand(object parameter)
+        private bool CanExecuteCommand(object parameter)
         {
             return true;
         }

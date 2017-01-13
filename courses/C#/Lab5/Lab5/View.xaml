@@ -94,14 +94,15 @@
             FlowDirection="LeftToRight"
             Orientation="Horizontal">
             <TextBlock><Run Text="Name:" /></TextBlock>
-            <TextBox Width="67" Text="{Binding Name}" />
+            <TextBox Name="UpdName" Width="67" Text="{Binding Name}" />
             <TextBlock><Run Text="Surname:" /></TextBlock>
-            <TextBox Width="103" Text="{Binding Surname}" />
+            <TextBox Name="UpdSurname" Width="103" Text="{Binding Surname}" />
             <TextBlock><Run Text="Age:" /></TextBlock>
-            <TextBox Width="45" Text="{Binding Age}" />
+            <TextBox Name="UpdAge" Width="45" Text="{Binding Age}" />
             <TextBlock><Run Text="Weight:" /></TextBlock>
-            <TextBox Width="50" Text="{Binding Weight}" />
+            <TextBox Name="UpdWeight" Width="50" Text="{Binding Weight}" />
             <Button
+                Name="UpdButton"
                 Width="Auto"
                 Margin="10,0,0,0"
                 Click="CmdUpdate"

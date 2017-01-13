@@ -78,26 +78,62 @@ namespace Lab5
 
         public void DeleteWatchman(object parameter)
         {
-            Watchmans.RemoveWatchman((Watchman)parameter);
+            if(AgreeToChange.Show(Deleting()))
+            {
+                Watchmans.RemoveWatchman((Watchman)parameter);
+            }
         }
 
         public void UpdateWatchman(object parameter)
         {
-            Watchman watchman = (Watchman)parameter;
-            int index = Watchmans.GetWatchmanIndex(watchman);
-            Watchmans.RemoveWatchman(watchman);
 
-            watchman.Name = WatchmanNameUpdate;
-            watchman.Surname = WatchmanSurnameUpdate;
-            watchman.Age = WatchmanAgeUpdate;
-            watchman.Weight = WatchmanWeightUpdate;
+            Validator.ValidMess(WatchmanNameUpdate, WatchmanSurnameUpdate,
+                WatchmanAgeUpdate, WatchmanWeightUpdate);
 
-            Watchmans.AddWathmanAtPosition(watchman, index);
+            if (AgreeToChange.Show(Updating()))
+            {
+                Watchman watchman = (Watchman)parameter;
+                int index = Watchmans.GetWatchmanIndex(watchman);
+                Watchmans.RemoveWatchman(watchman);
+
+                watchman.Name = WatchmanNameUpdate;
+                watchman.Surname = WatchmanSurnameUpdate;
+                watchman.Age = WatchmanAgeUpdate;
+                watchman.Weight = WatchmanWeightUpdate;
+
+                Watchmans.AddWathmanAtPosition(watchman, index);
+            }
         }
 
         private bool CanExecuteCommand(object parameter)
         {
             return true;
+        }
+
+        private bool Deleting()
+        { return true; }
+
+        private bool Updating()
+        { return false; }
+    }
+
+    public class AgreeToChange
+    {
+        private static string message = "Are You sure?";
+        private static string captionDel = "Delete Watchman";
+        private static string captionUpd = "Update Watchman";
+        
+        public static bool Show(bool deleting)
+        {
+            MessageBoxButton buttons = MessageBoxButton.YesNo;
+            if (deleting)
+            {
+                 return MessageBoxResult.Yes == MessageBox.Show(message, captionDel, buttons, MessageBoxImage.Question);
+            }
+            else
+            {
+                return MessageBoxResult.Yes == MessageBox.Show(message, captionUpd, buttons, MessageBoxImage.Question);  
+            }
         }
     }
 
@@ -143,7 +179,50 @@ namespace Lab5
         private static int _maxAge = 99;
         private static double _maxWeight = 200.0;
 
-        public static bool Valid(string name, string surname, int age, int weight)
+        public static void ValidMess(string name, string surname, int age, int weight)
+        {
+            name.Trim();
+
+            StringBuilder SB = new StringBuilder();
+            if (name == "")
+            {
+                SB.Remove(0, SB.Length);
+                SB.Append("Please type in a name for the watchman.");
+                throw new ArgumentException(SB.ToString());
+            }
+            if (name.Length < _minNameLenght)
+            {
+                SB.Remove(0, SB.Length);
+                SB.Append("Watchers name must contain 5 symb");
+                throw new ArgumentException(SB.ToString());
+            }
+            if (surname.Length < _minNameLenght)
+            {
+                SB.Remove(0, SB.Length);
+                SB.Append("Watchers surname must contain 5 symb");
+                throw new ArgumentException(SB.ToString());
+            }
+            if (age < _minAge)
+            {
+                SB.Remove(0, SB.Length);
+                SB.Append("Watcher is too young");
+                throw new ArgumentException(SB.ToString());
+            }
+            if (weight <= _minAge)
+            {
+                SB.Remove(0, SB.Length);
+                SB.Append("Watcher is too little");
+                throw new ArgumentException(SB.ToString());
+            }
+            if (age > _maxAge || weight > _maxWeight)
+            {
+                SB.Remove(0, SB.Length);
+                SB.Append("Invalid data(too big data for age or weight)");
+                throw new ArgumentException(SB.ToString());
+            }
+        }
+
+        public static bool ValidBool(string name, string surname, int age, int weight)
         {
             name.Trim();
 

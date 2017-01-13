@@ -49,20 +49,34 @@
             FlowDirection="LeftToRight"
             Orientation="Horizontal">
             <TextBlock>Name:</TextBlock>
-            <TextBox Name="NameBox" Width="67" Text="{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}" />
+            <TextBox
+                Name="NameBox"
+                Width="67"
+                Text="{Binding Path=WatchmanNameToAdd, Mode=OneWayTosource}" />
             <TextBlock>Surname:</TextBlock>
-            <TextBox Name="SurnameBox" Width="103" Text="{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}" />
+            <TextBox
+                Name="SurnameBox"
+                Width="103"
+                Text="{Binding Path=WatchmanSurnameToAdd, Mode=OneWayTosource}" />
             <TextBlock>Age:</TextBlock>
-            <TextBox Name="AgeBox" Width="45" Text="{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}" Validation.ErrorTemplate="{x:Null}"/>
+            <TextBox
+                Name="AgeBox"
+                Width="45"
+                Text="{Binding Path=WatchmanAgeToAdd, Mode=OneWayTosource}"
+                Validation.ErrorTemplate="{x:Null}" />
             <TextBlock>Weight:</TextBlock>
-            <TextBox Name="WeightBox" Width="50" Text="{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}" Validation.ErrorTemplate="{x:Null}" />
+            <TextBox
+                Name="WeightBox"
+                Width="50"
+                Text="{Binding Path=WatchmanWeightToAdd, Mode=OneWayTosource}"
+                Validation.ErrorTemplate="{x:Null}" />
             <Button
                 Name="Addwatch"
                 Width="Auto"
                 Margin="10,0,0,0"
-                IsEnabled="False"
                 Command="{Binding AddWatchmanCommand}"
-                Content="Add Watchman" />
+                Content="Add Watchman"
+                IsEnabled="False" />
         </StackPanel>
         <Label
             Margin="10,31,0,0"
@@ -90,17 +104,29 @@
         <StackPanel
             Name="UpdList"
             Margin="10,290,10,96"
-            DataContext="{Binding ElementName=WtchList, Path=SelectedItem, Mode=TwoWay}"
+            DataContext="{Binding ElementName=WtchList, Path=SelectedItem, Mode=OneWay}"
             FlowDirection="LeftToRight"
             Orientation="Horizontal">
             <TextBlock><Run Text="Name:" /></TextBlock>
-            <TextBox Name="UpdName" Width="67" Text="{Binding Name}" />
+            <TextBox
+                Name="UpdName"
+                Width="67"
+                Text="{Binding Name, Mode=OneWay}" />
             <TextBlock><Run Text="Surname:" /></TextBlock>
-            <TextBox Name="UpdSurname" Width="103" Text="{Binding Surname}" />
+            <TextBox
+                Name="UpdSurname"
+                Width="103"
+                Text="{Binding Surname, Mode=OneWay}" />
             <TextBlock><Run Text="Age:" /></TextBlock>
-            <TextBox Name="UpdAge" Width="45" Text="{Binding Age}" />
+            <TextBox
+                Name="UpdAge"
+                Width="45"
+                Text="{Binding Age, Mode=OneWay}" />
             <TextBlock><Run Text="Weight:" /></TextBlock>
-            <TextBox Name="UpdWeight" Width="50" Text="{Binding Weight}" />
+            <TextBox
+                Name="UpdWeight"
+                Width="50"
+                Text="{Binding Weight, Mode=OneWay}" />
             <Button
                 Name="UpdButton"
                 Width="Auto"

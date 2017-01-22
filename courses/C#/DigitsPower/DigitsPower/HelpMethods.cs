@@ -354,6 +354,38 @@ namespace DigitsPower
             
         }
 
+        public static BigInteger NSD(BigInteger mod, BigInteger found)
+        {
+            BigInteger u, v, A, B, C, D, t1, t2, t3, q, d;
+
+            u = mod;
+            v = found;
+
+            A = 1;
+            B = 0;
+            C = 0;
+            D = 1;
+
+            while (v != 0)
+            {
+                q = u / v;
+                t1 = u - q * v;
+                t2 = A - q * C;
+                t3 = B - q * D;
+
+                u = v;
+                A = C;
+                B = D;
+
+                v = t1;
+                C = t2;
+                D = t3;
+            }
+            d = u;
+
+            return d;
+        }
+
         public static BigInteger TwoPow(BigInteger pow)
         {
             BigInteger result = 1;

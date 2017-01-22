@@ -295,13 +295,13 @@ namespace DigitsPower
                                          MessageBoxIcon.Information);
             
         }
-
+/*
         public string StatusLabelText
         {
             set { statusLabel.Text = value; }
         }
 
-        /*public void ChangeStatus(string method)
+        public void ChangeStatus(string method)
         {
             if(ResultsButton.Enabled)
             {
@@ -313,8 +313,8 @@ namespace DigitsPower
                 ResultsButton.Enabled = true;
                 statusLabel.Text = "Status: Finish!";
             }
-        }*/
-
+        }
+*/
         /// <summary>
         /// Calculatebuttons the click.
         /// </summary>

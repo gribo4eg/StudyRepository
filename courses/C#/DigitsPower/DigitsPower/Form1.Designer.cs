@@ -220,7 +220,7 @@
                 //"13. wNAF Slide RL (only for base coprime mod)",
                 //"14. wNAF Slide LR (only for base coprime mod)",
                 "15. Add Sub RL (only for base coprime mod)",
-                "16. Add Sub LR (only for base coprime mod)",
+                "16. Add Sub LR (only for base coprime mod)",//17
                 "17. Joye double & add",
                 "18. Montgomery ladder",
                 "19.1 DBNS 1.1 RL",//20

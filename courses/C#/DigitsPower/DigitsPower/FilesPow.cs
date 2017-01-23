@@ -1558,10 +1558,7 @@ namespace DigitsPower
         public override string Name() { return "BinaryRL"; }
 
         protected override void LoopFunc(BigInteger found, BigInteger pow, BigInteger mod)
-        {
-
-            PowFunctions.BinaryRL(found, pow, mod);
-        }
+        { PowFunctions.BinaryRL(found, pow, mod);  }
     }
     class PowCSharp : BinaryPow
     {

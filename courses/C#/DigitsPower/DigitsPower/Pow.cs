@@ -124,7 +124,8 @@ namespace DigitsPower
             c = found;
             x = ToNAF(pow);
 
-            for (int i = x.Count - 1; i > -1; i--)
+            for (int i = 0; i < x.Count; i++)
+            //for (int i = x.Count - 1; i > -1; i--)
             {
                 if (x[i] == 1)
                     res = res * c % mod;
@@ -167,7 +168,9 @@ namespace DigitsPower
             res = found;
             x = ToNAF(pow);
             BigInteger inv = Euclid_2_1(mod, found);
-            for (int i = 1; i < x.Count; i++)
+
+            for (int i = x.Count - 2; i > -1; i--)
+            //for (int i = 1; i < x.Count; i++)
             {
                 res = res * res % mod;
                 if (x[i] == 1)
@@ -2233,7 +2236,7 @@ namespace DigitsPower
         public static BigInteger NAFSlideRL(BigInteger found, BigInteger power, BigInteger mod, int w, out double table_time)
         {
             BigInteger res = 1;
-            MyList<int> x = power.ToNAF();
+            MyList<int> x = ToNAF(power);
 
             found = found % mod;
 
@@ -2411,7 +2414,8 @@ namespace DigitsPower
         public static BigInteger NAFSlideLR(BigInteger found, BigInteger power, BigInteger mod, int w, out double table_time)
         {
             BigInteger res = 1;
-            MyList<int> x = power.ToNAF();
+            //MyList<int> x = power.ToNAF();
+            MyList<int> x = ToNAF(power);
 
             Stopwatch stw = new Stopwatch();
             found = found % mod;
@@ -2446,7 +2450,7 @@ namespace DigitsPower
             {
                 List<int> max = new List<int>();
                 if (x[i - 1] == 0 || i == 1)
-                {                 
+                {
                     max.Add(x[i - 1]);
                     max.Add(1);
                 }
@@ -2465,7 +2469,70 @@ namespace DigitsPower
             }
             return res;
 
+            /*
+            BigInteger res = 1;
+            MyList<int> x = ToNAF(power);
+            //MyList<int> y = power.ToNAF();
 
+            Stopwatch stw = new Stopwatch();
+            found = found % mod;
+            stw.Start();
+
+            int sign;
+            if (w % 2 == 1)
+                sign = -1;
+            else
+                sign = 1;
+
+            int last_table_element = (((1 << w) - sign) << 1) / 3 - 1;
+
+            MyList<BigInteger> table = new MyList<BigInteger>();
+            MyList<BigInteger> table_inv = new MyList<BigInteger>();
+
+            table.Add(found);
+            table_inv.Add(Euclid_2_1(mod, found));
+
+            BigInteger sqr_found = found * found % mod;
+
+            for (int i = 3; i <= last_table_element; i += 2)
+            {
+                table.Add(table[(i >> 1) - 1] * sqr_found % mod);
+                table_inv.Add(Euclid_2_1(mod, table[i >> 1]));
+            }
+
+            stw.Stop();
+            table_time = stw.Elapsed.TotalMilliseconds;
+
+            for (int i = 0; i < x.Count;)
+            //for (int i = x.Count; i > 0;)
+            {
+                List<int> max = new List<int>();
+                if (x[i] == 0)
+                //if (x[i - 1] == 0 || i == 1)
+                {
+                    max.Add(0);
+                    max.Add(1);
+
+                    //max.Add(x[i - 1]);
+                    //max.Add(1);
+                }
+                else
+                    max = FindLargest1(x, i, w);
+
+                for (int d = 0; d < max[1]; d++)
+                    res = res * res % mod;
+
+                if (max[0] > 0)
+                    res = res * table[max[0] >> 1] % mod;
+                else if (max[0] < 0)
+                    res = res * table_inv[(-max[0]) >> 1] % mod;
+
+                i = i + (int)max[1];
+            }
+
+            return res;
+
+            */
             /*
                      BigInteger res = 1;
                      MyList<BigInteger> x = power.ToNAF();

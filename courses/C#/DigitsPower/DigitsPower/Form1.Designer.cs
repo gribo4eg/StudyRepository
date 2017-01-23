@@ -197,11 +197,12 @@
             this.CheckAllbutton.UseVisualStyleBackColor = true;
             this.CheckAllbutton.Click += new System.EventHandler(this.CheckAllbutton_Click);
             // 
-            // OperationsList 
+            // OperationsList
             // 
+            this.OperationsList.CheckOnClick = true;
             this.OperationsList.FormattingEnabled = true;
             this.OperationsList.Items.AddRange(new object[] {
-                "1. Binary RL",//0
+                "1. Binary RL",
                 "2. Binary LR",
                 "3.1 Window RL",
                 "3.2 Window RL_Dic",
@@ -211,19 +212,17 @@
                 "5.2 Slide Window RL_Dic",
                 "6.1 Slide Window LR",
                 "6.2 Slide Window LR_Dic",
-                "7. NAF Binary RL (only for base coprime mod)",//10
+                "7. NAF Binary RL (only for base coprime mod)",
                 "8. NAF Binary LR (only for base coprime mod)",
                 "9. NAF Slide RL (only for base coprime mod)",
                 "10. NAF Slide LR (only for base coprime mod)",
                 "11. wNAF RL (NAF Window RL, only for base coprime mod)",
                 "12. wNAF LR (NAF Window LR, only for base coprime mod)",
-                //"13. wNAF Slide RL (only for base coprime mod)",
-                //"14. wNAF Slide LR (only for base coprime mod)",
                 "15. Add Sub RL (only for base coprime mod)",
-                "16. Add Sub LR (only for base coprime mod)",//17
+                "16. Add Sub LR (only for base coprime mod)",
                 "17. Joye double & add",
                 "18. Montgomery ladder",
-                "19.1 DBNS 1.1 RL",//20
+                "19.1 DBNS 1.1 RL",
                 "19.2 DBNS 1.2 RL",
                 "20.1 DBNS 1.1 LR  (only for prime mod)",
                 "20.2 DBNS 1.2 LR  (only for prime mod)",
@@ -248,12 +247,12 @@
                 "39. Window LR1 (Final)",
                 "40. Window LR2 (Final)",
                 "41. Window LR3 (Final)",
-                "42. Window LR (Final)",//45
-                "43. Pow C#",//46
+                "42. Window LR (Final)",
+                "43. Pow C#",
                 "44. Bonus1",
                 "45. Bonus2",
-                "46. Bonus Window"//49
-            });//TEST
+                "46. Bonus Window"
+            });
             this.OperationsList.Location = new System.Drawing.Point(5, 19);
             this.OperationsList.Name = "OperationsList";
             this.OperationsList.Size = new System.Drawing.Size(399, 184);
@@ -721,6 +720,7 @@
             // 
             this.OperCheckList.CheckOnClick = true;
             this.OperCheckList.FormattingEnabled = true;
+            this.OperCheckList.HorizontalScrollbar = true;
             this.OperCheckList.Items.AddRange(new object[] {
                 "1. Binary RL",
                 "2. Binary LR",
@@ -738,8 +738,6 @@
                 "10. NAF Slide LR (only for base coprime mod)",
                 "11. wNAF RL (NAF Window RL, only for base coprime mod)",
                 "12. wNAF LR (NAF Window LR, only for base coprime mod)",
-                //"13. wNAF Slide RL (only for base coprime mod)",
-                //"14. wNAF Slide LR (only for base coprime mod)",
                 "15. Add Sub RL (only for base coprime mod)",
                 "16. Add Sub LR (only for base coprime mod)",
                 "17. Joye double & add",
@@ -774,7 +772,7 @@
                 "46. Bonus 1",
                 "47. Bonus 2",
                 "48. Bonus Window"
-            });//EXPONENT
+            });
             this.OperCheckList.Location = new System.Drawing.Point(6, 17);
             this.OperCheckList.Name = "OperCheckList";
             this.OperCheckList.Size = new System.Drawing.Size(235, 124);

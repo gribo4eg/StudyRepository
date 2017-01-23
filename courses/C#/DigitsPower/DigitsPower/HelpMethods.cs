@@ -296,6 +296,8 @@ namespace DigitsPower
 
         public static BigInteger Euclid_2_1(BigInteger mod, BigInteger found)
         {
+            // насправді це метод 2.4
+
             BigInteger u, v, B, D, y, t1, t2, q, d, inv;
             u = mod;
             v = found;
@@ -409,7 +411,25 @@ namespace DigitsPower
         }
         public static MyList<int> ToNAF(BigInteger pow)
         {
+            MyList<int> mas_k = new MyList<int>();
+            BigInteger k = pow;
+            int i = 0;
+            while (k >= 1)
+            {
+                if (k % 2 != 0)
+                {
+                    mas_k.Add((int)(2 - (k % 4)));
+                    k = k - mas_k[i];
+                }
+                else
+                    mas_k.Add(0);
 
+                k = k >> 1;
+                i++;
+            }
+            return mas_k;
+
+            /*
             MyList<int> res = new MyList<int>();
             BigInteger k = pow;
             while (k >= 1)
@@ -424,6 +444,7 @@ namespace DigitsPower
                 k = k >> 1;
             }
             return res;
+            */
         }
         public static MyList<int[]> ToDBNS2RL(BigInteger pow)
         {
@@ -510,6 +531,8 @@ namespace DigitsPower
 
 
         #region WindowsMethods
+
+        /*
         public static MyList<int> FindLargest1(MyList<int> x, int i, int w)
         {
             // виділяємо вікно в масиві х від молодшого індексу і до старших індексів
@@ -542,7 +565,8 @@ namespace DigitsPower
             r.Add(max_j);
             return r;
             
-        }
+        }*/
+        /*
         public static MyList<int> FindLargest2(MyList<int> x, int i, int w)
         {
             // виділяємо вікно в масиві х від старшого індексу і до молодших індексів
@@ -580,42 +604,146 @@ namespace DigitsPower
             r.Add(max);
             r.Add(max_j);
             return r;
+            */
 
+        /*
+        int j = i;
+        int pow = 1;
+        int temp = x[i];
+        int max_j = i;
+        int max = x[i];
 
-            /*
-            int j = i;
-            int pow = 1;
-            int temp = x[i];
-            int max_j = i;
-            int max = x[i];
-
-            while (i - j + 1 < w && j > 0)
+        while (i - j + 1 < w && j > 0)
+        {
+            pow = 1;
+            temp = 0;
+            j--;
+            for (int t = j; t <= i; t++)
             {
-                pow = 1;
-                temp = 0;
-                j--;
+                temp = temp + pow * x[t];
+                pow = pow * 2;
+            }
+
+            if (temp % 2 != 0)
+            {
+                max_j = j;
+                max = temp;
+            }
+        }
+        max_j = i - max_j + 1;
+
+        MyList<int> r = new MyList<int>();
+        r.Add(max);
+        r.Add(max_j);
+        return r;
+        */
+        //        }    
+    public static MyList<int> FindLargest1(MyList<int> x, int i, int w)
+    {
+        // виділяємо вікно в масиві х від молодшого індексу і до старших індексів
+        // використовуємо коли рухаємось від 0 до x.Count - 1
+
+        int j = i;
+        int pow = 1;
+        int temp = x[i];
+
+        int max_j = i;
+        int max = x[i];
+        while (j - i + 1 < w && j < x.Count - 1)
+        {
+            j++;
+
+            pow = pow << 1;
+            temp = temp + pow * x[j];
+
+            if (x[j] != 0)
+            {
+                max_j = j;
+                max = temp;
+            }
+        }
+
+        max_j = max_j - i + 1;
+
+        MyList<int> r = new MyList<int>();
+        r.Add(max);
+        r.Add(max_j);
+        return r;
+
+    }
+    public static MyList<int> FindLargest2(MyList<int> x, int i, int w)
+    {
+        // виділяємо вікно в масиві х від старшого індексу і до молодших індексів
+        // використовуємо коли рухаємось від x.Count - 1 до 0
+
+        int j = i - w + 1;
+        int pow = 1;
+        int temp = 0;
+        int max_j = i;
+        int max = x[i];
+
+        int count = x.Count - 1;
+        while (j < 0)
+            j++;
+
+        while (j < i)
+        {
+            if (x[j] != 0)
+            {
                 for (int t = j; t <= i; t++)
                 {
                     temp = temp + pow * x[t];
-                    pow = pow * 2;
+                    pow = pow << 1;
                 }
-
-                if (temp % 2 != 0)
-                {
-                    max_j = j;
-                    max = temp;
-                }
+                max_j = j;
+                max = temp;
+                break;
             }
-            max_j = i - max_j + 1;
-
-            MyList<int> r = new MyList<int>();
-            r.Add(max);
-            r.Add(max_j);
-            return r;
-            */
+            else
+                j++;
         }
+        max_j = i - max_j + 1;
 
-        public static MyList<BigInteger> NAFRLTable(BigInteger found, BigInteger mod, BigInteger power, int w)
+        MyList<int> r = new MyList<int>();
+        r.Add(max);
+        r.Add(max_j);
+        return r;
+
+
+        /*
+        int j = i;
+        int pow = 1;
+        int temp = x[i];
+        int max_j = i;
+        int max = x[i];
+
+        while (i - j + 1 < w && j > 0)
+        {
+            pow = 1;
+            temp = 0;
+            j--;
+            for (int t = j; t <= i; t++)
+            {
+                temp = temp + pow * x[t];
+                pow = pow * 2;
+            }
+
+            if (temp % 2 != 0)
+            {
+                max_j = j;
+                max = temp;
+            }
+        }
+        max_j = i - max_j + 1;
+
+        MyList<int> r = new MyList<int>();
+        r.Add(max);
+        r.Add(max_j);
+        return r;
+        */
+    }
+
+    public static MyList<BigInteger> NAFRLTable(BigInteger found, BigInteger mod, BigInteger power, int w)
         {
             var table = new MyList<BigInteger>();
 
@@ -704,9 +832,9 @@ namespace DigitsPower
 
             BigInteger nsd = NSD(mod, num);
 
-            if (nsd != 1)
+            if(nsd != 1)
             {
-                var res = MessageBox.Show("Warning", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Warning text", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             for (int i = 0; i < OperationsList.CheckedIndices.Count; i++)
@@ -714,10 +842,10 @@ namespace DigitsPower
                 #region Binary
                 if (OperationsList.CheckedIndices[i] == 0) { OperationsResult.Items.Add("Binary RL\t\t: " + (PowFunctions.BinaryRL(num, pow, mod)).ToString()); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 1) { OperationsResult.Items.Add("Binary LR\t\t: " + (PowFunctions.BinaryLR(num, pow, mod)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 10 && nsd != 1) { OperationsResult.Items.Add("NAF Binary RL\t\t: " + (PowFunctions.NAFBinaryRL(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 11 && nsd != 1) { OperationsResult.Items.Add("NAF Binary LR\t\t: " + (PowFunctions.NAFBinaryLR(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 16 && nsd != 1) { OperationsResult.Items.Add("Add Sub RL\t\t: " + (PowFunctions.AddSubRL(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 17 && nsd != 1) { OperationsResult.Items.Add("Add Sub LR\t\t: " + (PowFunctions.AddSubLR(num, pow, mod).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 10 && nsd == 1) { OperationsResult.Items.Add("NAF Binary RL\t\t: " + (PowFunctions.NAFBinaryRL(num, pow, mod).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 11 && nsd == 1) { OperationsResult.Items.Add("NAF Binary LR\t\t: " + (PowFunctions.NAFBinaryLR(num, pow, mod).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 16 && nsd == 1) { OperationsResult.Items.Add("Add Sub RL\t\t: " + (PowFunctions.AddSubRL(num, pow, mod).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 17 && nsd == 1) { OperationsResult.Items.Add("Add Sub LR\t\t: " + (PowFunctions.AddSubLR(num, pow, mod).ToString())); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 18) { OperationsResult.Items.Add("Joye_double_and_add\t\t: " + (PowFunctions.Joye_double_and_add(num, pow, mod).ToString())); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 19) { OperationsResult.Items.Add("MontgomeryLadder\t\t: " + (PowFunctions.MontgomeryLadder(num, pow, mod).ToString())); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 20) { OperationsResult.Items.Add("DBNS1RL 1\t\t: " + (PowFunctions.DBNS1RL(num, pow, mod, true, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
@@ -737,12 +865,12 @@ namespace DigitsPower
                 if (OperationsList.CheckedIndices[i] == 7) { OperationsResult.Items.Add("Slide RL Dic\t: " + (PowFunctions.SlideRL_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 8) { OperationsResult.Items.Add("Slide LR\t: " + (PowFunctions.SlideLR(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 9) { OperationsResult.Items.Add("Slide LR Dic\t: " + (PowFunctions.SlideLR_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 12 && nsd != 1) { OperationsResult.Items.Add("NAF Slide RL\t\t: " + (PowFunctions.NAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 13 && nsd != 1) { OperationsResult.Items.Add("NAF Slide LR\t\t: " + (PowFunctions.NAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 14 && nsd != 1) { OperationsResult.Items.Add("NAF Window RL\t\t: " + (PowFunctions.NAFWindowRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 15 && nsd != 1) { OperationsResult.Items.Add("NAF Window LR\t\t: " + (PowFunctions.NAFWindowLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                //if (OperationsList.CheckedIndices[i] == 16 && nsd != 1) { OperationsResult.Items.Add("wNAF Slide RL\t\t: " + (PowFunctions.wNAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                //if (OperationsList.CheckedIndices[i] == 17 && nsd != 1) { OperationsResult.Items.Add("wNAF Slide LR\t\t: " + (PowFunctions.wNAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 12 && nsd == 1) { OperationsResult.Items.Add("NAF Slide RL\t\t: " + (PowFunctions.NAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 13 && nsd == 1) { OperationsResult.Items.Add("NAF Slide LR\t\t: " + (PowFunctions.NAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 14 && nsd == 1) { OperationsResult.Items.Add("NAF Window RL\t\t: " + (PowFunctions.NAFWindowRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                if (OperationsList.CheckedIndices[i] == 15 && nsd == 1) { OperationsResult.Items.Add("NAF Window LR\t\t: " + (PowFunctions.NAFWindowLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                //if (OperationsList.CheckedIndices[i] == 16 && nsd == 1) { OperationsResult.Items.Add("wNAF Slide RL\t\t: " + (PowFunctions.wNAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                //if (OperationsList.CheckedIndices[i] == 17 && nsd == 1) { OperationsResult.Items.Add("wNAF Slide LR\t\t: " + (PowFunctions.wNAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 26) { OperationsResult.Items.Add("ModWindow LR1\t\t: " + (PowFunctions.WindowLRMod1(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 27) { OperationsResult.Items.Add("ModWindow LR2\t\t: " + (PowFunctions.WindowLRMod2(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
                 if (OperationsList.CheckedIndices[i] == 28) { OperationsResult.Items.Add("ModWindow LR3\t\t: " + (PowFunctions.WindowLRMod3(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }

@@ -243,7 +243,7 @@ namespace DigitsPower
                 a = a2;
                 b = b2;
             }
-            if ((a != a_max) && (Math.Abs((double)k -Math.Pow(2, a + 1) * Math.Pow(3, b)) < Math.Abs((double)k - Math.Pow(2, a) * Math.Pow(3, b))))
+            if ((a != a_max) && (Math.Abs((double)k - Math.Pow(2, a + 1) * Math.Pow(3, b)) < Math.Abs((double)k - Math.Pow(2, a) * Math.Pow(3, b))))
             {
                 a = a + 1;
             }
@@ -353,7 +353,7 @@ namespace DigitsPower
             */
 
             return inv;
-            
+
         }
 
         public static BigInteger NSD(BigInteger mod, BigInteger found)
@@ -400,25 +400,28 @@ namespace DigitsPower
         public static string ConvToBinary(BigInteger dec)
         {
             string BinResult = "";
-            string a;
 
             while (dec > 0)
             {
-                BinResult += dec % 2;
+                BinResult = dec % 2 + BinResult;
                 dec >>= 1;
             }
-            return a = new string(BinResult.Reverse().ToArray());
+
+            return BinResult;
         }
         public static MyList<int> ToNAF(BigInteger pow)
         {
             MyList<int> mas_k = new MyList<int>();
             BigInteger k = pow;
+            Int32 temp_1, temp_2;
             int i = 0;
             while (k >= 1)
             {
-                if (k % 2 != 0)
+                temp_1 = (Int32)(k & 3); // k & 3 це те саме, що k % 4
+                temp_2 = temp_1 & 1;     // k & 1 це те саме, що k % 2
+                if (temp_2 != 0)
                 {
-                    mas_k.Add((int)(2 - (k % 4)));
+                    mas_k.Add((int)(2 - temp_1)); 
                     k = k - mas_k[i];
                 }
                 else
@@ -532,7 +535,6 @@ namespace DigitsPower
 
         #region WindowsMethods
 
-        /*
         public static MyList<int> FindLargest1(MyList<int> x, int i, int w)
         {
             // виділяємо вікно в масиві х від молодшого індексу і до старших індексів
@@ -564,9 +566,8 @@ namespace DigitsPower
             r.Add(max);
             r.Add(max_j);
             return r;
-            
-        }*/
-        /*
+
+        }
         public static MyList<int> FindLargest2(MyList<int> x, int i, int w)
         {
             // виділяємо вікно в масиві х від старшого індексу і до молодших індексів
@@ -604,146 +605,42 @@ namespace DigitsPower
             r.Add(max);
             r.Add(max_j);
             return r;
-            */
 
-        /*
-        int j = i;
-        int pow = 1;
-        int temp = x[i];
-        int max_j = i;
-        int max = x[i];
 
-        while (i - j + 1 < w && j > 0)
-        {
-            pow = 1;
-            temp = 0;
-            j--;
-            for (int t = j; t <= i; t++)
+            /*
+            int j = i;
+            int pow = 1;
+            int temp = x[i];
+            int max_j = i;
+            int max = x[i];
+
+            while (i - j + 1 < w && j > 0)
             {
-                temp = temp + pow * x[t];
-                pow = pow * 2;
-            }
-
-            if (temp % 2 != 0)
-            {
-                max_j = j;
-                max = temp;
-            }
-        }
-        max_j = i - max_j + 1;
-
-        MyList<int> r = new MyList<int>();
-        r.Add(max);
-        r.Add(max_j);
-        return r;
-        */
-        //        }    
-    public static MyList<int> FindLargest1(MyList<int> x, int i, int w)
-    {
-        // виділяємо вікно в масиві х від молодшого індексу і до старших індексів
-        // використовуємо коли рухаємось від 0 до x.Count - 1
-
-        int j = i;
-        int pow = 1;
-        int temp = x[i];
-
-        int max_j = i;
-        int max = x[i];
-        while (j - i + 1 < w && j < x.Count - 1)
-        {
-            j++;
-
-            pow = pow << 1;
-            temp = temp + pow * x[j];
-
-            if (x[j] != 0)
-            {
-                max_j = j;
-                max = temp;
-            }
-        }
-
-        max_j = max_j - i + 1;
-
-        MyList<int> r = new MyList<int>();
-        r.Add(max);
-        r.Add(max_j);
-        return r;
-
-    }
-    public static MyList<int> FindLargest2(MyList<int> x, int i, int w)
-    {
-        // виділяємо вікно в масиві х від старшого індексу і до молодших індексів
-        // використовуємо коли рухаємось від x.Count - 1 до 0
-
-        int j = i - w + 1;
-        int pow = 1;
-        int temp = 0;
-        int max_j = i;
-        int max = x[i];
-
-        int count = x.Count - 1;
-        while (j < 0)
-            j++;
-
-        while (j < i)
-        {
-            if (x[j] != 0)
-            {
+                pow = 1;
+                temp = 0;
+                j--;
                 for (int t = j; t <= i; t++)
                 {
                     temp = temp + pow * x[t];
-                    pow = pow << 1;
+                    pow = pow * 2;
                 }
-                max_j = j;
-                max = temp;
-                break;
+
+                if (temp % 2 != 0)
+                {
+                    max_j = j;
+                    max = temp;
+                }
             }
-            else
-                j++;
+            max_j = i - max_j + 1;
+
+            MyList<int> r = new MyList<int>();
+            r.Add(max);
+            r.Add(max_j);
+            return r;
+            */
         }
-        max_j = i - max_j + 1;
 
-        MyList<int> r = new MyList<int>();
-        r.Add(max);
-        r.Add(max_j);
-        return r;
-
-
-        /*
-        int j = i;
-        int pow = 1;
-        int temp = x[i];
-        int max_j = i;
-        int max = x[i];
-
-        while (i - j + 1 < w && j > 0)
-        {
-            pow = 1;
-            temp = 0;
-            j--;
-            for (int t = j; t <= i; t++)
-            {
-                temp = temp + pow * x[t];
-                pow = pow * 2;
-            }
-
-            if (temp % 2 != 0)
-            {
-                max_j = j;
-                max = temp;
-            }
-        }
-        max_j = i - max_j + 1;
-
-        MyList<int> r = new MyList<int>();
-        r.Add(max);
-        r.Add(max_j);
-        return r;
-        */
-    }
-
-    public static MyList<BigInteger> NAFRLTable(BigInteger found, BigInteger mod, BigInteger power, int w)
+        public static MyList<BigInteger> NAFRLTable(BigInteger found, BigInteger mod, BigInteger power, int w)
         {
             var table = new MyList<BigInteger>();
 
@@ -794,20 +691,17 @@ namespace DigitsPower
             var res = new MyList<int>();
             BigInteger k = power;
             int r;
-            /*
-            string str = "";
-            for (int i = 0; i < w; i++)
-                str = str + '1';
-            BigInteger mask = Convert.ToInt64(str, 2);
-            */
 
+            int temp;
             int pow2_w = 1 << w;
+            int mask = pow2_w - 1;
             int pow2_w_1 = 1 << (w - 1);
             while (k >= 1)
             {
-                if (k % 2 != 0)
+                temp = (int)k & 1; // k % 2
+                if (temp != 0)
                 {
-                    r = (int)(k % pow2_w);
+                    r = (int)(k & mask); // k % pow2_w
 
                     if (r >= pow2_w_1)
                         res.Insert(0, r - pow2_w);
@@ -830,74 +724,96 @@ namespace DigitsPower
         void Show(BigInteger num, BigInteger pow, BigInteger mod, int window, double table)
         {
 
-            BigInteger nsd = NSD(mod, num);
+            BigInteger nsd = NSD(mod, num % mod);
 
-            if(nsd != 1)
+            bool nsdMethods = false;
+            bool montCondition = mod % 2 == 0 && montFlagTest.Checked;
+            string methodNumber = "";
+
+            if (!montCondition)
             {
-                MessageBox.Show("Warning text", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                for (int i = 0; i < OperationsList.CheckedIndices.Count; i++)
+                {
+                    #region Binary
+                    if (OperationsList.CheckedIndices[i] == 0) { OperationsResult.Items.Add("Binary RL\t\t: " + (PowFunctions.BinaryRL(num, pow, mod)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 1) { OperationsResult.Items.Add("Binary LR\t\t: " + (PowFunctions.BinaryLR(num, pow, mod)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 10) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-3); continue; }
+                        OperationsResult.Items.Add("NAF Binary RL\t\t: " + (PowFunctions.NAFBinaryRL(num, pow, mod).ToString())); OperationsResult.Update();}
+                    if (OperationsList.CheckedIndices[i] == 11) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-3); continue; }
+                        OperationsResult.Items.Add("NAF Binary LR\t\t: " + (PowFunctions.NAFBinaryLR(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 16) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-1); continue; }
+                        OperationsResult.Items.Add("Add Sub RL\t\t: " + (PowFunctions.AddSubRL(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 17) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-1); continue; }
+                        OperationsResult.Items.Add("Add Sub LR\t\t: " + (PowFunctions.AddSubLR(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 18) { OperationsResult.Items.Add("Joye_double_and_add\t\t: " + (PowFunctions.Joye_double_and_add(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 19) { OperationsResult.Items.Add("MontgomeryLadder\t\t: " + (PowFunctions.MontgomeryLadder(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 20) { OperationsResult.Items.Add("DBNS1RL 1\t\t: " + (PowFunctions.DBNS1RL(num, pow, mod, true, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 21) { OperationsResult.Items.Add("DBNS1RL 2\t\t: " + (PowFunctions.DBNS1RL(num, pow, mod, false, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 22) { OperationsResult.Items.Add("DBNS1LR 1\t\t: " + (PowFunctions.DBNS1LR(num, pow, mod, true, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 23) { OperationsResult.Items.Add("DBNS1LR 2\t\t: " + (PowFunctions.DBNS1LR(num, pow, mod, false, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 24) { OperationsResult.Items.Add("DBNS2RL\t\t: " + (PowFunctions.BinaryRL(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 25) { OperationsResult.Items.Add("DBNS2LR\t\t: " + (PowFunctions.BinaryLR(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    #endregion
+
+                    #region Window
+                    if (OperationsList.CheckedIndices[i] == 2) { OperationsResult.Items.Add("Window RL\t: " + (PowFunctions.WindowRL(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 3) { OperationsResult.Items.Add("Window RL Dic\t: " + (PowFunctions.WindowRL_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 4) { OperationsResult.Items.Add("Window LR\t: " + (PowFunctions.WindowLR(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 5) { OperationsResult.Items.Add("Window LR Dic\t: " + (PowFunctions.WindowLR_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 6) { OperationsResult.Items.Add("Slide RL\t: " + (PowFunctions.SlideRL(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 7) { OperationsResult.Items.Add("Slide RL Dic\t: " + (PowFunctions.SlideRL_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 8) { OperationsResult.Items.Add("Slide LR\t: " + (PowFunctions.SlideLR(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 9) { OperationsResult.Items.Add("Slide LR Dic\t: " + (PowFunctions.SlideLR_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 12) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-3); continue; }
+                        OperationsResult.Items.Add("NAF Slide RL\t\t: " + (PowFunctions.NAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 13) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-3); continue; }
+                        OperationsResult.Items.Add("NAF Slide LR\t\t: " + (PowFunctions.NAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 14) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-3); continue; }
+                        OperationsResult.Items.Add("wNAF RL\t\t: " + (PowFunctions.NAFWindowRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 15) { if (nsd != 1) { nsdMethods = true; methodNumber +=" "+ (OperationsList.CheckedIndices[i]-3); continue; }
+                        OperationsResult.Items.Add("wNAF LR\t\t: " + (PowFunctions.NAFWindowLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    //if (OperationsList.CheckedIndices[i] == 16 && nsd == 1) { if (nsd == 1) { nsdMethods = true; continue; } OperationsResult.Items.Add("wNAF Slide RL\t\t: " + (PowFunctions.wNAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    //if (OperationsList.CheckedIndices[i] == 17 && nsd == 1) { if (nsd == 1) { nsdMethods = true; continue; } OperationsResult.Items.Add("wNAF Slide LR\t\t: " + (PowFunctions.wNAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 26) { OperationsResult.Items.Add("ModWindow LR1\t\t: " + (PowFunctions.WindowLRMod1(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 27) { OperationsResult.Items.Add("ModWindow LR2\t\t: " + (PowFunctions.WindowLRMod2(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 28) { OperationsResult.Items.Add("ModWindow LR3\t\t: " + (PowFunctions.WindowLRMod3(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 29) { OperationsResult.Items.Add("ModWindow LR\t\t: " + (PowFunctions.WindowLRMod(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 30) { OperationsResult.Items.Add("ModWindow LR1(shift)\t: " + (PowFunctions.WindowLRMod1_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 31) { OperationsResult.Items.Add("ModWindow LR2(shift)\t: " + (PowFunctions.WindowLRMod2_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 32) { OperationsResult.Items.Add("ModWindow LR3(shift)\t: " + (PowFunctions.WindowLRMod3_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 33) { OperationsResult.Items.Add("ModWindow LR (shift)\t: " + (PowFunctions.WindowLRMod_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 34) { OperationsResult.Items.Add("ModWindow LR1(upgrade): " + (PowFunctions.WindowLRMod1_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 35) { OperationsResult.Items.Add("ModWindow LR2(upgrade): " + (PowFunctions.WindowLRMod2_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 36) { OperationsResult.Items.Add("ModWindow LR3(upgrade): " + (PowFunctions.WindowLRMod3_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 37) { OperationsResult.Items.Add("ModWindow LR (upgrade): " + (PowFunctions.WindowLRMod_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 38) { OperationsResult.Items.Add("ModWindow LR1(NoBinary): " + (PowFunctions.WindowLRMod1_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 39) { OperationsResult.Items.Add("ModWindow LR2(NoBinary): " + (PowFunctions.WindowLRMod2_NoBinary(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 40) { OperationsResult.Items.Add("ModWindow LR3(NoBinary): " + (PowFunctions.WindowLRMod3_NoBinary(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 41) { OperationsResult.Items.Add("ModWindow LR (NoBinary): " + (PowFunctions.WindowLRMod_NoBinary(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 42) { OperationsResult.Items.Add("ModWindow LR1(Final): " + (PowFunctions.WindowLRMod1_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 43) { OperationsResult.Items.Add("ModWindow LR2(Final): " + (PowFunctions.WindowLRMod2_Final(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 44) { OperationsResult.Items.Add("ModWindow LR3(Final): " + (PowFunctions.WindowLRMod3_Final(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 45) { OperationsResult.Items.Add("ModWindow LR (Final): " + (PowFunctions.WindowLRMod_Final(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 46) { OperationsResult.Items.Add("Pow C#\t\t: " + (BigInteger.ModPow(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 47) { OperationsResult.Items.Add("Bonus1\t\t: " + (PowFunctions.Bonus1(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 48) { OperationsResult.Items.Add("Bonus2\t\t: " + (PowFunctions.Bonus2(num, pow, mod).ToString())); OperationsResult.Update(); }
+                    if (OperationsList.CheckedIndices[i] == 49) { OperationsResult.Items.Add("Bonus Window\t\t: " + (PowFunctions.Bonus(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
+
+
+                    #endregion
+                }
+
+                if (nsd != 1 && nsdMethods)
+                {
+                    string message = "Введені значення основи та модуля не є взаємнопростими, а для методу(-ів) "
+                                     + methodNumber + " вони мають бути взаємнопростими";
+                    MessageBox.Show(message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-
-            for (int i = 0; i < OperationsList.CheckedIndices.Count; i++)
+            else
             {
-                #region Binary
-                if (OperationsList.CheckedIndices[i] == 0) { OperationsResult.Items.Add("Binary RL\t\t: " + (PowFunctions.BinaryRL(num, pow, mod)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 1) { OperationsResult.Items.Add("Binary LR\t\t: " + (PowFunctions.BinaryLR(num, pow, mod)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 10 && nsd == 1) { OperationsResult.Items.Add("NAF Binary RL\t\t: " + (PowFunctions.NAFBinaryRL(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 11 && nsd == 1) { OperationsResult.Items.Add("NAF Binary LR\t\t: " + (PowFunctions.NAFBinaryLR(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 16 && nsd == 1) { OperationsResult.Items.Add("Add Sub RL\t\t: " + (PowFunctions.AddSubRL(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 17 && nsd == 1) { OperationsResult.Items.Add("Add Sub LR\t\t: " + (PowFunctions.AddSubLR(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 18) { OperationsResult.Items.Add("Joye_double_and_add\t\t: " + (PowFunctions.Joye_double_and_add(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 19) { OperationsResult.Items.Add("MontgomeryLadder\t\t: " + (PowFunctions.MontgomeryLadder(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 20) { OperationsResult.Items.Add("DBNS1RL 1\t\t: " + (PowFunctions.DBNS1RL(num, pow, mod, true, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 21) { OperationsResult.Items.Add("DBNS1RL 2\t\t: " + (PowFunctions.DBNS1RL(num, pow, mod, false, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 22) { OperationsResult.Items.Add("DBNS1LR 1\t\t: " + (PowFunctions.DBNS1LR(num, pow, mod, true, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 23) { OperationsResult.Items.Add("DBNS1LR 2\t\t: " + (PowFunctions.DBNS1LR(num, pow, mod, false, AdditionalParameters.A, AdditionalParameters.B).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 24) { OperationsResult.Items.Add("DBNS2RL\t\t: " + (PowFunctions.BinaryRL(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 25) { OperationsResult.Items.Add("DBNS2LR\t\t: " + (PowFunctions.BinaryLR(num, pow, mod).ToString())); OperationsResult.Update(); }
-                #endregion
-
-                #region Window
-                if (OperationsList.CheckedIndices[i] == 2) { OperationsResult.Items.Add("Window RL\t: " + (PowFunctions.WindowRL(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 3) { OperationsResult.Items.Add("Window RL Dic\t: " + (PowFunctions.WindowRL_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 4) { OperationsResult.Items.Add("Window LR\t: " + (PowFunctions.WindowLR(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 5) { OperationsResult.Items.Add("Window LR Dic\t: " + (PowFunctions.WindowLR_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 6) { OperationsResult.Items.Add("Slide RL\t: " + (PowFunctions.SlideRL(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 7) { OperationsResult.Items.Add("Slide RL Dic\t: " + (PowFunctions.SlideRL_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 8) { OperationsResult.Items.Add("Slide LR\t: " + (PowFunctions.SlideLR(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 9) { OperationsResult.Items.Add("Slide LR Dic\t: " + (PowFunctions.SlideLR_Dic(num, pow, mod, window, out table)).ToString()); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 12 && nsd == 1) { OperationsResult.Items.Add("NAF Slide RL\t\t: " + (PowFunctions.NAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 13 && nsd == 1) { OperationsResult.Items.Add("NAF Slide LR\t\t: " + (PowFunctions.NAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 14 && nsd == 1) { OperationsResult.Items.Add("NAF Window RL\t\t: " + (PowFunctions.NAFWindowRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 15 && nsd == 1) { OperationsResult.Items.Add("NAF Window LR\t\t: " + (PowFunctions.NAFWindowLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                //if (OperationsList.CheckedIndices[i] == 16 && nsd == 1) { OperationsResult.Items.Add("wNAF Slide RL\t\t: " + (PowFunctions.wNAFSlideRL(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                //if (OperationsList.CheckedIndices[i] == 17 && nsd == 1) { OperationsResult.Items.Add("wNAF Slide LR\t\t: " + (PowFunctions.wNAFSlideLR(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 26) { OperationsResult.Items.Add("ModWindow LR1\t\t: " + (PowFunctions.WindowLRMod1(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 27) { OperationsResult.Items.Add("ModWindow LR2\t\t: " + (PowFunctions.WindowLRMod2(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 28) { OperationsResult.Items.Add("ModWindow LR3\t\t: " + (PowFunctions.WindowLRMod3(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 29) { OperationsResult.Items.Add("ModWindow LR\t\t: " + (PowFunctions.WindowLRMod(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 30) { OperationsResult.Items.Add("ModWindow LR1(shift)\t: " + (PowFunctions.WindowLRMod1_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 31) { OperationsResult.Items.Add("ModWindow LR2(shift)\t: " + (PowFunctions.WindowLRMod2_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 32) { OperationsResult.Items.Add("ModWindow LR3(shift)\t: " + (PowFunctions.WindowLRMod3_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 33) { OperationsResult.Items.Add("ModWindow LR (shift)\t: " + (PowFunctions.WindowLRMod_Shift(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 34) { OperationsResult.Items.Add("ModWindow LR1(upgrade): " + (PowFunctions.WindowLRMod1_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 35) { OperationsResult.Items.Add("ModWindow LR2(upgrade): " + (PowFunctions.WindowLRMod2_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 36) { OperationsResult.Items.Add("ModWindow LR3(upgrade): " + (PowFunctions.WindowLRMod3_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 37) { OperationsResult.Items.Add("ModWindow LR (upgrade): " + (PowFunctions.WindowLRMod_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 38) { OperationsResult.Items.Add("ModWindow LR1(NoBinary): " + (PowFunctions.WindowLRMod1_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 39) { OperationsResult.Items.Add("ModWindow LR2(NoBinary): " + (PowFunctions.WindowLRMod2_NoBinary(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 40) { OperationsResult.Items.Add("ModWindow LR3(NoBinary): " + (PowFunctions.WindowLRMod3_NoBinary(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 41) { OperationsResult.Items.Add("ModWindow LR (NoBinary): " + (PowFunctions.WindowLRMod_NoBinary(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 42) { OperationsResult.Items.Add("ModWindow LR1(Final): " + (PowFunctions.WindowLRMod1_Upgrade(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 43) { OperationsResult.Items.Add("ModWindow LR2(Final): " + (PowFunctions.WindowLRMod2_Final(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 44) { OperationsResult.Items.Add("ModWindow LR3(Final): " + (PowFunctions.WindowLRMod3_Final(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 45) { OperationsResult.Items.Add("ModWindow LR (Final): " + (PowFunctions.WindowLRMod_Final(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 46) { OperationsResult.Items.Add("Pow C#\t\t: " + (BigInteger.ModPow(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 47) { OperationsResult.Items.Add("Bonus1\t\t: " + (PowFunctions.Bonus1(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 48) { OperationsResult.Items.Add("Bonus2\t\t: " + (PowFunctions.Bonus2(num, pow, mod).ToString())); OperationsResult.Update(); }
-                if (OperationsList.CheckedIndices[i] == 49) { OperationsResult.Items.Add("Bonus Window\t\t: " + (PowFunctions.Bonus(num, pow, mod, window, out table).ToString())); OperationsResult.Update(); }
-
-
-                #endregion
+                MessageBox.Show("Методи з Монтгомері працюють лише для непарних модулів",
+                    "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

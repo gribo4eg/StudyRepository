@@ -9,27 +9,82 @@ namespace DigitsPower
 {
     public static class MontgomeryMethods
     {
-        public static BigInteger MontgomeryMultDomain(BigInteger a, BigInteger b, BigInteger m, BigInteger inv)
+        public static BigInteger MontgomeryMultDomain(BigInteger a, BigInteger b, BigInteger N, MyList<BigInteger> parameters)
         {
-            return ((a * b * inv) % m);
+            BigInteger result = a * b;
+            result = (result + ((result * parameters[0]) & parameters[1]) * N) >> (int)parameters[2];
+            if (result >= N)
+                result -= N;
+
+            return result;
         }
-        public static BigInteger toMontgomeryDomain(ref BigInteger a, ref BigInteger b, BigInteger m)
+        public static MyList<BigInteger> toMontgomeryDomain(ref BigInteger a, ref BigInteger b, BigInteger N)
         {
-            BigInteger inverse, R;
+            String n_str = ConvToBinary(N);
+            int m = n_str.Length;
+            BigInteger r = 1 << m;
+            BigInteger r_inv = Euclid_2_1(N, r);
+            BigInteger n_shtrih = (r * r_inv - 1) / N;
+            BigInteger b_module = r - 1; // маска для виконання операцій за модулем b  
 
-            string binary_a = ConvToBinary(a);
-            int n = ConvToBinary(m).Length;
-            R = TwoPow(n);
-            a = (a * R) % m;
-            b = (b * R) % m;
+            MyList<BigInteger> result = new MyList<BigInteger>();
+            result.Add(n_shtrih);
+            result.Add(b_module);
+            result.Add(m);
+            result.Add(r_inv);
 
-            eeuclid(m, R, out inverse);
-            return (inverse);
+
+            /*
+            // обчислення a_Montgomery (a = a * r % N)
+            a = a * r % N;
+            // обчислення b_Montgomery (b = b * r % N)
+            b = b * r % N;
+            */
+
+
+            BigInteger r_sqr = r * r % N;
+
+            // обчислення a_Montgomery (a = a * r % N)
+            a = MontgomeryMultDomain(a, r_sqr, N, result); // це буде a*(r^2), потім отримуємо a*(r^2)*(r^-1) = a * r mod N
+
+            // обчислення b_Montgomery (b = b * r % N)
+            b = MontgomeryMultDomain(b, r_sqr, N, result);
+
+            return result;
         }
+
         public static BigInteger outMontgomeryDomain(BigInteger a, BigInteger m, BigInteger inv)
         {
             return ((a * inv) % m);
         }
+
+        public static BigInteger evklid_inv(BigInteger p, BigInteger a)
+        {
+            BigInteger l1 = 0, d1 = p, l2 = 1, d2 = a, q = 0, r = 0, h = 0, d = 0;
+            BigInteger[] arr = new BigInteger[2];
+            q = d1 / d2;
+            r = d1 % d2;
+            if (r == 0) d = l2;
+            else
+            {
+                while (r != 0)
+                {
+                    d = l2;
+                    q = d1 / d2;
+                    r = d1 % d2;
+                    if (r == 0) break;
+                    h = l1 - l2 * q;
+                    l1 = l2;
+                    l2 = h;
+                    d1 = d2;
+                    d2 = r;
+                }
+
+            }
+            if (d < 0) d += p;
+            return d;
+        }
+
 
         public static BigInteger eeuclid(BigInteger m, BigInteger b, out BigInteger inverse)
         {        // eeuclid( modulus, num whose inv is to be found, variable to put inverse )

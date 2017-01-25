@@ -219,9 +219,9 @@ namespace DigitsPower
             AdditionalParameters.montFlag = aMontFlag.Checked;
             if(AdditionalParameters.montFlag)
             {
-                AdditionalParameters.mul = MontgomeryMultDomain;
-                AdditionalParameters.outRes = outMontgomeryDomain;
-                AdditionalParameters.inRes = toMontgomeryDomain;
+                //AdditionalParameters.mul = MontgomeryMultDomain;
+                //AdditionalParameters.outRes = outMontgomeryDomain;
+                //AdditionalParameters.inRes = toMontgomeryDomain;
             }
             for (int i = 0; i < OperCheckList.CheckedIndices.Count; i++)
             {
@@ -296,10 +296,7 @@ namespace DigitsPower
             
         }
 
-        public string StatusLabelText
-        {
-            set { statusLabel.Text = value; }
-        }
+        public bool MontgomeryChecked{ get { return montFlagTest.Checked || aMontFlag.Checked; } }
 
         /*public void ChangeStatus(string method)
         {
@@ -395,6 +392,16 @@ namespace DigitsPower
         private void TableWith_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void montFlagTest_CheckedChanged(object sender, EventArgs e)
+        {
+            aMontFlag.Checked = montFlagTest.Checked;
+        }
+
+        private void aMontFlag_CheckedChanged(object sender, EventArgs e)
+        {
+            montFlagTest.Checked = aMontFlag.Checked;
         }
     }
 

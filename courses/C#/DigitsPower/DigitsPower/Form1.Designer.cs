@@ -36,6 +36,7 @@
             this.CheckAllbutton = new System.Windows.Forms.Button();
             this.OperationsList = new System.Windows.Forms.CheckedListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.montFlagTest = new System.Windows.Forms.CheckBox();
             this.WindowText = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.PowerText = new System.Windows.Forms.TextBox();
@@ -202,57 +203,56 @@
             this.OperationsList.CheckOnClick = true;
             this.OperationsList.FormattingEnabled = true;
             this.OperationsList.Items.AddRange(new object[] {
-                "1. Binary RL",
-                "2. Binary LR",
-                "3.1 Window RL",
-                "3.2 Window RL_Dic",
-                "4.1 Window LR",
-                "4.2 Window LR_Dic",
-                "5.1 Slide Window RL",
-                "5.2 Slide Window RL_Dic",
-                "6.1 Slide Window LR",
-                "6.2 Slide Window LR_Dic",
-                "7. NAF Binary RL (only for base coprime mod)",
-                "8. NAF Binary LR (only for base coprime mod)",
-                "9. NAF Slide RL (only for base coprime mod)",
-                "10. NAF Slide LR (only for base coprime mod)",
-                "11. wNAF RL (NAF Window RL, only for base coprime mod)",
-                "12. wNAF LR (NAF Window LR, only for base coprime mod)",
-                "15. Add Sub RL (only for base coprime mod)",
-                "16. Add Sub LR (only for base coprime mod)",
-                "17. Joye double & add",
-                "18. Montgomery ladder",
-                "19.1 DBNS 1.1 RL",
-                "19.2 DBNS 1.2 RL",
-                "20.1 DBNS 1.1 LR  (only for prime mod)",
-                "20.2 DBNS 1.2 LR  (only for prime mod)",
-                "21. DBNS 2 RL",
-                "22. DBNS 2 LR",
-                "23. Window LR1",
-                "24. Window LR2",
-                "25. Window LR3",
-                "26. Window LR",
-                "27. Window LR1 (Shift)",
-                "28. Window LR2 (Shift)",
-                "29. Window LR3 (Shift)",
-                "30. Window LR (Shift)",
-                "31. Window LR1 (Upgrade)",
-                "32. Window LR2 (Upgrade)",
-                "33. Window LR3 (Upgrade)",
-                "34. Window LR (Upgrade)",
-                "35. Window LR1 (NoBinary)",
-                "36. Window LR2 (NoBinary)",
-                "37. Window LR3 (NoBinary)",
-                "38. Window LR (NoBinary)",
-                "39. Window LR1 (Final)",
-                "40. Window LR2 (Final)",
-                "41. Window LR3 (Final)",
-                "42. Window LR (Final)",
-                "43. Pow C#",
-                "44. Bonus1",
-                "45. Bonus2",
-                "46. Bonus Window"
-            });
+            "1. Binary RL",
+            "2. Binary LR",
+            "3.1 Window RL",
+            "3.2 Window RL_Dic",
+            "4.1 Window LR",
+            "4.2 Window LR_Dic",
+            "5.1 Slide Window RL",
+            "5.2 Slide Window RL_Dic",
+            "6.1 Slide Window LR",
+            "6.2 Slide Window LR_Dic",
+            "7. NAF Binary RL (only for base coprime mod)",
+            "8. NAF Binary LR (only for base coprime mod)",
+            "9. NAF Slide RL (only for base coprime mod)",
+            "10. NAF Slide LR (only for base coprime mod)",
+            "11. wNAF RL (NAF Window RL, only for base coprime mod)",
+            "12. wNAF LR (NAF Window LR, only for base coprime mod)",
+            "15. Add Sub RL (only for base coprime mod)",
+            "16. Add Sub LR (only for base coprime mod)",
+            "17. Joye double & add",
+            "18. Montgomery ladder",
+            "19.1 DBNS 1.1 RL",
+            "19.2 DBNS 1.2 RL",
+            "20.1 DBNS 1.1 LR  (only for prime mod)",
+            "20.2 DBNS 1.2 LR  (only for prime mod)",
+            "21. DBNS 2 RL",
+            "22. DBNS 2 LR",
+            "23. Window LR1",
+            "24. Window LR2",
+            "25. Window LR3",
+            "26. Window LR",
+            "27. Window LR1 (Shift)",
+            "28. Window LR2 (Shift)",
+            "29. Window LR3 (Shift)",
+            "30. Window LR (Shift)",
+            "31. Window LR1 (Upgrade)",
+            "32. Window LR2 (Upgrade)",
+            "33. Window LR3 (Upgrade)",
+            "34. Window LR (Upgrade)",
+            "35. Window LR1 (NoBinary)",
+            "36. Window LR2 (NoBinary)",
+            "37. Window LR3 (NoBinary)",
+            "38. Window LR (NoBinary)",
+            "39. Window LR1 (Final)",
+            "40. Window LR2 (Final)",
+            "41. Window LR3 (Final)",
+            "42. Window LR (Final)",
+            "43. Pow C#",
+            "44. Bonus1",
+            "45. Bonus2",
+            "46. Bonus Window"});
             this.OperationsList.Location = new System.Drawing.Point(5, 19);
             this.OperationsList.Name = "OperationsList";
             this.OperationsList.Size = new System.Drawing.Size(399, 184);
@@ -260,6 +260,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.montFlagTest);
             this.groupBox3.Controls.Add(this.WindowText);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.PowerText);
@@ -275,6 +276,17 @@
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Parametrs";
+            // 
+            // montFlagTest
+            // 
+            this.montFlagTest.AutoSize = true;
+            this.montFlagTest.Location = new System.Drawing.Point(311, 138);
+            this.montFlagTest.Name = "montFlagTest";
+            this.montFlagTest.Size = new System.Drawing.Size(131, 17);
+            this.montFlagTest.TabIndex = 32;
+            this.montFlagTest.Text = "Montgomery reduction";
+            this.montFlagTest.UseVisualStyleBackColor = true;
+            this.montFlagTest.CheckedChanged += new System.EventHandler(this.montFlagTest_CheckedChanged);
             // 
             // WindowText
             // 
@@ -312,7 +324,7 @@
             // 
             // Calculatebutton
             // 
-            this.Calculatebutton.Location = new System.Drawing.Point(94, 127);
+            this.Calculatebutton.Location = new System.Drawing.Point(19, 134);
             this.Calculatebutton.Name = "Calculatebutton";
             this.Calculatebutton.Size = new System.Drawing.Size(274, 23);
             this.Calculatebutton.TabIndex = 9;
@@ -404,6 +416,7 @@
             this.aMontFlag.TabIndex = 31;
             this.aMontFlag.Text = "Montgomery reduction";
             this.aMontFlag.UseVisualStyleBackColor = true;
+            this.aMontFlag.CheckedChanged += new System.EventHandler(this.aMontFlag_CheckedChanged);
             // 
             // label24
             // 
@@ -722,57 +735,56 @@
             this.OperCheckList.FormattingEnabled = true;
             this.OperCheckList.HorizontalScrollbar = true;
             this.OperCheckList.Items.AddRange(new object[] {
-                "1. Binary RL",
-                "2. Binary LR",
-                "3.1 Window RL",
-                "3.2 Window RL_Dic",
-                "4.1 Window LR",
-                "4.2 Window LR_Dic",
-                "5.1 Slide Window RL",
-                "5.2 Slide Window RL_Dic",
-                "6.1 Slide Window LR",
-                "6.2 Slide Window LR_Dic",
-                "7. NAF Binary RL (only for base coprime mod)",
-                "8. NAF Binary LR (only for base coprime mod)",
-                "9. NAF Slide RL (only for base coprime mod)",
-                "10. NAF Slide LR (only for base coprime mod)",
-                "11. wNAF RL (NAF Window RL, only for base coprime mod)",
-                "12. wNAF LR (NAF Window LR, only for base coprime mod)",
-                "15. Add Sub RL (only for base coprime mod)",
-                "16. Add Sub LR (only for base coprime mod)",
-                "17. Joye double & add",
-                "18. Montgomery ladder",
-                "19.1 DBNS 1.1 RL",
-                "20.2 DBNS 1.2 RL",
-                "21.1 DBNS 1.1 LR  (only for prime mod)",
-                "22.2 DBNS 1.2 LR  (only for prime mod)",
-                "23. DBNS 2 RL",
-                "24. DBNS 2 LR",
-                "25. Window LRMod1",
-                "26. Window LRMod2",
-                "27. Window LRMod3",
-                "28. Window LRMod",
-                "29. Window LRMod1 (shift)",
-                "30. Window LRMod2 (shift)",
-                "31. Window LRMod3 (shift)",
-                "32. Window LRMod  (shift)",
-                "33. Window LRMod1 (upgrade)",
-                "34. Window LRMod2 (upgrade)",
-                "35. Window LRMod3 (upgrade)",
-                "36. Window LRMod  (upgrade)",
-                "37. Window LRMod1 (NoBinary)",
-                "38. Window LRMod2 (NoBinary)",
-                "39. Window LRMod3 (NoBinary)",
-                "40. Window LRMod  (NoBinary)",
-                "41. Window LRMod1 (Final)",
-                "42. Window LRMod2 (Final)",
-                "43. Window LRMod3 (Final)",
-                "44. Window LRMod  (Final)",
-                "45. Pow C#",
-                "46. Bonus 1",
-                "47. Bonus 2",
-                "48. Bonus Window"
-            });
+            "1. Binary RL",
+            "2. Binary LR",
+            "3.1 Window RL",
+            "3.2 Window RL_Dic",
+            "4.1 Window LR",
+            "4.2 Window LR_Dic",
+            "5.1 Slide Window RL",
+            "5.2 Slide Window RL_Dic",
+            "6.1 Slide Window LR",
+            "6.2 Slide Window LR_Dic",
+            "7. NAF Binary RL (only for base coprime mod)",
+            "8. NAF Binary LR (only for base coprime mod)",
+            "9. NAF Slide RL (only for base coprime mod)",
+            "10. NAF Slide LR (only for base coprime mod)",
+            "11. wNAF RL (NAF Window RL, only for base coprime mod)",
+            "12. wNAF LR (NAF Window LR, only for base coprime mod)",
+            "15. Add Sub RL (only for base coprime mod)",
+            "16. Add Sub LR (only for base coprime mod)",
+            "17. Joye double & add",
+            "18. Montgomery ladder",
+            "19.1 DBNS 1.1 RL",
+            "20.2 DBNS 1.2 RL",
+            "21.1 DBNS 1.1 LR  (only for prime mod)",
+            "22.2 DBNS 1.2 LR  (only for prime mod)",
+            "23. DBNS 2 RL",
+            "24. DBNS 2 LR",
+            "25. Window LRMod1",
+            "26. Window LRMod2",
+            "27. Window LRMod3",
+            "28. Window LRMod",
+            "29. Window LRMod1 (shift)",
+            "30. Window LRMod2 (shift)",
+            "31. Window LRMod3 (shift)",
+            "32. Window LRMod  (shift)",
+            "33. Window LRMod1 (upgrade)",
+            "34. Window LRMod2 (upgrade)",
+            "35. Window LRMod3 (upgrade)",
+            "36. Window LRMod  (upgrade)",
+            "37. Window LRMod1 (NoBinary)",
+            "38. Window LRMod2 (NoBinary)",
+            "39. Window LRMod3 (NoBinary)",
+            "40. Window LRMod  (NoBinary)",
+            "41. Window LRMod1 (Final)",
+            "42. Window LRMod2 (Final)",
+            "43. Window LRMod3 (Final)",
+            "44. Window LRMod  (Final)",
+            "45. Pow C#",
+            "46. Bonus 1",
+            "47. Bonus 2",
+            "48. Bonus Window"});
             this.OperCheckList.Location = new System.Drawing.Point(6, 17);
             this.OperCheckList.Name = "OperCheckList";
             this.OperCheckList.Size = new System.Drawing.Size(235, 124);
@@ -1419,5 +1431,6 @@
         private System.Windows.Forms.ComboBox binAxis_3;
         private System.Windows.Forms.CheckBox aMontFlag;
         private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.CheckBox montFlagTest;
     }
 }

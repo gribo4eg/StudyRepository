@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Windows.Forms;
 using static DigitsPower.HelpMethods;
 using static System.Math;
 using static DigitsPower.MontgomeryMethods;
@@ -40,167 +41,163 @@ namespace DigitsPower
 
         public static BigInteger BinaryRL(BigInteger found, BigInteger pow, BigInteger mod)
         {
+            bool mont = (Application.OpenForms[0] as MainForm).MontgomeryChecked;
+
+            found = found % mod;
+            BigInteger t = found;
             BigInteger res = 1;
-            BigInteger t = found % mod;
-            string Binary = ConvToBinary(pow); // старший біт в рядку під номером 0
-            for (int i = Binary.Length - 1; i >= 0; i--)
+
+            string binary = ConvToBinary(pow); // старший біт в рядку під номером 0
+
+            if (mont)
             {
-                if (Binary[i] == '1')
-                    res = t * res % mod; //Приведення за модулем після кожного кроку
-                t = t * t % mod;
+                MyList <BigInteger> parameters = MontgomeryMethods.toMontgomeryDomain(ref t, ref res, mod);
+                for (int i = binary.Length - 1; i >= 0; i--)
+                {
+                    if (binary[i] == '1')
+                        res = MontgomeryMethods.MontgomeryMultDomain(t, res, mod, parameters);
+                    t = MontgomeryMethods.MontgomeryMultDomain(t, t, mod, parameters); ;
+                }
+                res = MontgomeryMethods.outMontgomeryDomain(res, mod, parameters[3]);
+            }
+            else
+            {
+                for (int i = binary.Length - 1; i >= 0; i--)
+                {
+                    if (binary[i] == '1')
+                        res = t * res % mod; //Приведення за модулем після кожного кроку
+                    t = t * t % mod;
+                }
             }
 
-            /*
-            BigInteger res, t, inverse;
-            int powLen, i;
-            string pow_bin;
-
-             found = found % mod;
-
-            pow_bin = ConvToBinary(pow);
-            res = 1;
-            t = found;
-
-            inverse = AdditionalParameters.inRes(ref t, ref res, mod);
-
-            powLen = (int)(Log((double)pow, 2) + 1);
-            for (i = 0; i < powLen; ++i)
-            {
-                if ('1' == pow_bin[powLen - (int)i - 1])
-                    res = AdditionalParameters.mul(t, res, mod, inverse);
-                t = AdditionalParameters.mul(t, t, mod, inverse);
-            }
-
-            res = AdditionalParameters.outRes(res, mod, inverse);
-            */
             return res;
+
         }
 
         public static BigInteger BinaryLR(BigInteger found, BigInteger pow, BigInteger mod)
         {
+            bool mont = (Application.OpenForms[0] as MainForm).MontgomeryChecked;
+            BigInteger res, t;
+            string binary = ConvToBinary(pow); // старший біт в рядку під номером 0
 
-            BigInteger res = 1;
-            BigInteger t = found % mod;
-            string Binary = ConvToBinary(pow); // старший біт в рядку під номером 0
-            for (int i = 0; i < Binary.Length; i++)
-            {
-                res = res * res % mod;
-                if (Binary[i] == '1')
-                    res = t * res % mod;//Приведення до степеня після кожного кроку
-            }
-
-
-            /*
-            BigInteger res, t, inverse;
-            int powLen;
-            string pow_bin;
-            found = found % mod;
-
-            pow_bin = ConvToBinary(pow);
             res = 1;
-            t = found;
-            inverse = AdditionalParameters.inRes(ref t, ref res, mod);
-            powLen = (int)(Log((double)pow, 2));
-            for (int i = powLen; 0 <= i; i--)
-            {
-                res = AdditionalParameters.mul(res, res, mod, inverse);
-                if ('1' == pow_bin[powLen - (int)i])
-                    res = AdditionalParameters.mul(t, res, mod, inverse);
-            }
-            res = AdditionalParameters.outRes(res, mod, inverse);
+            t = found % mod;
 
-    */
+            if (mont)
+            {
+                BigInteger inverse;
+                int powLen;
+
+                inverse = AdditionalParameters.inRes(ref t, ref res, mod);
+                powLen = (int) (Log((double) pow, 2));
+                for (int i = powLen; 0 <= i; i--)
+                {
+                    res = AdditionalParameters.mul(res, res, mod, inverse);
+                    if ('1' == binary[powLen - (int) i])
+                        res = AdditionalParameters.mul(t, res, mod, inverse);
+                }
+                res = AdditionalParameters.outRes(res, mod, inverse);
+            }
+            else
+            {
+                for (int i = 0; i < binary.Length; i++)
+                {
+                    res = res * res % mod;
+                    if (binary[i] == '1')
+                        res = t * res % mod;//Приведення до степеня після кожного кроку
+                }
+            }
+
             return res;
         }
 
 
         public static BigInteger NAFBinaryRL(BigInteger found, BigInteger pow, BigInteger mod)
         {
-            BigInteger res, c;
+            bool mont = (Application.OpenForms[0] as MainForm).MontgomeryChecked;
+
+            BigInteger res, t;
             MyList<int> x;
             found = found % mod;
 
             res = 1;
-            c = found;
+            t = found;
             x = ToNAF(pow);
 
-            for (int i = 0; i < x.Count; i++)
-            //for (int i = x.Count - 1; i > -1; i--)
+            if (mont)
             {
-                if (x[i] == 1)
-                    res = res * c % mod;
-                else if (x[i] == -1)
-                    res = res * Euclid_2_1(mod, c) % mod;
-                c = c * c % mod;
+                BigInteger inverse;
+
+                inverse = AdditionalParameters.inRes(ref t, ref res, mod);
+                for (int i = x.Count - 1; i >= 0; i--)
+                {
+                    if (x[i] == 1)
+                        res = AdditionalParameters.mul(res, t, mod, inverse);
+                    else if (x[i] == -1)
+                        res = AdditionalParameters.mul(res, Euclid_2_1(mod, t), mod, inverse);
+                    t = AdditionalParameters.mul(t, t, mod, inverse);
+                }
+                res = AdditionalParameters.outRes(res, mod, inverse);
             }
+            else
+            {
+                for (int i = 0; i < x.Count; i++)
+                {
+                    if (x[i] == 1)
+                        res = res * t % mod;
+                    else if (x[i] == -1)
+                        res = res * Euclid_2_1(mod, t) % mod;
+                    t = t * t % mod;
+                }
+            }
+
+
             return res;
 
-
-            /*
-            BigInteger res, c, inverse;
-            MyList<BigInteger> x;
-            found = found % mod;
-
-            res = 1;
-            c = found;
-            x = ToNAF(pow);
-            inverse = AdditionalParameters.inRes(ref c, ref res, mod);
-            for (int i = x.Count - 1; i > -1; i--)
-            {
-                if (x[i] == 1)
-                    res = AdditionalParameters.mul(res, c, mod, inverse);
-                else if (x[i] == -1)
-                    res = AdditionalParameters.mul(res, Euclid_2_1(mod, c), mod, inverse);
-                c = AdditionalParameters.mul(c, c, mod, inverse);
-            }
-            res = AdditionalParameters.outRes(res, mod, inverse);
-            return res;
-            */
         }
 
         public static BigInteger NAFBinaryLR(BigInteger found, BigInteger pow, BigInteger mod)
         {
+            bool mont = (Application.OpenForms[0] as MainForm).MontgomeryChecked;
 
             BigInteger res;
             MyList<int> x;
             found = found % mod;
 
-            res = found;
             x = ToNAF(pow);
-            BigInteger inv = Euclid_2_1(mod, found);
-
-            for (int i = x.Count - 2; i > -1; i--)
-            //for (int i = 1; i < x.Count; i++)
+            if (mont)
             {
-                res = res * res % mod;
-                if (x[i] == 1)
-                    res = res * found % mod;
-                else if (x[i] == -1)
-                    res = res * inv % mod;
+                BigInteger c, inverse;
+
+                res = 1;
+                c = found;
+                inverse = AdditionalParameters.inRes(ref c, ref res, mod);
+                for (int i = 0; i < x.Count; i++)
+                {
+                    res = AdditionalParameters.mul(res, res, mod, inverse);
+                    if (x[i] == 1)
+                        res = AdditionalParameters.mul(res, c, mod, inverse);
+                    else if (x[i] == -1)
+                        res = AdditionalParameters.mul(res, Euclid_2_1(mod, c), mod, inverse);
+                }
+                res = AdditionalParameters.outRes(res, mod, inverse);
+            }
+            else
+            {
+                BigInteger inv = Euclid_2_1(mod, found);
+                res = found;
+
+                for (int i = x.Count - 2; i > -1; i--)
+                {
+                    res = res * res % mod;
+                    if (x[i] == 1)
+                        res = res * found % mod;
+                    else if (x[i] == -1)
+                        res = res * inv % mod;
+                }
             }
             return res;
 
-
-            /*
-            BigInteger res, c, inverse;
-            MyList<BigInteger> x;
-            found = found % mod;
-
-            res = 1;
-            c = found;
-            x = ToNAF(pow);
-            inverse = AdditionalParameters.inRes(ref c, ref res, mod);
-            for (int i = 0; i < x.Count; i++)
-            {
-                res = AdditionalParameters.mul(res, res, mod, inverse);
-                if (x[i] == 1)
-                    res = AdditionalParameters.mul(res, c, mod, inverse);
-                else if (x[i] == -1)
-                    res = AdditionalParameters.mul(res, Euclid_2_1(mod, c), mod, inverse);
-            }
-            res = AdditionalParameters.outRes(res, mod, inverse);
-            return res;
-            */
         }
 
         public static BigInteger AddSubRL(BigInteger found, BigInteger pow, BigInteger mod)
@@ -697,9 +694,17 @@ namespace DigitsPower
         public static BigInteger WindowLR(BigInteger found, BigInteger pow, BigInteger mod, int w, out double table_time)
         {
             Stopwatch stw = new Stopwatch();
+
             found = found % mod;
             stw.Start();
-            MyList<BigInteger> table = Table(found, pow, w, mod);
+
+            MyList<BigInteger> table = new MyList<BigInteger>();
+            table.Add(found);
+
+            int count = (1 << w) - 2;
+            for (BigInteger i = 0; i < count; i++)
+                table.Add((table[i] * found) % mod);
+            
             stw.Stop();
 
             table_time = stw.Elapsed.TotalMilliseconds;
@@ -2414,7 +2419,6 @@ namespace DigitsPower
         public static BigInteger NAFSlideLR(BigInteger found, BigInteger power, BigInteger mod, int w, out double table_time)
         {
             BigInteger res = 1;
-            //MyList<int> x = power.ToNAF();
             MyList<int> x = ToNAF(power);
 
             Stopwatch stw = new Stopwatch();
@@ -2469,70 +2473,7 @@ namespace DigitsPower
             }
             return res;
 
-            /*
-            BigInteger res = 1;
-            MyList<int> x = ToNAF(power);
-            //MyList<int> y = power.ToNAF();
 
-            Stopwatch stw = new Stopwatch();
-            found = found % mod;
-            stw.Start();
-
-            int sign;
-            if (w % 2 == 1)
-                sign = -1;
-            else
-                sign = 1;
-
-            int last_table_element = (((1 << w) - sign) << 1) / 3 - 1;
-
-            MyList<BigInteger> table = new MyList<BigInteger>();
-            MyList<BigInteger> table_inv = new MyList<BigInteger>();
-
-            table.Add(found);
-            table_inv.Add(Euclid_2_1(mod, found));
-
-            BigInteger sqr_found = found * found % mod;
-
-            for (int i = 3; i <= last_table_element; i += 2)
-            {
-                table.Add(table[(i >> 1) - 1] * sqr_found % mod);
-                table_inv.Add(Euclid_2_1(mod, table[i >> 1]));
-            }
-
-            stw.Stop();
-            table_time = stw.Elapsed.TotalMilliseconds;
-
-            for (int i = 0; i < x.Count;)
-            //for (int i = x.Count; i > 0;)
-            {
-                List<int> max = new List<int>();
-                if (x[i] == 0)
-                //if (x[i - 1] == 0 || i == 1)
-                {
-                    max.Add(0);
-                    max.Add(1);
-
-                    //max.Add(x[i - 1]);
-                    //max.Add(1);
-                }
-                else
-                    max = FindLargest1(x, i, w);
-
-                for (int d = 0; d < max[1]; d++)
-                    res = res * res % mod;
-
-                if (max[0] > 0)
-                    res = res * table[max[0] >> 1] % mod;
-                else if (max[0] < 0)
-                    res = res * table_inv[(-max[0]) >> 1] % mod;
-
-                i = i + (int)max[1];
-            }
-
-            return res;
-
-            */
             /*
                      BigInteger res = 1;
                      MyList<BigInteger> x = power.ToNAF();

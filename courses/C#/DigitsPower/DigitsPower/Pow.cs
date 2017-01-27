@@ -85,18 +85,17 @@ namespace DigitsPower
 
             if (mont)
             {
-                BigInteger inverse;
                 int powLen;
 
-                inverse = AdditionalParameters.inRes(ref t, ref res, mod);
+                MyList <BigInteger> parameters = MontgomeryMethods.toMontgomeryDomain(ref t, ref res, mod);
                 powLen = (int) (Log((double) pow, 2));
                 for (int i = powLen; 0 <= i; i--)
                 {
-                    res = AdditionalParameters.mul(res, res, mod, inverse);
+                    res = MontgomeryMethods.MontgomeryMultDomain(res, res, mod, parameters);
                     if ('1' == binary[powLen - (int) i])
-                        res = AdditionalParameters.mul(t, res, mod, inverse);
+                        res = MontgomeryMethods.MontgomeryMultDomain(t, res, mod, parameters);
                 }
-                res = AdditionalParameters.outRes(res, mod, inverse);
+                res = MontgomeryMethods.outMontgomeryDomain(res, mod, parameters[3]);
             }
             else
             {
@@ -126,18 +125,17 @@ namespace DigitsPower
 
             if (mont)
             {
-                BigInteger inverse;
+                MyList <BigInteger> parameters = MontgomeryMethods.toMontgomeryDomain(ref t, ref res, mod);
 
-                inverse = AdditionalParameters.inRes(ref t, ref res, mod);
-                for (int i = x.Count - 1; i >= 0; i--)
+                for (int i = 0; i < x.Count; i++)
                 {
                     if (x[i] == 1)
-                        res = AdditionalParameters.mul(res, t, mod, inverse);
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, t, mod, parameters);
                     else if (x[i] == -1)
-                        res = AdditionalParameters.mul(res, Euclid_2_1(mod, t), mod, inverse);
-                    t = AdditionalParameters.mul(t, t, mod, inverse);
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, Euclid_2_1(mod, t), mod, parameters);
+                    t = MontgomeryMethods.MontgomeryMultDomain(t, t, mod, parameters);
                 }
-                res = AdditionalParameters.outRes(res, mod, inverse);
+                res = MontgomeryMethods.outMontgomeryDomain(res, mod, parameters[3]);
             }
             else
             {
@@ -167,20 +165,20 @@ namespace DigitsPower
             x = ToNAF(pow);
             if (mont)
             {
-                BigInteger c, inverse;
+                BigInteger t;
 
                 res = 1;
-                c = found;
-                inverse = AdditionalParameters.inRes(ref c, ref res, mod);
-                for (int i = 0; i < x.Count; i++)
+                t = found;
+                MyList <BigInteger> parameters = MontgomeryMethods.toMontgomeryDomain(ref t, ref res, mod);
+                for (int i = x.Count - 2; i >= 0; i--)
                 {
-                    res = AdditionalParameters.mul(res, res, mod, inverse);
+                    res = MontgomeryMethods.MontgomeryMultDomain(res, res, mod, parameters);
                     if (x[i] == 1)
-                        res = AdditionalParameters.mul(res, c, mod, inverse);
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, t, mod, parameters);
                     else if (x[i] == -1)
-                        res = AdditionalParameters.mul(res, Euclid_2_1(mod, c), mod, inverse);
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, Euclid_2_1(mod, t), mod, parameters);
                 }
-                res = AdditionalParameters.outRes(res, mod, inverse);
+                res = MontgomeryMethods.outMontgomeryDomain(res, mod, parameters[3]);
             }
             else
             {
@@ -259,6 +257,8 @@ namespace DigitsPower
 
         public static BigInteger Joye_double_and_add(BigInteger found, BigInteger pow, BigInteger mod)
         {
+            bool mont = (Application.OpenForms[0] as MainForm).MontgomeryChecked;
+
             BigInteger res, t;
             int powLen;
             string pow_bin;
@@ -267,110 +267,98 @@ namespace DigitsPower
             pow_bin = ConvToBinary(pow);
             res = 1;
             t = found;
-            powLen = pow_bin.Length;
-            for (int i = powLen - 1; i >= 0; i--)
+            if (mont)
             {
-                if (pow_bin[i] == '1')
+
+                MyList <BigInteger> parameters = MontgomeryMethods.toMontgomeryDomain(ref t, ref res, mod);
+
+                powLen = (int) (Log((double) pow, 2) + 1);
+                for (int i = 0; i < powLen; i++)
                 {
-                    res = res * res % mod;
-                    res = res * t % mod;
+                    if ('1' == pow_bin[powLen - (int) i - 1])
+                    {
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, res, mod, parameters);
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, t, mod, parameters);
+                    }
+                    else
+                    {
+                        t = MontgomeryMethods.MontgomeryMultDomain(t, t, mod, parameters);
+                        t = MontgomeryMethods.MontgomeryMultDomain(res, t, mod, parameters);
+                    }
                 }
-                else
+                res = MontgomeryMethods.outMontgomeryDomain(res, mod, parameters[3]);
+            }
+            else
+            {
+                powLen = pow_bin.Length;
+                for (int i = powLen - 1; i >= 0; i--)
                 {
-                    t = t * t % mod;
-                    t = res * t % mod;
+                    if (pow_bin[i] == '1')
+                    {
+                        res = res * res % mod;
+                        res = res * t % mod;
+                    }
+                    else
+                    {
+                        t = t * t % mod;
+                        t = res * t % mod;
+                    }
                 }
             }
 
             return res;
-
-
-            /*
-            BigInteger res, t, inverse;
-            int powLen;
-            string pow_bin;
-            found = found % mod;
-
-            pow_bin = ConvToBinary(pow);
-            res = 1;
-            t = found;
-            inverse = AdditionalParameters.inRes(ref t, ref res, mod);
-            powLen = (int)(Log((double)pow, 2) + 1);
-            for (int i = 0; i < powLen; i++)
-            {
-                if ('1' == pow_bin[powLen - (int)i - 1])
-                {
-                    res = AdditionalParameters.mul(res, res, mod, inverse);
-                    res = AdditionalParameters.mul(res, t, mod, inverse);
-                }
-                else
-                {
-                    t = AdditionalParameters.mul(t, t, mod, inverse);
-                    t = AdditionalParameters.mul(res, t, mod, inverse);
-                }
-            }
-            res = AdditionalParameters.outRes(res, mod, inverse);
-            return res;
-            */
-
         }
 
         public static BigInteger MontgomeryLadder(BigInteger found, BigInteger pow, BigInteger mod)
         {
+            bool mont = (Application.OpenForms[0] as MainForm).MontgomeryChecked;
             BigInteger res, t;
             int powLen;
             string pow_bin;
             found = found % mod;
 
             pow_bin = ConvToBinary(pow);
-
-            res = 1;
             t = found;
-            powLen = pow_bin.Length;
-            for (int i = 0; i < powLen; i++)
+            res = 1;
+            if(mont)
             {
-                if (pow_bin[i] == '0')
+                MyList <BigInteger> parameters = MontgomeryMethods.toMontgomeryDomain(ref t, ref res, mod);
+
+                powLen = (int)(Log((double)pow, 2));
+                for (int i = powLen; 0 <= i; i--)
                 {
-                    t = t * res % mod;
-                    res = res * res % mod;
+                    if (pow_bin[powLen - (int)i] == '0')
+                    {
+                        t = MontgomeryMethods.MontgomeryMultDomain(t, res, mod, parameters);
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, res, mod, parameters);
+                    }
+                    else
+                    {
+                        res = MontgomeryMethods.MontgomeryMultDomain(res, t, mod, parameters);
+                        t = MontgomeryMethods.MontgomeryMultDomain(t, t, mod, parameters);
+                    }
                 }
-                else
+                res = MontgomeryMethods.outMontgomeryDomain(res, mod, parameters[3]);
+            }
+            else
+            {
+                powLen = pow_bin.Length;
+                for (int i = 0; i < powLen; i++)
                 {
-                    res = res * t % mod;
-                    t = t * t % mod;
+                    if (pow_bin[i] == '0')
+                    {
+                        t = t * res % mod;
+                        res = res * res % mod;
+                    }
+                    else
+                    {
+                        res = res * t % mod;
+                        t = t * t % mod;
+                    }
                 }
             }
 
             return res;
-
-            /*
-            BigInteger res, t, inverse;
-            int powLen;
-            string pow_bin;
-            found = found % mod;
-
-            pow_bin = ConvToBinary(pow);
-
-            res = 1;
-            t = found;
-            inverse = AdditionalParameters.inRes(ref t, ref res, mod);
-            powLen = (int)(Log((double)pow, 2));
-            for (int i = powLen; 0 <= i; i--)
-            {
-                if (pow_bin[powLen - (int)i] == '0')
-                {
-                    t = AdditionalParameters.mul(t, res, mod, inverse);
-                    res = AdditionalParameters.mul(res, res, mod, inverse);
-                }
-                else
-                {
-                    res = AdditionalParameters.mul(res, t, mod, inverse);
-                    t = AdditionalParameters.mul(t, t, mod, inverse);
-                }
-            }
-            res = AdditionalParameters.outRes(res, mod, inverse);
-            return res;
-            */
         }
 
         public static BigInteger DBNS1RL(BigInteger found, BigInteger pow, BigInteger mod, bool convert_method, long A, long B)

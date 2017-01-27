@@ -22,7 +22,7 @@ namespace DigitsPower
         {
             String n_str = ConvToBinary(N);
             int m = n_str.Length;
-            BigInteger r = 1 << m;
+            BigInteger r = BigInteger.One << m;
             BigInteger r_inv = Euclid_2_1(N, r);
             BigInteger n_shtrih = (r * r_inv - 1) / N;
             BigInteger b_module = r - 1; // маска для виконання операцій за модулем b  

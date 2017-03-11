@@ -1,0 +1,5 @@
+C:\Repository\repos1\courses\C#\Lab1_2\Task2\bin\Debug\Task2.exe
+C:\Repository\repos1\courses\C#\Lab1_2\Task2\bin\Debug\Task2.pdb
+C:\Repository\repos1\courses\C#\Lab1_2\Task2\obj\Debug\Task2.csprojResolveAssemblyReference.cache
+C:\Repository\repos1\courses\C#\Lab1_2\Task2\obj\Debug\Task2.exe
+C:\Repository\repos1\courses\C#\Lab1_2\Task2\obj\Debug\Task2.pdb

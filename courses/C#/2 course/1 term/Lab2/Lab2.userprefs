@@ -1,0 +1,21 @@
+﻿<Properties StartupItem="Lab2/Lab2.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Lab2/Program.cs">
+    <Files>
+      <File FileName="Lab2/Program.cs" Line="86" Column="32" />
+      <File FileName="Lab2/Zoo.cs" Line="35" Column="46" />
+      <File FileName="Lab2/Animal.cs" Line="1" Column="1" />
+      <File FileName="Lab2/IAnimal.cs" Line="7" Column="31" />
+      <File FileName="Lab2/Watchman.cs" Line="5" Column="37" />
+      <File FileName="Lab2/Horse.cs" Line="1" Column="1" />
+      <File FileName="Lab2/IHorse.cs" Line="1" Column="1" />
+      <File FileName="Lab2/Centaur.cs" Line="26" Column="52" />
+      <File FileName="Lab2/IHuman.cs" Line="1" Column="1" />
+      <File FileName="Lab2/MyExceptions.cs" Line="43" Column="51" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

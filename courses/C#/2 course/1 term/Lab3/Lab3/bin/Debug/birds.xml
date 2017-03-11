@@ -1,0 +1,1 @@
+<ArrayOfBird xmlns="http://schemas.datacontract.org/2004/07/Lab3" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><Bird><Age>1</Age><Food>Grass</Food><Name>Chiki</Name><Sound>HHEHEH</Sound></Bird><Bird><Age>3</Age><Food>Grass</Food><Name>Miama</Name><Sound>Kukareku</Sound></Bird><Bird><Age>5</Age><Food>Grass</Food><Name>Niko</Name><Sound>Argghhg</Sound></Bird></ArrayOfBird>

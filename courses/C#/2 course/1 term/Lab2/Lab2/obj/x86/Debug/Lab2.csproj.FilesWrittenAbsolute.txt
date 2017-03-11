@@ -1,0 +1,5 @@
+/home/sasha/Документы/CSharp/Lab2/Lab2/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/sasha/Документы/CSharp/Lab2/Lab2/bin/Debug/Lab2.exe.mdb
+/home/sasha/Документы/CSharp/Lab2/Lab2/bin/Debug/Lab2.exe
+/home/sasha/Документы/CSharp/Lab2/Lab2/obj/x86/Debug/Lab2.exe
+/home/sasha/Документы/CSharp/Lab2/Lab2/obj/x86/Debug/Lab2.exe.mdb

@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Lab3/Lab3.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Lab3/Program.cs">
+    <Files>
+      <File FileName="Lab3/Program.cs" Line="1" Column="1" />
+      <File FileName="Lab3/IHorse.cs" Line="1" Column="1" />
+      <File FileName="Lab3/IHuman.cs" Line="1" Column="1" />
+      <File FileName="Lab3/AnimalCollection.cs" Line="45" Column="1" />
+      <File FileName="Lab3/Animal.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

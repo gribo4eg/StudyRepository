@@ -1,6 +1,7 @@
 package Part2;
 
-public class StateFSM extends FSM{
+
+public class StateFSM extends FSM {
 
     States state;
 

@@ -7,7 +7,7 @@ namespace Lab3_Part1
         public static void Main(string[] args)
         {
             IFile file = new File("File1");
-            IFile clonedFile = file.Clone();
+            var clonedFile = file.Clone();
 
             Console.WriteLine("File name: " + ((File)file).Name);
             Console.WriteLine("Cloned name: " + ((File)clonedFile).Name);
@@ -31,7 +31,11 @@ namespace Lab3_Part1
 
             clonedFile = folder.Clone();
 
-            Console.WriteLine("Cloned folder Name: \"{0}\" & size: {1}", clonedFile.Name, clonedFile.Size());
+            Console.WriteLine("Cloned folder Name: \"{0}\" & size: {1}", ((Folder)clonedFile).Name, ((Folder)clonedFile).Size());
+
+            clonedFile = folder.Clone();
+
+            Console.WriteLine(((Folder)clonedFile).GetByName("File2").Name);
         }
     }
 }

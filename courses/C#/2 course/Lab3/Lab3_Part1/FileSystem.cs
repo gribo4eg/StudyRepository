@@ -1,16 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Lab3_Part1
 {
-    public interface IFile
+    public interface IFile : ICloneable
     {
-        IFile Clone();
+        Object Clone();
         string Name { get; set; }
         int Size();
         void Rename(string newName);
     }
 
+    [Serializable]
     public class File : IFile
     {
         public string Info { get; set; }
@@ -26,10 +31,11 @@ namespace Lab3_Part1
 
         public int Size() => Info.Length;
 
-        public IFile Clone() => MemberwiseClone() as IFile;
+        public Object Clone() => MemberwiseClone();
         // OR return new File(this.Name);
     }
 
+    [Serializable]
     public class Folder : IFile
     {
         public List<IFile> Files { get; set; }
@@ -44,14 +50,28 @@ namespace Lab3_Part1
 
         public IFile GetByName(string name) => Files.FirstOrDefault(file => file.Name == name);
 
-        public IFile CopyFile(string name) => (from file in Files where file.Name == name select file.Clone()).FirstOrDefault();
+        public Object CopyFile(string name) => (from file in Files where file.Name == name select file.Clone()).FirstOrDefault();
 
-        public List<IFile> CopyAllFiles() => Files.Select(file => file.Clone()).ToList();
+        public List<Object> CopyAllFiles() => Files.Select(file => file.Clone()).ToList();
 
         public void Rename(string newName) => Name = newName;
 
         public int Size() => Files.Sum(file => file.Size());
 
-        public IFile Clone() => new Folder(Name) {Files = Files.Select(file => file.Clone()).ToList()};
+        public Object Clone()
+        {
+            object folder = null;
+            using (MemoryStream tempStream = new MemoryStream())
+            {
+                BinaryFormatter binFormatter = new BinaryFormatter(null,
+                    new StreamingContext(StreamingContextStates.Clone));
+
+                        binFormatter.Serialize(tempStream, this);
+                        tempStream.Seek(0, SeekOrigin.Begin);
+
+                        folder = binFormatter.Deserialize(tempStream);
+                    }
+            return folder;
+        }
     }
 }

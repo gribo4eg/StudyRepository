@@ -1,0 +1,5 @@
+C:\Repository\repos1\courses\C#\2 course\Lab4\Lab4_Part1\bin\Release\Lab4_Part1.exe
+C:\Repository\repos1\courses\C#\2 course\Lab4\Lab4_Part1\bin\Release\Lab4_Part1.pdb
+C:\Repository\repos1\courses\C#\2 course\Lab4\Lab4_Part1\obj\Release\Lab4_Part1.csprojResolveAssemblyReference.cache
+C:\Repository\repos1\courses\C#\2 course\Lab4\Lab4_Part1\obj\Release\Lab4_Part1.exe
+C:\Repository\repos1\courses\C#\2 course\Lab4\Lab4_Part1\obj\Release\Lab4_Part1.pdb

@@ -5,8 +5,8 @@ namespace Lab4_Part1
     public class Card
     {
 
-        public static int TENPERCENT = 5000;
-        public static int FIFTEENPERCENT = 10000;
+        public static int FIVE_TENPERCENT = 5000;
+        public static int TEN_FIFTEENPERCENT = 10000;
 
         public Card(IState state)
         {
@@ -42,12 +42,12 @@ namespace Lab4_Part1
     {
         public void Handle(Card card)
         {
-            if (card.Money >= Card.TENPERCENT && card.Money < Card.FIFTEENPERCENT)
+            if (card.Money >= Card.FIVE_TENPERCENT && card.Money < Card.TEN_FIFTEENPERCENT)
             {
                 Console.WriteLine("Card switched to TenPercentDiscount");
                 card.SetState(new TenPercentDiscount());
             }
-            else if (card.Money >= Card.FIFTEENPERCENT)
+            else if (card.Money >= Card.TEN_FIFTEENPERCENT)
             {
                 Console.WriteLine("Card switched to FifteenPercentDiscount");
                 card.SetState(new FifteenPercentDiscount());
@@ -59,12 +59,12 @@ namespace Lab4_Part1
     {
         public void Handle(Card card)
         {
-            if (card.Money >= Card.FIFTEENPERCENT)
+            if (card.Money >= Card.TEN_FIFTEENPERCENT)
             {
                 Console.WriteLine("Card switched to FifteenPercentDiscount");
                 card.SetState(new FifteenPercentDiscount());
             }
-            else if (card.Money < Card.TENPERCENT)
+            else if (card.Money < Card.FIVE_TENPERCENT)
             {
                 Console.WriteLine("Card switched to FivePercentDiscount");
                 card.SetState(new FivePercentDiscount());
@@ -76,12 +76,12 @@ namespace Lab4_Part1
     {
         public void Handle(Card card)
         {
-            if (card.Money >= Card.TENPERCENT && card.Money < Card.FIFTEENPERCENT)
+            if (card.Money >= Card.FIVE_TENPERCENT && card.Money < Card.TEN_FIFTEENPERCENT)
             {
                 Console.WriteLine("Card switched to TenPercentDiscount");
                 card.SetState(new TenPercentDiscount());
             }
-            else if (card.Money < Card.TENPERCENT)
+            else if (card.Money < Card.FIVE_TENPERCENT)
             {
                 Console.WriteLine("Card switched to FivePercentDiscount");
                 card.SetState(new FivePercentDiscount());

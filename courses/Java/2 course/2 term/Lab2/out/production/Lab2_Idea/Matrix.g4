@@ -4,63 +4,67 @@ rule: 'hello' id+;
 id: STRING;
 
 STRING: CHAR+;
-CHAR: [a-z|A-Z];
+CHAR: [a-zA-Z];
 WS: ' '+ -> skip;
 */
+
+// det(A/k - C) === (A/k - C)^D
+// A/det(B)
+//a = [[1,2,3],[4,5,6],[7,8,9]]
+//a=[[1,2,3],[4,5.4,6],[7,8,9],[4,-98.3,2]]
 grammar Matrix;
-INT    : [0-9]+;
-DOUBLE : [0-9]+'.'[0-9]+;
-PI     : 'pi';
-E      : 'e';
-POW    : '^';
+/*
+INT    : '-'?[0-9]+;
+DOUBLE : '\\d'+'.'[0-9]+;
+*/
+
 NL     : '\n';
 WS     : [ \t\r]+ -> skip;
 ID     : [a-zA-Z_][a-zA-Z_0-9]*;
 
-PLUS  : '+';
+NUM    : '-'?([0-9]+ | [0-9]+'.'[0-9]+);
+VEC    : '['NUM(','NUM)*']';
+MATRIX : '['VEC(','VEC)*']';
+
 EQUAL : '=';
 MINUS : '-';
-MULT  : '*';
+PLUS  : '+';
 DIV   : '/';
+DET   : '^D';
 LPAR  : '(';
 RPAR  : ')';
 
-input
-    : setVar NL input     # ToSetVar
-    | plusOrMinus NL? EOF # Calculate
+root:
+    input EOF               #MainRule
     ;
 
-setVar
-    : ID EQUAL plusOrMinus # SetVariable
+input:
+    init                    #GoToInitialize
+    | plusMinus             #StartCalculation
     ;
 
-
-plusOrMinus
-    : plusOrMinus PLUS multOrDiv  # Plus
-    | plusOrMinus MINUS multOrDiv # Minus
-    | multOrDiv                   # ToMultOrDiv
+init:
+    ID EQUAL input          #Initialize
     ;
 
-multOrDiv
-    : multOrDiv MULT pow # Multiplication
-    | multOrDiv DIV pow  # Division
-    | pow                # ToPow
+plusMinus:
+    plusMinus PLUS div      #Plus
+    | plusMinus MINUS div   #Minus
+    | div                   #GoToDivision
     ;
 
-pow
-    : unaryMinus (POW pow)? # Power
+div:
+    div DIV NUM             #DivisionByNum
+    | div DIV det           #DivisionByDeterminant
+    | det                   #GoToDeterminant
     ;
 
-unaryMinus
-    : MINUS unaryMinus # ChangeSign
-    | atom             # ToAtom
+det:
+    exp (DET)?              #Determinant
     ;
 
-atom
-    : PI                    # ConstantPI
-    | E                     # ConstantE
-    | DOUBLE                # Double
-    | INT                   # Int
-    | ID                    # Variable
-    | LPAR plusOrMinus RPAR # Braces
+exp:
+    MATRIX                  #Matrix
+    | ID                    #Variable
+    | LPAR plusMinus RPAR   #Braces
     ;

@@ -31,17 +31,17 @@ public interface MatrixListener extends ParseTreeListener {
 	 */
 	void exitGoToInitialize(MatrixParser.GoToInitializeContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code GoToCalculation}
+	 * Enter a parse tree produced by the {@code StartCalculation}
 	 * labeled alternative in {@link MatrixParser#input}.
 	 * @param ctx the parse tree
 	 */
-	void enterGoToCalculation(MatrixParser.GoToCalculationContext ctx);
+	void enterStartCalculation(MatrixParser.StartCalculationContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code GoToCalculation}
+	 * Exit a parse tree produced by the {@code StartCalculation}
 	 * labeled alternative in {@link MatrixParser#input}.
 	 * @param ctx the parse tree
 	 */
-	void exitGoToCalculation(MatrixParser.GoToCalculationContext ctx);
+	void exitStartCalculation(MatrixParser.StartCalculationContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Initialize}
 	 * labeled alternative in {@link MatrixParser#init}.

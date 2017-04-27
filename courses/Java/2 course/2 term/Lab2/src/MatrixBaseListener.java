@@ -39,13 +39,13 @@ public class MatrixBaseListener implements MatrixListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGoToCalculation(MatrixParser.GoToCalculationContext ctx) { }
+	@Override public void enterStartCalculation(MatrixParser.StartCalculationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGoToCalculation(MatrixParser.GoToCalculationContext ctx) { }
+	@Override public void exitStartCalculation(MatrixParser.StartCalculationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

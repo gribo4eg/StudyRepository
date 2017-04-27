@@ -10,7 +10,8 @@ WS: ' '+ -> skip;
 
 // det(A/k - C) === (A/k - C)^D
 // A/det(B)
-
+//a = [[1,2,3],[4,5,6],[7,8,9]]
+//a=[[1,2,3],[4,5.4,6],[7,8,9],[4,-98.3,2]]
 grammar Matrix;
 /*
 INT    : '-'?[0-9]+;
@@ -39,7 +40,7 @@ root:
 
 input:
     init                    #GoToInitialize
-    | plusMinus             #GoToCalculation
+    | plusMinus             #StartCalculation
     ;
 
 init:

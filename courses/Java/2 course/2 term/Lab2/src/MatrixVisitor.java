@@ -24,12 +24,12 @@ public interface MatrixVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitGoToInitialize(MatrixParser.GoToInitializeContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code GoToCalculation}
+	 * Visit a parse tree produced by the {@code StartCalculation}
 	 * labeled alternative in {@link MatrixParser#input}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitGoToCalculation(MatrixParser.GoToCalculationContext ctx);
+	T visitStartCalculation(MatrixParser.StartCalculationContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Initialize}
 	 * labeled alternative in {@link MatrixParser#init}.

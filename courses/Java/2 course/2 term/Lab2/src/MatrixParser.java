@@ -168,22 +168,22 @@ public class MatrixParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class GoToCalculationContext extends InputContext {
+	public static class StartCalculationContext extends InputContext {
 		public PlusMinusContext plusMinus() {
 			return getRuleContext(PlusMinusContext.class,0);
 		}
-		public GoToCalculationContext(InputContext ctx) { copyFrom(ctx); }
+		public StartCalculationContext(InputContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).enterGoToCalculation(this);
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).enterStartCalculation(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).exitGoToCalculation(this);
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).exitStartCalculation(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MatrixVisitor ) return ((MatrixVisitor<? extends T>)visitor).visitGoToCalculation(this);
+			if ( visitor instanceof MatrixVisitor ) return ((MatrixVisitor<? extends T>)visitor).visitStartCalculation(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -204,7 +204,7 @@ public class MatrixParser extends Parser {
 				}
 				break;
 			case 2:
-				_localctx = new GoToCalculationContext(_localctx);
+				_localctx = new StartCalculationContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(18);

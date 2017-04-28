@@ -16,22 +16,22 @@ public class MatrixParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		NL=1, WS=2, ID=3, NUM=4, VEC=5, MATRIX=6, EQUAL=7, MINUS=8, PLUS=9, DIV=10, 
-		DET=11, LPAR=12, RPAR=13;
+		T__0=1, T__1=2, T__2=3, NL=4, WS=5, ID=6, NUMBER=7, EQUAL=8, MINUS=9, 
+		PLUS=10, DIV=11, DET=12, LPAR=13, RPAR=14;
 	public static final int
 		RULE_root = 0, RULE_input = 1, RULE_init = 2, RULE_plusMinus = 3, RULE_div = 4, 
-		RULE_det = 5, RULE_exp = 6;
+		RULE_det = 5, RULE_matr = 6, RULE_vect = 7, RULE_exp = 8;
 	public static final String[] ruleNames = {
-		"root", "input", "init", "plusMinus", "div", "det", "exp"
+		"root", "input", "init", "plusMinus", "div", "det", "matr", "vect", "exp"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'\n'", null, null, null, null, null, "'='", "'-'", "'+'", "'/'", 
-		"'^D'", "'('", "')'"
+		null, "'['", "','", "']'", "'\n'", null, null, null, "'='", "'-'", "'+'", 
+		"'/'", "'^D'", "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "NL", "WS", "ID", "NUM", "VEC", "MATRIX", "EQUAL", "MINUS", "PLUS", 
-		"DIV", "DET", "LPAR", "RPAR"
+		null, null, null, null, "NL", "WS", "ID", "NUMBER", "EQUAL", "MINUS", 
+		"PLUS", "DIV", "DET", "LPAR", "RPAR"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -121,9 +121,9 @@ public class MatrixParser extends Parser {
 			_localctx = new MainRuleContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(14);
+			setState(18);
 			input();
-			setState(15);
+			setState(19);
 			match(EOF);
 			}
 		}
@@ -192,14 +192,14 @@ public class MatrixParser extends Parser {
 		InputContext _localctx = new InputContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_input);
 		try {
-			setState(19);
+			setState(23);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				_localctx = new GoToInitializeContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(17);
+				setState(21);
 				init();
 				}
 				break;
@@ -207,7 +207,7 @@ public class MatrixParser extends Parser {
 				_localctx = new StartCalculationContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(18);
+				setState(22);
 				plusMinus(0);
 				}
 				break;
@@ -264,11 +264,11 @@ public class MatrixParser extends Parser {
 			_localctx = new InitializeContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(21);
+			setState(25);
 			match(ID);
-			setState(22);
+			setState(26);
 			match(EQUAL);
-			setState(23);
+			setState(27);
 			input();
 			}
 		}
@@ -380,11 +380,11 @@ public class MatrixParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(26);
+			setState(30);
 			div(0);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(36);
+			setState(40);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -392,18 +392,18 @@ public class MatrixParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(34);
+					setState(38);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
 					case 1:
 						{
 						_localctx = new PlusContext(new PlusMinusContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_plusMinus);
-						setState(28);
+						setState(32);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(29);
+						setState(33);
 						match(PLUS);
-						setState(30);
+						setState(34);
 						div(0);
 						}
 						break;
@@ -411,18 +411,18 @@ public class MatrixParser extends Parser {
 						{
 						_localctx = new MinusContext(new PlusMinusContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_plusMinus);
-						setState(31);
+						setState(35);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(32);
+						setState(36);
 						match(MINUS);
-						setState(33);
+						setState(37);
 						div(0);
 						}
 						break;
 					}
 					} 
 				}
-				setState(38);
+				setState(42);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 			}
@@ -455,7 +455,7 @@ public class MatrixParser extends Parser {
 			return getRuleContext(DivContext.class,0);
 		}
 		public TerminalNode DIV() { return getToken(MatrixParser.DIV, 0); }
-		public TerminalNode NUM() { return getToken(MatrixParser.NUM, 0); }
+		public TerminalNode NUMBER() { return getToken(MatrixParser.NUMBER, 0); }
 		public DivisionByNumContext(DivContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
@@ -534,11 +534,11 @@ public class MatrixParser extends Parser {
 			_ctx = _localctx;
 			_prevctx = _localctx;
 
-			setState(40);
+			setState(44);
 			det();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(50);
+			setState(54);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -546,37 +546,37 @@ public class MatrixParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(48);
+					setState(52);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 					case 1:
 						{
 						_localctx = new DivisionByNumContext(new DivContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_div);
-						setState(42);
+						setState(46);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(43);
+						setState(47);
 						match(DIV);
-						setState(44);
-						match(NUM);
+						setState(48);
+						match(NUMBER);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new DivisionByDeterminantContext(new DivContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_div);
-						setState(45);
+						setState(49);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(46);
+						setState(50);
 						match(DIV);
-						setState(47);
+						setState(51);
 						det();
 						}
 						break;
 					}
 					} 
 				}
-				setState(52);
+				setState(56);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			}
@@ -632,18 +632,170 @@ public class MatrixParser extends Parser {
 			_localctx = new DeterminantContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(53);
+			setState(57);
 			exp();
-			setState(55);
+			setState(59);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
 			case 1:
 				{
-				setState(54);
+				setState(58);
 				match(DET);
 				}
 				break;
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class MatrContext extends ParserRuleContext {
+		public MatrContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_matr; }
+	 
+		public MatrContext() { }
+		public void copyFrom(MatrContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class GoToVectContext extends MatrContext {
+		public List<VectContext> vect() {
+			return getRuleContexts(VectContext.class);
+		}
+		public VectContext vect(int i) {
+			return getRuleContext(VectContext.class,i);
+		}
+		public GoToVectContext(MatrContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).enterGoToVect(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).exitGoToVect(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MatrixVisitor ) return ((MatrixVisitor<? extends T>)visitor).visitGoToVect(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final MatrContext matr() throws RecognitionException {
+		MatrContext _localctx = new MatrContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_matr);
+		int _la;
+		try {
+			_localctx = new GoToVectContext(_localctx);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(61);
+			match(T__0);
+			setState(62);
+			vect();
+			setState(67);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__1) {
+				{
+				{
+				setState(63);
+				match(T__1);
+				setState(64);
+				vect();
+				}
+				}
+				setState(69);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(70);
+			match(T__2);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class VectContext extends ParserRuleContext {
+		public VectContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_vect; }
+	 
+		public VectContext() { }
+		public void copyFrom(VectContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class GoToNumberContext extends VectContext {
+		public List<TerminalNode> NUMBER() { return getTokens(MatrixParser.NUMBER); }
+		public TerminalNode NUMBER(int i) {
+			return getToken(MatrixParser.NUMBER, i);
+		}
+		public GoToNumberContext(VectContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).enterGoToNumber(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).exitGoToNumber(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MatrixVisitor ) return ((MatrixVisitor<? extends T>)visitor).visitGoToNumber(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final VectContext vect() throws RecognitionException {
+		VectContext _localctx = new VectContext(_ctx, getState());
+		enterRule(_localctx, 14, RULE_vect);
+		int _la;
+		try {
+			_localctx = new GoToNumberContext(_localctx);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(72);
+			match(T__0);
+			setState(73);
+			match(NUMBER);
+			setState(78);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			while (_la==T__1) {
+				{
+				{
+				setState(74);
+				match(T__1);
+				setState(75);
+				match(NUMBER);
+				}
+				}
+				setState(80);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+			}
+			setState(81);
+			match(T__2);
 			}
 		}
 		catch (RecognitionException re) {
@@ -666,23 +818,6 @@ public class MatrixParser extends Parser {
 		public ExpContext() { }
 		public void copyFrom(ExpContext ctx) {
 			super.copyFrom(ctx);
-		}
-	}
-	public static class MatrixContext extends ExpContext {
-		public TerminalNode MATRIX() { return getToken(MatrixParser.MATRIX, 0); }
-		public MatrixContext(ExpContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).enterMatrix(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).exitMatrix(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof MatrixVisitor ) return ((MatrixVisitor<? extends T>)visitor).visitMatrix(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class VariableContext extends ExpContext {
@@ -723,27 +858,46 @@ public class MatrixParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class GoToMatrixContext extends ExpContext {
+		public MatrContext matr() {
+			return getRuleContext(MatrContext.class,0);
+		}
+		public GoToMatrixContext(ExpContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).enterGoToMatrix(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MatrixListener ) ((MatrixListener)listener).exitGoToMatrix(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MatrixVisitor ) return ((MatrixVisitor<? extends T>)visitor).visitGoToMatrix(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 
 	public final ExpContext exp() throws RecognitionException {
 		ExpContext _localctx = new ExpContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_exp);
+		enterRule(_localctx, 16, RULE_exp);
 		try {
-			setState(63);
+			setState(89);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case MATRIX:
-				_localctx = new MatrixContext(_localctx);
+			case T__0:
+				_localctx = new GoToMatrixContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(57);
-				match(MATRIX);
+				setState(83);
+				matr();
 				}
 				break;
 			case ID:
 				_localctx = new VariableContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(58);
+				setState(84);
 				match(ID);
 				}
 				break;
@@ -751,11 +905,11 @@ public class MatrixParser extends Parser {
 				_localctx = new BracesContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(59);
+				setState(85);
 				match(LPAR);
-				setState(60);
+				setState(86);
 				plusMinus(0);
-				setState(61);
+				setState(87);
 				match(RPAR);
 				}
 				break;
@@ -803,23 +957,29 @@ public class MatrixParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17D\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\3\2\3\3\3\3\5\3\26"+
-		"\n\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5%\n\5\f\5"+
-		"\16\5(\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6\63\n\6\f\6\16\6\66"+
-		"\13\6\3\7\3\7\5\7:\n\7\3\b\3\b\3\b\3\b\3\b\3\b\5\bB\n\b\3\b\2\4\b\n\t"+
-		"\2\4\6\b\n\f\16\2\2\2D\2\20\3\2\2\2\4\25\3\2\2\2\6\27\3\2\2\2\b\33\3\2"+
-		"\2\2\n)\3\2\2\2\f\67\3\2\2\2\16A\3\2\2\2\20\21\5\4\3\2\21\22\7\2\2\3\22"+
-		"\3\3\2\2\2\23\26\5\6\4\2\24\26\5\b\5\2\25\23\3\2\2\2\25\24\3\2\2\2\26"+
-		"\5\3\2\2\2\27\30\7\5\2\2\30\31\7\t\2\2\31\32\5\4\3\2\32\7\3\2\2\2\33\34"+
-		"\b\5\1\2\34\35\5\n\6\2\35&\3\2\2\2\36\37\f\5\2\2\37 \7\13\2\2 %\5\n\6"+
-		"\2!\"\f\4\2\2\"#\7\n\2\2#%\5\n\6\2$\36\3\2\2\2$!\3\2\2\2%(\3\2\2\2&$\3"+
-		"\2\2\2&\'\3\2\2\2\'\t\3\2\2\2(&\3\2\2\2)*\b\6\1\2*+\5\f\7\2+\64\3\2\2"+
-		"\2,-\f\5\2\2-.\7\f\2\2.\63\7\6\2\2/\60\f\4\2\2\60\61\7\f\2\2\61\63\5\f"+
-		"\7\2\62,\3\2\2\2\62/\3\2\2\2\63\66\3\2\2\2\64\62\3\2\2\2\64\65\3\2\2\2"+
-		"\65\13\3\2\2\2\66\64\3\2\2\2\679\5\16\b\28:\7\r\2\298\3\2\2\29:\3\2\2"+
-		"\2:\r\3\2\2\2;B\7\b\2\2<B\7\5\2\2=>\7\16\2\2>?\5\b\5\2?@\7\17\2\2@B\3"+
-		"\2\2\2A;\3\2\2\2A<\3\2\2\2A=\3\2\2\2B\17\3\2\2\2\t\25$&\62\649A";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20^\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
+		"\3\3\3\3\5\3\32\n\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
+		"\5\7\5)\n\5\f\5\16\5,\13\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6\67"+
+		"\n\6\f\6\16\6:\13\6\3\7\3\7\5\7>\n\7\3\b\3\b\3\b\3\b\7\bD\n\b\f\b\16\b"+
+		"G\13\b\3\b\3\b\3\t\3\t\3\t\3\t\7\tO\n\t\f\t\16\tR\13\t\3\t\3\t\3\n\3\n"+
+		"\3\n\3\n\3\n\3\n\5\n\\\n\n\3\n\2\4\b\n\13\2\4\6\b\n\f\16\20\22\2\2\2^"+
+		"\2\24\3\2\2\2\4\31\3\2\2\2\6\33\3\2\2\2\b\37\3\2\2\2\n-\3\2\2\2\f;\3\2"+
+		"\2\2\16?\3\2\2\2\20J\3\2\2\2\22[\3\2\2\2\24\25\5\4\3\2\25\26\7\2\2\3\26"+
+		"\3\3\2\2\2\27\32\5\6\4\2\30\32\5\b\5\2\31\27\3\2\2\2\31\30\3\2\2\2\32"+
+		"\5\3\2\2\2\33\34\7\b\2\2\34\35\7\n\2\2\35\36\5\4\3\2\36\7\3\2\2\2\37 "+
+		"\b\5\1\2 !\5\n\6\2!*\3\2\2\2\"#\f\5\2\2#$\7\f\2\2$)\5\n\6\2%&\f\4\2\2"+
+		"&\'\7\13\2\2\')\5\n\6\2(\"\3\2\2\2(%\3\2\2\2),\3\2\2\2*(\3\2\2\2*+\3\2"+
+		"\2\2+\t\3\2\2\2,*\3\2\2\2-.\b\6\1\2./\5\f\7\2/8\3\2\2\2\60\61\f\5\2\2"+
+		"\61\62\7\r\2\2\62\67\7\t\2\2\63\64\f\4\2\2\64\65\7\r\2\2\65\67\5\f\7\2"+
+		"\66\60\3\2\2\2\66\63\3\2\2\2\67:\3\2\2\28\66\3\2\2\289\3\2\2\29\13\3\2"+
+		"\2\2:8\3\2\2\2;=\5\22\n\2<>\7\16\2\2=<\3\2\2\2=>\3\2\2\2>\r\3\2\2\2?@"+
+		"\7\3\2\2@E\5\20\t\2AB\7\4\2\2BD\5\20\t\2CA\3\2\2\2DG\3\2\2\2EC\3\2\2\2"+
+		"EF\3\2\2\2FH\3\2\2\2GE\3\2\2\2HI\7\5\2\2I\17\3\2\2\2JK\7\3\2\2KP\7\t\2"+
+		"\2LM\7\4\2\2MO\7\t\2\2NL\3\2\2\2OR\3\2\2\2PN\3\2\2\2PQ\3\2\2\2QS\3\2\2"+
+		"\2RP\3\2\2\2ST\7\5\2\2T\21\3\2\2\2U\\\5\16\b\2V\\\7\b\2\2WX\7\17\2\2X"+
+		"Y\5\b\5\2YZ\7\20\2\2Z\\\3\2\2\2[U\3\2\2\2[V\3\2\2\2[W\3\2\2\2\\\23\3\2"+
+		"\2\2\13\31(*\668=EP[";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

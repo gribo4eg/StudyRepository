@@ -147,13 +147,37 @@ public class MatrixBaseListener implements MatrixListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMatrix(MatrixParser.MatrixContext ctx) { }
+	@Override public void enterGoToVect(MatrixParser.GoToVectContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMatrix(MatrixParser.MatrixContext ctx) { }
+	@Override public void exitGoToVect(MatrixParser.GoToVectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGoToNumber(MatrixParser.GoToNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGoToNumber(MatrixParser.GoToNumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGoToMatrix(MatrixParser.GoToMatrixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGoToMatrix(MatrixParser.GoToMatrixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

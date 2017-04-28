@@ -22,9 +22,9 @@ NL     : '\n';
 WS     : [ \t\r]+ -> skip;
 ID     : [a-zA-Z_][a-zA-Z_0-9]*;
 
-NUM    : '-'?([0-9]+ | [0-9]+'.'[0-9]+);
-VEC    : '['NUM(','NUM)*']';
-MATRIX : '['VEC(','VEC)*']';
+NUMBER    : '-'?([0-9]+ | [0-9]+'.'[0-9]+);
+//VEC    : '['NUM(','NUM)*']';
+//MATRIX : '['VEC(','VEC)*']';
 
 EQUAL : '=';
 MINUS : '-';
@@ -54,7 +54,7 @@ plusMinus:
     ;
 
 div:
-    div DIV NUM             #DivisionByNum
+    div DIV NUMBER            #DivisionByNum
     | div DIV det           #DivisionByDeterminant
     | det                   #GoToDeterminant
     ;
@@ -63,8 +63,16 @@ det:
     exp (DET)?              #Determinant
     ;
 
+matr:
+    '['vect(','vect)*']'    #GoToVect
+    ;
+
+vect:
+    '['NUMBER(','NUMBER)*']'      #GoToNumber
+    ;
+
 exp:
-    MATRIX                  #Matrix
+    matr                    #GoToMatrix
     | ID                    #Variable
     | LPAR plusMinus RPAR   #Braces
     ;

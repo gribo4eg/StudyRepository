@@ -139,17 +139,41 @@ public interface MatrixListener extends ParseTreeListener {
 	 */
 	void exitDeterminant(MatrixParser.DeterminantContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Matrix}
-	 * labeled alternative in {@link MatrixParser#exp}.
+	 * Enter a parse tree produced by the {@code GoToVect}
+	 * labeled alternative in {@link MatrixParser#matr}.
 	 * @param ctx the parse tree
 	 */
-	void enterMatrix(MatrixParser.MatrixContext ctx);
+	void enterGoToVect(MatrixParser.GoToVectContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Matrix}
+	 * Exit a parse tree produced by the {@code GoToVect}
+	 * labeled alternative in {@link MatrixParser#matr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGoToVect(MatrixParser.GoToVectContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GoToNumber}
+	 * labeled alternative in {@link MatrixParser#vect}.
+	 * @param ctx the parse tree
+	 */
+	void enterGoToNumber(MatrixParser.GoToNumberContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GoToNumber}
+	 * labeled alternative in {@link MatrixParser#vect}.
+	 * @param ctx the parse tree
+	 */
+	void exitGoToNumber(MatrixParser.GoToNumberContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GoToMatrix}
 	 * labeled alternative in {@link MatrixParser#exp}.
 	 * @param ctx the parse tree
 	 */
-	void exitMatrix(MatrixParser.MatrixContext ctx);
+	void enterGoToMatrix(MatrixParser.GoToMatrixContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GoToMatrix}
+	 * labeled alternative in {@link MatrixParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitGoToMatrix(MatrixParser.GoToMatrixContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Variable}
 	 * labeled alternative in {@link MatrixParser#exp}.

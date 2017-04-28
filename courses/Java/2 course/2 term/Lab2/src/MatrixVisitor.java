@@ -87,12 +87,26 @@ public interface MatrixVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDeterminant(MatrixParser.DeterminantContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Matrix}
+	 * Visit a parse tree produced by the {@code GoToVect}
+	 * labeled alternative in {@link MatrixParser#matr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGoToVect(MatrixParser.GoToVectContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GoToNumber}
+	 * labeled alternative in {@link MatrixParser#vect}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGoToNumber(MatrixParser.GoToNumberContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code GoToMatrix}
 	 * labeled alternative in {@link MatrixParser#exp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMatrix(MatrixParser.MatrixContext ctx);
+	T visitGoToMatrix(MatrixParser.GoToMatrixContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Variable}
 	 * labeled alternative in {@link MatrixParser#exp}.

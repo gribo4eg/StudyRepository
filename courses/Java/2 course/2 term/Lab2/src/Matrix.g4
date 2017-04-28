@@ -1,30 +1,10 @@
-/*grammar Matrix;
-
-rule: 'hello' id+;
-id: STRING;
-
-STRING: CHAR+;
-CHAR: [a-zA-Z];
-WS: ' '+ -> skip;
-*/
-
-// det(A/k - C) === (A/k - C)^D
-// A/det(B)
-//a = [[1,2,3],[4,5,6],[7,8,9]]
-//a=[[1,2,3],[4,5.4,6],[7,8,9],[4,-98.3,2]]
 grammar Matrix;
-/*
-INT    : '-'?[0-9]+;
-DOUBLE : '\\d'+'.'[0-9]+;
-*/
 
 NL     : '\n';
 WS     : [ \t\r]+ -> skip;
 ID     : [a-zA-Z_][a-zA-Z_0-9]*;
 
 NUMBER    : '-'?([0-9]+ | [0-9]+'.'[0-9]+);
-//VEC    : '['NUM(','NUM)*']';
-//MATRIX : '['VEC(','VEC)*']';
 
 EQUAL : '=';
 MINUS : '-';

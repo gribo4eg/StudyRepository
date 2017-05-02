@@ -1,0 +1,23 @@
+﻿<Window x:Class="landlord.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:user="clr-namespace:landlord"
+        mc:Ignorable="d"
+        Title="LandLord" Height="363.333" Width="709">
+    <Window.DataContext>
+        <user:ViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <ListView ItemsSource="{Binding Peasants}" HorizontalAlignment="Left" Height="182" Margin="10,10,0,0" VerticalAlignment="Top" Width="317">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>

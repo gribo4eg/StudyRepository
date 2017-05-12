@@ -71,8 +71,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Peasant.cs" />
+    <Compile Include="Building.cs" />
+    <Compile Include="Experience.cs" />
+    <Compile Include="People.cs" />
+    <Compile Include="PeopleFactory.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="Tools.cs" />
     <Compile Include="ViewModel.cs" />
+    <Compile Include="Work.cs" />
     <Page Include="View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

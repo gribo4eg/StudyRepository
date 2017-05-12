@@ -1,1 +1,1 @@
-[{"Age":10,"Name":"PeasantOne"},{"Age":20,"Name":"PeasantTwo"}]
+[{"__type":"Peasant:#landlord","Age":10,"Name":"Peasant with Axe"},{"__type":"Peasant:#landlord","Age":20,"Name":"Peasant with Sickle"}]

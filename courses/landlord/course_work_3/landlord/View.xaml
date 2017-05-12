@@ -5,19 +5,120 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:user="clr-namespace:landlord"
         mc:Ignorable="d"
-        Title="LandLord" Height="363.333" Width="709">
+        Title="I am Groot" Height="661.533" Width="919.375">
     <Window.DataContext>
         <user:ViewModel/>
     </Window.DataContext>
     <Grid>
-        <ListView ItemsSource="{Binding Peasants}" HorizontalAlignment="Left" Height="182" Margin="10,10,0,0" VerticalAlignment="Top" Width="317">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <GroupBox Header="Peasants" HorizontalAlignment="Left" Height="201" Margin="20,24,0,0" VerticalAlignment="Top" Width="262">
+            <ListView x:Name="peasantsList" ItemsSource="{Binding Peasants}" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="231">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="155"/>
+                        <GridViewColumn Header="Energy" DisplayMemberBinding="{Binding Energy}" Width="53"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Header="Warriors" HorizontalAlignment="Left" Height="201" Margin="338,24,0,0" VerticalAlignment="Top" Width="255">
+            <ListView x:Name="warriorsList" ItemsSource="{Binding Warriors}" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="226">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="155"/>
+                        <GridViewColumn Header="Energy" DisplayMemberBinding="{Binding Energy}" Width="53"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Header="Builders" HorizontalAlignment="Left" Height="201" Margin="638,19,0,0" VerticalAlignment="Top" Width="261">
+            <ListView x:Name="buildersList" ItemsSource="{Binding Builders}" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="232">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="155"/>
+                        <GridViewColumn Header="Energy" DisplayMemberBinding="{Binding Energy}" Width="53"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox Header="Settlers" HorizontalAlignment="Left" Height="201" Margin="258,297,0,0" VerticalAlignment="Top" Width="225">
+            <ListView x:Name="settlersList" ItemsSource="{Binding Settlers}" HorizontalAlignment="Left" Height="163" Margin="10,10,0,0" VerticalAlignment="Top" Width="196">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="131"/>
+                        <GridViewColumn Header="Energy" DisplayMemberBinding="{Binding Energy}" Width="55"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <Button Content="Change tool for peasant" HorizontalAlignment="Left" Margin="80,225,0,0" VerticalAlignment="Top" Width="133" Click="ChangeToolButt_Click"/>
+        <Button Content="Change tool for warrior" HorizontalAlignment="Left" Margin="397,225,0,0" VerticalAlignment="Top" Width="134" Click="ChangeToolButt_Click"/>
+        <StackPanel HorizontalAlignment="Left" Height="100" Margin="505,297,0,0" VerticalAlignment="Top" Width="100">
+            <Button x:Name="toPeasantButt" Content="To Peasant" Click="ToPeasantButt_Click"/>
+            <Button x:Name="toWarriorButt" Content="To Warrior" Click="ToWarriorButt_Click"/>
+            <Button x:Name="toBuilderButt" Content="To Builder" Click="ToBuilderButt_Click"/>
+            <Button x:Name="toSettlerButt" Content="To Settler" Click ="ToSettlerButt_Click"/>
+        </StackPanel>
+        <GroupBox Header="List of Work" HorizontalAlignment="Left" Height="201" Margin="638,297,0,0" VerticalAlignment="Top" Width="261">
+            <ListView x:Name="jobsList" ItemsSource="{Binding Jobs}" HorizontalAlignment="Left" Height="160" Margin="10,10,0,0" VerticalAlignment="Top" Width="230">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Job" DisplayMemberBinding="{Binding Name}" Width="119"/>
+                        <GridViewColumn Header="Profit" DisplayMemberBinding="{Binding Profit}" Width="49"/>
+                        <GridViewColumn Header="Need energ" DisplayMemberBinding="{Binding NeedEnergy}" Width="50"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <Button x:Name="DoWorkButt" Content="Do Work!" HorizontalAlignment="Left" Margin="673,504,0,0" VerticalAlignment="Top" Width="204" Height="27" Click="DoWorkButt_Click"/>
+        <Label Content="Gold" HorizontalAlignment="Left" Margin="63,524,0,0" VerticalAlignment="Top" Width="44" Height="23"/>
+        <TextBox x:Name="GoldBox" HorizontalAlignment="Left" Height="23" Margin="112,524,0,0" TextWrapping="Wrap" Text="{Binding Path=GoldCount, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="51" IsReadOnly="True"/>
+        <Label Content="Wood:" HorizontalAlignment="Left" Margin="63,552,0,0" VerticalAlignment="Top" Width="44" Height="23"/>
+        <TextBox x:Name="WoodBox" HorizontalAlignment="Left" Height="23" Margin="112,552,0,0" TextWrapping="Wrap" Text="{Binding Path=WoodCount, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="51" IsReadOnly="True"/>
+        <Label Content="Food:" HorizontalAlignment="Left" Margin="63,580,0,0" VerticalAlignment="Top" Width="44" Height="23"/>
+        <TextBox x:Name="FoodBox" HorizontalAlignment="Left" Height="23" Margin="112,580,0,0" TextWrapping="Wrap" Text="{Binding Path=FoodCount, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="51" IsReadOnly="True"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="97" Margin="63,515,0,0" VerticalAlignment="Top" Width="109"/>
+        <Button x:Name="AddSettlerButt" Content="Add Settler" HorizontalAlignment="Left" Margin="505,402,0,0" VerticalAlignment="Top" Width="100" Command="{Binding AddSettlerCommand}" Click="AddSettlerButt_Click"/>
+        <ComboBox x:Name="ToBoughtPupilType" HorizontalAlignment="Left" Margin="288,514,0,0" VerticalAlignment="Top" Width="83" IsEditable="False" Height="31">
+            <ComboBoxItem IsSelected="True">Peasant</ComboBoxItem>
+            <ComboBoxItem>Warrior</ComboBoxItem>
+            <ComboBoxItem>Builder</ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="ToBoughtExpLvl" HorizontalAlignment="Left" Margin="288,550,0,0" VerticalAlignment="Top" Width="83" IsEditable="False" Height="31">
+            <ComboBoxItem IsSelected="True">High</ComboBoxItem>
+            <ComboBoxItem>Middle</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Type: " HorizontalAlignment="Left" Margin="239,514,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.105,1.615" Height="31" Width="44"/>
+        <Label Content="Exp: " HorizontalAlignment="Left" Margin="239,550,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.105,1.615" Height="31" Width="44"/>
+        <Button x:Name="ToBoughtButt" Content="Buy!" HorizontalAlignment="Left" Margin="239,586,0,0" VerticalAlignment="Top" Width="132" Height="26" Click="ToBoughtButt_Click"/>
+        <Label Content="Capacity:" HorizontalAlignment="Left" Margin="239,261,0,0" VerticalAlignment="Top" Width="59" Height="31"/>
+        <TextBox x:Name="Capacity" HorizontalAlignment="Left" Height="23" Margin="303,263,0,0" TextWrapping="Wrap" Text="{Binding Path=Capacity, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="39" IsReadOnly="True"/>
+        <Label Content="/" HorizontalAlignment="Left" Margin="347,261,0,0" VerticalAlignment="Top" Width="17" Height="31"/>
+        <TextBox x:Name="MaxCapacity" HorizontalAlignment="Left" Height="23" Margin="369,263,0,0" TextWrapping="Wrap" Text="{Binding Path =MaxCapacity, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="39" IsReadOnly="True"/>
+        <Button Content="Change tool for builder" HorizontalAlignment="Left" Margin="708,225,0,0" VerticalAlignment="Top" Width="134" Click="ChangeToolButt_Click"/>
+        <TextBox x:Name="JobName" HorizontalAlignment="Left" Height="23" Margin="450,563,0,0" TextWrapping="Wrap" Text="new work name" IsReadOnly="False" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="JobType" HorizontalAlignment="Left" Margin="575,564,0,0" VerticalAlignment="Top" Width="73">
+            <ComboBoxItem IsEnabled="True">Sickle</ComboBoxItem>
+            <ComboBoxItem>Axe</ComboBoxItem>
+            <ComboBoxItem>Sword</ComboBoxItem>
+            <ComboBoxItem>Bow</ComboBoxItem>
+            <ComboBoxItem>Pickaxe</ComboBoxItem>
+            <ComboBoxItem>Hammer</ComboBoxItem>
+            <ComboBoxItem>Saw</ComboBoxItem>
+        </ComboBox>
+        <TextBox x:Name="JobProfit" HorizontalAlignment="Left" Height="23" Margin="653,563,0,0" TextWrapping="Wrap" Text="profit" IsReadOnly="False" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="JobEnergy" HorizontalAlignment="Left" Height="23" Margin="708,563,0,0" TextWrapping="Wrap" Text="need energy" IsReadOnly="False" VerticalAlignment="Top" Width="86"/>
+        <Button Content="Add Job!" HorizontalAlignment="Left" Margin="799,564,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click"/>
+        <GroupBox Header="Buildings" HorizontalAlignment="Left" Height="201" Margin="20,297,0,0" VerticalAlignment="Top" Width="223">
+            <ListView x:Name="buildingsList" ItemsSource="{Binding Buildings}" HorizontalAlignment="Left" Height="161" Margin="10,10,0,0" VerticalAlignment="Top" Width="185">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="80"/>
+                        <GridViewColumn Header="Capacity" DisplayMemberBinding="{Binding IncreaseCapacity}" Width="50"/>
+                        <GridViewColumn Header="Energy" DisplayMemberBinding="{Binding IncreaseEnergy}" Width="50"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
 
     </Grid>
 </Window>

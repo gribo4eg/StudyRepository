@@ -25,7 +25,6 @@ namespace landlord
         {
             Name = GetType().Name;
         }
-
     }
 
     public class Castle : Building

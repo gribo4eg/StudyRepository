@@ -16,9 +16,9 @@ using System.ComponentModel;
 using System.Windows.Controls;
 
 /// <summary>
-/// WRAPPER
-/// PROXY
-/// STATE
+/// WRAPPER +
+/// PROXY +
+/// STATE 
 /// BRIDGE
 /// CHAIN OF RESPONSIBILITY
 /// ABSTRACT FACTORY 
@@ -88,14 +88,14 @@ namespace landlord
             Buildings = new ObservableCollection<Building>();
             Jobs = new ObservableCollection<Work>()
             {
-                new ProxyPeasantSickleWork("Harvest", 7, 5),
-                new ProxyPeasantAxeWork("Collect timber", 10, 8),
-                new ProxyWarriorSwordWork("Kill the Spy", 25, 7),
-                new ProxyPeasantAxeWork("Cut some Trees", 6, 3),
-                new ProxyWarriorBowWork("Protect Castle", 10, 9),
-                new ProxyBuilderPickaxeWork("Build Castle", 0, 13),
-                new ProxyBuilderHammerWork("Build Pub", 0, 10),
-                new ProxyBuilderSawWork("Build Farm", 0, 7)
+                new ProxyWork<PeasantSickleWork, Sickle>("Harvest", 8, 9),
+                new ProxyWork<PeasantAxeWork, Axe>("Collect timber", 10, 8),
+                new ProxyWork<WarriorSwordWork, Sword>("Kill the Spy", 25, 7),
+                new ProxyWork<WarriorBowWork, Bow>("Cut some Trees", 6, 3),
+                new ProxyWork<WarriorSwordWork, Sword>("Protect Castle", 10, 9),
+                new ProxyWork<BuilderPickaxeWork, Pickaxe>("Build Castle", 0, 13),
+                new ProxyWork<BuilderHammerWork, Hammer>("Build Pub", 0, 10),
+                new ProxyWork<BuilderSawWork, Saw>("Build Farm", 0, 7)
             };
             MaxCapacity = MaxStartedCapacity;
             SetCapacity();
@@ -201,33 +201,5 @@ namespace landlord
             SetSuccessors();
         }
     }
+
 }
-
-/*  
- *  using (Stream stream = new FileStream("peasants.json", FileMode.Create))
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(List<Peasant>));
-
-                List<Peasant> peasants = new List<Peasant> {
-                    new Peasant("PeasantOne", 10),
-                    new Peasant("PeasantTwo", 20)
-                };
-
-                ser.WriteObject(stream, peasants);
-            }
-            
-            using (Stream stream = new FileStream("settlers.json", FileMode.Create))
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ObservableCollection<Settler>));
-
-                ser.WriteObject(stream, Settlers);
-            }
-
-            using (Stream stream = new FileStream("settlers.json", FileMode.Open))
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ObservableCollection<Settler>));
-
-                Settlers = (ObservableCollection<Settler>)ser.ReadObject(stream);
-            }
-            
-*/

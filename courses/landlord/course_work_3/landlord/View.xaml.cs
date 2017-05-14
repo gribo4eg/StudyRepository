@@ -323,25 +323,25 @@ namespace landlord
             switch (type)
             {
                 case "Sickle":
-                    work = new ProxyPeasantSickleWork(name, profit, energy);
+                    work = new ProxyWork<PeasantSickleWork, Sickle>(name, profit, energy);
                     break;
                 case "Axe":
-                    work = new ProxyPeasantAxeWork(name, profit, energy);
+                    work = new ProxyWork<PeasantAxeWork, Axe>(name, profit, energy);
                     break;
                 case "Sword":
-                    work = new ProxyWarriorSwordWork(name, profit, energy);
+                    work = new ProxyWork<WarriorSwordWork, Sword>(name, profit, energy);
                     break;
                 case "Bow":
-                    work = new ProxyWarriorBowWork(name, profit, energy);
+                    work = new ProxyWork<WarriorBowWork, Bow>(name, profit, energy);
                     break;
                 case "Pickaxe":
-                    work = new ProxyBuilderPickaxeWork("Repaire Castle", 20, 10);
+                    work = new ProxyWork<BuilderPickaxeWork, Pickaxe>("Repaire Castle", 20, 10);
                     break;
                 case "Hammer":
-                    work = new ProxyBuilderHammerWork("Repaire Pub", 15, 7);
+                    work = new ProxyWork<BuilderHammerWork, Hammer>("Repaire Pub", 15, 7);
                     break;
                 case "Saw":
-                    work = new ProxyBuilderSawWork("Repaire Farm", 10, 5);
+                    work = new ProxyWork<BuilderSawWork, Saw>("Repaire Farm", 10, 5);
                     break;
             }
 

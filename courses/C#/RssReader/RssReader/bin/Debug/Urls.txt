@@ -1,0 +1,3 @@
+﻿http://rss.nytimes.com/services/xml/rss/nyt/Music.xml
+http://rss.nytimes.com/services/xml/rss/nyt/Arts.xml
+http://rss.nytimes.com/services/xml/rss/nyt/Movies.xml

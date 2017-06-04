@@ -1,0 +1,75 @@
+﻿<Window x:Class="RssReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:user="clr-namespace:RssReader"
+        mc:Ignorable="d"
+        Closing="MainWindow_Closing"
+        ResizeMode="NoResize"
+        Title="I am Groot" Height="500.333" Width="743.067">
+    <Window.DataContext>
+        <user:MainWindowModel/>
+    </Window.DataContext>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" >
+            <MenuItem Command="{Binding UpdateCommand}" Header="UpdateNews" />
+        </Menu>
+        <DockPanel Grid.Row="1" Margin="0,0,0,417">
+            <Label Content="Word:"/>
+            <Button Name="searchBtn"
+                    DockPanel.Dock="Right"
+                    Content="Search" Width="57" Click="searchBtn_Click"/>
+            <TextBox Name="searchTextBox"/>
+        </DockPanel>
+        <DockPanel Grid.Row="2" Margin="0,37,0,380">
+            <Label Content="Url:    "/>
+            <Button Name="addUrlBtn"
+                    DockPanel.Dock="Right"
+                    Content="Add Url" Width="57" Click="addUrlBtn_Click" Command="{Binding UpdateCommand}"/>
+            <TextBox Name="addUrlTextBox"/>
+        </DockPanel>
+        <Grid Grid.Row="3" Margin="0,75,0,0">
+            <ListView x:Name="lstFeedItems"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      ItemsSource="{Binding Channels}" Margin="10,10,0,0" Height="353" Width="130">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Channel" DisplayMemberBinding="{Binding Title}" Width="130" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView x:Name="chItems"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                     Margin="145,10,0,0"
+                     ItemsSource="{Binding SelectedItem.Items, ElementName=lstFeedItems}" Height="353" Width="232">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="News" DisplayMemberBinding="{Binding Title}" Width="230"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Title:" Margin="398,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" RenderTransformOrigin="1,0.5" />
+            <Label Content="Link:" Margin="398,93,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="35"/>
+            <Label Content="Description:" Margin="398,192,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.521,2.154"/>
+            <TextBox Text="{Binding SelectedItem.Title, ElementName=chItems}" IsReadOnly="True"
+                HorizontalAlignment="Left" Height="47" Margin="398,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"/>
+            <TextBox Text="{Binding SelectedItem.Link, ElementName=chItems}" IsReadOnly="True"
+                HorizontalAlignment="Left" Height="63" Margin="398,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"/>
+            <TextBox Text="{Binding SelectedItem.Description, ElementName=chItems}" IsReadOnly="True"
+                HorizontalAlignment="Left" Height="78" Margin="398,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"/>
+            <Label Content="Date:" Margin="398,306,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.521,2.154"/>
+            <TextBox Text="{Binding SelectedItem.Date, ElementName=chItems}" IsReadOnly="True"
+                HorizontalAlignment="Left" Height="26" Margin="398,337,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="327"/>
+
+        </Grid>
+    </Grid>
+
+</Window>

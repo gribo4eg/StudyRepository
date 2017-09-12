@@ -1,8 +1,0 @@
-1. Show products
-2. Add product
-3. Create products list
-4. Create order
-5. Show orders id
-6. Show order by id
-
-9. Exit

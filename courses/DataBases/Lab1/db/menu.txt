@@ -1,0 +1,13 @@
+1. Show products
+2. Create product
+3. Delete product
+4. Show orders id
+5. Show order by id
+6. Create order
+7. Add product to order
+8. Remove product from order
+10. Find products in orders with
+    cost more then 100
+11. Delete order
+
+9. Exit

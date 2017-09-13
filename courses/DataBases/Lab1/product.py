@@ -19,6 +19,20 @@ class Products:
                 self.products.append(product)
                 return product
 
+    def update(self, pid, newName, newCost):
+        product = self.get_product_by_id(pid)
+        if product is not None:
+            product.name = newName
+            product.cost = newCost
+        return product
+
+    def get_product_by_id(self, pid):
+        product = [item for item in self.products if str(item.id) == str(pid)]
+        if product:
+            return product[0]
+        else:
+            return None
+
     def delete(self, pid):
         delete = [item for item in self.products if str(item.id) == str(pid)]
         if delete:

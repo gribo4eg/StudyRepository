@@ -6,9 +6,10 @@ class Menu:
 
         products = Files.load_products()
         orders = Files.load_orders()
+        menu = self.show_menu()
 
         while True:
-            choice = input('\n'+self.show_menu() + "\n\n>>>\t")
+            choice = input('\n'+menu + "\n\n>>>\t")
 
             if choice == '1':
                 self.show_products(products)

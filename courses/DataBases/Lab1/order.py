@@ -71,6 +71,7 @@ class Orders:
                 res += "Order id: %s\n\t\t" % order.id
                 for target in targets:
                     res += target.__str__() + "\n\t\t"
+                res += '\n'
 
         if res == "": return None
         else: return res

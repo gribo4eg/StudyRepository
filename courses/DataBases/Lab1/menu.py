@@ -146,8 +146,7 @@ class Menu:
         else:
             print("No such Object in db!")
 
-    def \
-            show_menu(self):
+    def show_menu(self):
         with open('./db/menu.txt', 'r') as m:
             menu = m.read()
         return menu

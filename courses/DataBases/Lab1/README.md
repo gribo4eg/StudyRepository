@@ -1,7 +1,6 @@
 Lab1 DataBases
 ============
-***
-Var
+Variant:
 ---
 ![Variant](./pic/var.png)
 ***

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Films</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+     <div id="result" >Тут будет ответ от сервера</div><br /><br />
+
+         <button type='submit' id="button">Отправить GET запрос через Ajax</button><br />
+
+</body>
+
+<script type="text/javascript">
+
+    function hi() {
+        data = {
+            "host":"localhost",
+            "port":"8000"
+        };
+
+        $.post('/kek/', data, function (data, status) {
+            alert(data +' '+status)
+        })
+    }
+    $(function () {
+        $('#button').click(function () {
+            $.post(
+                'kek/',
+                {
+                    "host":"localhost",
+                    "port":"8000"
+                },function (data) {
+                    alert(data)
+                })
+        })
+    })
+</script>
+
+</html>

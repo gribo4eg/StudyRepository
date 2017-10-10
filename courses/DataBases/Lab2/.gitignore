@@ -1,2 +1,2 @@
-#ignore cnf file
-*.cnf
+#Ignore db.cnf
+Lab2App/static/Lab2App/db.json

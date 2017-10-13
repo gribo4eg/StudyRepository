@@ -1,6 +1,6 @@
 import MySQLdb
+import json
 
-from django.core.serializers import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
@@ -13,6 +13,23 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         pass
 
-def keke(request):
+def get_all_dimensions(request):
 
-    return HttpResponse()
+    db = Database()
+
+    directors = db.get_directors_dicts()
+    films = db.get_films_dicts()
+    studios = db.get_studios_dicts()
+
+    db.close_connection()
+
+    res = dict({
+        'data':{
+            'directors':directors,
+            'films':films,
+            'studios':studios
+        }
+    })
+
+    print("Sending data!")
+    return HttpResponse(json.dumps(res), content_type='application/json')

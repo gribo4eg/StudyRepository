@@ -1,45 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-     <meta charset="utf-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title>Films</title>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+        <title>Films</title>
 
-<body>
-     <div id="result" >Тут будет ответ от сервера</div><br /><br />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
 
-         <button type='submit' id="button">Отправить GET запрос через Ajax</button><br />
+    <body>
+         <div class="container">
 
-</body>
+             <div class="jumbotron">
 
-<script type="text/javascript">
+                 <h1 class="text-center">Film creation</h1>
+             </div>
+             <div class="alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <strong>Success!</strong> This alert box could indicate a successful or positive action.
+             </div>
+             <table class="table table-bordered table-hover well">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Film</th>
+                  <th>Director</th>
+                  <th>Studio</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>id film creat</td>
+                  <td>film name</td>
+                  <td>director name</td>
+                  <td>studio name</td>
+                  <td class="text-center">
+                      <div class="">
+                       <button type="button" class="btn btn-info btn-sm" value="Update">Update</button>
+                       <button type="button" class="btn btn-danger btn-sm" value="Delete">Delete</button>
+                      </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-    function hi() {
-        data = {
-            "host":"localhost",
-            "port":"8000"
-        };
+             <!--
+            <table class="table" style="border: 0px">
+                <tbody>
+                    <tr>
+                        <td class="text-center">
 
-        $.post('/kek/', data, function (data, status) {
-            alert(data +' '+status)
-        })
-    }
-    $(function () {
-        $('#button').click(function () {
-            $.post(
-                'kek/',
-                {
-                    "host":"localhost",
-                    "port":"8000"
-                },function (data) {
-                    alert(data)
-                })
-        })
-    })
-</script>
+                        </td>
+                        <td class="text-center">
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            -->
+
+             <div class="row">
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-primary btn-lg"
+                        data-toggle="modal" data-target="#myModal">
+                        Add instance
+                    </button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button type="button" class="btn btn-danger btn-lg"
+                        data-toggle="modal" data-target="#mySmallModal">
+                        Truncate table (Open small modal)
+                    </button>
+                </div>
+             </div>
+             <hr>
+
+             <div class="panel panel-primary">
+                <div class="panel-heading text-center">Search</div>
+                <div class="panel-body">Panel Content</div>
+            </div>
+         </div>
+
+
+          <!-- Small Modal (for deleting) -->
+          <div class="modal fade" id="mySmallModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                  <p>This is a small modal.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medium Modal (for updating or inserting) -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-md">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                  <p>This is a medium modal.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </body>
+
+    <script type="text/javascript">
+    /*
+        function hi() {
+
+            $.get('/api/get_all_dimensions/', function (data) {
+                var films = data.data.films;
+                var studios = data.data.studios;
+                var directors = data.data.directors;
+            })
+        }
+    */
+    </script>
 
 </html>

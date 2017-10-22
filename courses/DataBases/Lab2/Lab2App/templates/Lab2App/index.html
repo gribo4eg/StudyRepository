@@ -10,133 +10,60 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     </head>
 
     <body>
+
          <div class="container">
 
              <div class="jumbotron">
 
                  <h1 class="text-center">Film creation</h1>
              </div>
-             <div class="alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                <strong>Success!</strong> This alert box could indicate a successful or positive action.
-             </div>
-             <table class="table table-bordered table-hover well">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Film</th>
-                  <th>Director</th>
-                  <th>Studio</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>id film creat</td>
-                  <td>film name</td>
-                  <td>director name</td>
-                  <td>studio name</td>
-                  <td class="text-center">
-                      <div class="">
-                       <button type="button" class="btn btn-info btn-sm" value="Update">Update</button>
-                       <button type="button" class="btn btn-danger btn-sm" value="Delete">Delete</button>
-                      </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-             <!--
-            <table class="table" style="border: 0px">
-                <tbody>
-                    <tr>
-                        <td class="text-center">
-
-                        </td>
-                        <td class="text-center">
-
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            -->
+             <table  class="table table-bordered table-hover well">
+                 <thead>
+                 <tr>
+                     <th class="col-md-1">#</th>
+                     <th >Film</th>
+                     <th >Director</th>
+                     <th >Studio</th>
+                     <th >Date</th>
+                     <th class="col-md-3">Action</th>
+                 </tr>
+                 </thead>
+                 <tbody id="factsTable"></tbody>
+             </table>
 
              <div class="row">
-                <div class="col-sm-6 text-center">
-                    <button type="button" class="btn btn-primary btn-lg"
-                        data-toggle="modal" data-target="#myModal">
-                        Add instance
-                    </button>
-                </div>
-                <div class="col-sm-6 text-center">
-                    <button type="button" class="btn btn-danger btn-lg"
-                        data-toggle="modal" data-target="#mySmallModal">
-                        Truncate table (Open small modal)
-                    </button>
-                </div>
+                 <div class="col-md-6 text-center">
+                     <button id="newInstanceBtn" type="button" class="btn btn-primary btn-lg"
+                             data-toggle="modal" data-target="#cuModal">
+                         Add instance
+                     </button>
+                 </div>
+                 <div class="col-md-6 text-center">
+                     <button id="truncateBtnModal" type="button" class="btn btn-danger btn-lg"
+                             data-toggle="modal" data-target="#deletingModal">
+                         Truncate table
+                     </button>
+                 </div>
              </div>
              <hr>
 
              <div class="panel panel-primary">
                 <div class="panel-heading text-center">Search</div>
-                <div class="panel-body">Panel Content</div>
+                <div class="panel-body">
+
+                </div>
             </div>
          </div>
 
-
-          <!-- Small Modal (for deleting) -->
-          <div class="modal fade" id="mySmallModal" role="dialog">
-            <div class="modal-dialog modal-sm">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                  <p>This is a small modal.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Medium Modal (for updating or inserting) -->
-          <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-md">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                  <p>This is a medium modal.</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+         <div id="modalTarget"></div>
 
     </body>
 
-    <script type="text/javascript">
-    /*
-        function hi() {
-
-            $.get('/api/get_all_dimensions/', function (data) {
-                var films = data.data.films;
-                var studios = data.data.studios;
-                var directors = data.data.directors;
-            })
-        }
-    */
-    </script>
+    <script src="static/Lab2App/Javascript/index.js"></script>
 
 </html>

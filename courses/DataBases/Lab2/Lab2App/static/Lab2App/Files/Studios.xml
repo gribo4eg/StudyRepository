@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Studios>
     <Studio>
-        <!--<Studio_id>1</Studio_id>-->
         <Name>Studio 1</Name>
         <Country>Contry of Studios</Country>
         <Year>1989</Year>
         <History>American motion picture studio based at The Walt Disney Studios in Burbank, California and is a subsidiary of Walt Disney Studios, itself a wholly owned division of The Walt Disney Company, with film producer Kevin Feige serving as president.[3] Previously, the studio was a subsidiary of Marvel Entertainment until The Walt Disney Company reorganized the companies in August 2015.</History>
     </Studio>
     <Studio>
-        <!--<Studio_id>2</Studio_id>-->
         <Name>Studio 2</Name>
         <Country>Contry of Studios</Country>
         <Year>2012</Year>
         <History>American film production label of Warner Bros. Entertainment that was founded in 1967 by Robert Shaye as a film distribution company, later becoming an independent film studio. It became a subsidiary of the Turner Broadcasting System in 1994 before Turner merged with Time Warner in 1996, and was later merged with its larger sister studio Warner Bros. Entertainment in 2008. Currently, its films are distributed by Warner Bros.</History>
     </Studio>
     <Studio>
-        <!--<Studio_id>3</Studio_id>-->
         <Name>Studio 3</Name>
         <Country>Country of Studio 3</Country>
         <Year>1800</Year>

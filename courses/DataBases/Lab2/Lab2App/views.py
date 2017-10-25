@@ -109,3 +109,14 @@ def get_dimensions_names_and_id(request):
         })
 
         return HttpResponse(json.dumps(res), content_type='application/json')
+
+def bool_search(request):
+    if request.method == 'GET':
+        oscar = request.GET.get('oscar')
+
+        db = Database()
+        directors = db.search_directors_oscar(oscar)
+        db.close_connection()
+
+        res = dict({'directors':directors})
+        return HttpResponse(json.dumps(res), content_type='application/json')

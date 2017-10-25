@@ -111,7 +111,13 @@ class Database:
                     "VALUES(%s, %s, %s, %s);", (fact['filmId'], fact['directorId'],
                                                fact['studioId'], fact['date']))
 
-        cur.execute('SELECT * FROM Film_creations ORDER BY Id DESC LIMIT 0,1;')
+        sql = "SELECT Film_creations.Id, Films.Name, Directors.Name, Studios.Name, Film_creations.Date " \
+              "FROM (((Film_creations " \
+              "INNER JOIN Films ON Film_creations.Film_id = Films.Id) " \
+              "INNER JOIN Directors ON Film_creations.Director_id = Directors.Id) " \
+              "INNER JOIN Studios ON Film_creations.Studio_id = Studios.Id) " \
+              "ORDER BY Film_creations.Id DESC LIMIT 0,1;"
+        cur.execute(sql)
 
         newFact = cur.fetchone()
         self.con.commit()
@@ -124,9 +130,6 @@ class Database:
 
         factDict = dict(zip(fields, fact))
 
-        factDict['film'] = self.get_field_from_table_by_id('Films', factDict['film'], 'Name')
-        factDict['director'] = self.get_field_from_table_by_id('Directors', factDict['director'], 'Name')
-        factDict['studio'] = self.get_field_from_table_by_id('Studios', factDict['studio'], 'Name')
         factDict['date'] = str(factDict['date'])
 
         return factDict
@@ -135,7 +138,12 @@ class Database:
 
         cur = self.con.cursor()
 
-        cur.execute("SELECT * FROM Film_creations;")
+        sql = "SELECT Film_creations.Id, Films.Name, Directors.Name, Studios.Name, Film_creations.Date " \
+              "FROM (((Film_creations " \
+              "INNER JOIN Films ON Film_creations.Film_id = Films.Id) " \
+              "INNER JOIN Directors ON Film_creations.Director_id = Directors.Id) " \
+              "INNER JOIN Studios ON Film_creations.Studio_id = Studios.Id);"
+        cur.execute(sql)
 
         data = []
 
@@ -197,7 +205,12 @@ class Database:
               "Studio_id = %s WHERE Id = %s;" % (fact['filmId'], fact['directorId'],
                                                fact['studioId'], id)
 
-        sqlGet = "SELECT * FROM Film_creations WHERE Id = %s;" % id
+        sqlGet = "SELECT Film_creations.Id, Films.Name, Directors.Name, Studios.Name, Film_creations.Date " \
+                 "FROM (((Film_creations " \
+                 "INNER JOIN Films ON Film_creations.Film_id = Films.Id) " \
+                 "INNER JOIN Directors ON Film_creations.Director_id = Directors.Id) " \
+                 "INNER JOIN Studios ON Film_creations.Studio_id = Studios.Id) " \
+                 "WHERE Film_creations.Id = %s;" % id
         cur.execute(sql)
         cur.execute(sqlGet)
         data = cur.fetchone()
@@ -215,6 +228,23 @@ class Database:
         cur.execute(sql)
         self.con.commit()
         cur.close()
+
+    def search_directors_oscar(self, oscar):
+
+        cur = self.con.cursor()
+
+        sql = 'SELECT * FROM Directors WHERE Oscar = %s;' % oscar
+
+        cur.execute(sql)
+
+        data = []
+
+        for i in range(cur.rowcount):
+            data.append(cur.fetchone())
+
+        cur.close()
+
+        return self.make_list_of_dicts_dimensions('Directors', data)
 
     def close_connection(self):
         self.con.close()

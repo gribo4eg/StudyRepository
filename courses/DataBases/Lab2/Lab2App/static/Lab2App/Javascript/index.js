@@ -2,6 +2,7 @@ var studios, films, directors;
 
 var $factsTable = $('#factsTable');
 function addFact(fact) {
+    $factsTable.slideDown();
     $factsTable.append(Mustache.render(factTemplate, fact));
 }
 
@@ -10,36 +11,35 @@ function addModal(template, data) {
     $modalDiv.html(Mustache.render(template, data));
 }
 
-//region DELETING
-
-$factsTable.delegate('.deleteBtnModal', 'click', function () {
-    var data = {
-        id:$(this).attr('data-id'),
-        type:"Delete instance",
-        classType:"deleteBtn"
-    };
-
-    addModal(deletingModalTemplate, data)
-});
-
-$modalDiv.delegate('.deleteBtn','click', function () {
-    var id = $(this).attr('data-id');
-    var $tr = $('#fact'+id);
-    $.ajax({
-        type:'delete',
-        url:'/api/facts/' + id+'/',
-        success:function () {
-            $tr.fadeOut(500, function () {
-                $(this).remove();
-            });
-        },
-        error: function () {
-            alert("Error while deleting data!")
+$(function () {
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type)
+                && !this.crossDomain) {
+                xhr.setRequestHeader("Content-Type", "application/json")
+            }
         }
     });
-});
 
-//endregion
+    $.ajax({
+        type:'get',
+        url:'/api/facts/',
+        success: function (data) {
+            var facts = data.facts;
+            $.each(facts, function (i, fact) {
+                addFact(fact);
+            });
+
+            $.get('/api/dimensions_names/', function (data) {
+                films = data.data.films;
+                studios = data.data.studios;
+                directors = data.data.directors;
+            });
+        }
+    });
+
+
+});
 
 //region POSTING
 
@@ -80,6 +80,37 @@ $modalDiv.delegate('.createBtn', 'click', function () {
         },
         error: function () {
             alert("Error while posting data!")
+        }
+    });
+});
+
+//endregion
+
+//region DELETING
+
+$factsTable.delegate('.deleteBtnModal', 'click', function () {
+    var data = {
+        id:$(this).attr('data-id'),
+        type:"Delete instance",
+        classType:"deleteBtn"
+    };
+
+    addModal(deletingModalTemplate, data)
+});
+
+$modalDiv.delegate('.deleteBtn','click', function () {
+    var id = $(this).attr('data-id');
+    var $tr = $('#fact'+id);
+    $.ajax({
+        type:'delete',
+        url:'/api/facts/' + id+'/',
+        success:function () {
+            $tr.fadeOut(500, function () {
+                $(this).remove();
+            });
+        },
+        error: function () {
+            alert("Error while deleting data!")
         }
     });
 });
@@ -167,6 +198,7 @@ $modalDiv.delegate('.updateBtn', 'click', function () {
 //region TRUNCATE
 
 $('#truncateBtnModal').on('click', function () {
+
     var data = {
         type:"Truncate table",
         classType:"truncateBtn"
@@ -180,8 +212,10 @@ $modalDiv.delegate('.truncateBtn', 'click', function () {
     $.ajax({
         type:'delete',
         url:'/api/facts/',
-        success:function (result) {
-            alert(result)
+        success:function () {
+            $factsTable.fadeOut(600, function () {
+                $(this).children().remove();
+            })
         },
         error: function () {
             alert("Error while truncating table!")
@@ -192,35 +226,32 @@ $modalDiv.delegate('.truncateBtn', 'click', function () {
 
 //endregion
 
-$(function () {
-    $.ajaxSetup({
-        beforeSend: function (xhr, settings) {
-            if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type)
-                && !this.crossDomain) {
-                xhr.setRequestHeader("Content-Type", "application/json")
-            }
-        }
-    });
+//region SEARCH
 
+//region BOOL
+
+var $searchOscTable = $('#searchOscarTable'),
+    $searcgOscTBody = $('#searchOscarTBody');
+
+$('#searchOscar').on('click', function () {
+
+    var value = $('#oscar').val();
+    $searchOscTable.show();
     $.ajax({
-        type:'get',
-        url:'/api/facts/',
-        success: function (data) {
-            var facts = data.facts;
-            $.each(facts, function (i, fact) {
-                addFact(fact);
-            });
-
-            $.get('/api/dimensions_names/', function (data) {
-                films = data.data.films;
-                studios = data.data.studios;
-                directors = data.data.directors;
-            });
+        type: 'get',
+        url: '/api/search/directors/?oscar='+value,
+        success:function (result) {
+            $searcgOscTBody.children().remove();
+            $.each(result.directors, function (i, obj) {
+                $searcgOscTBody.append(Mustache.render(oscarTemplate, obj))
+            })
         }
     });
-
-
 });
+
+//endregion
+
+//endregion
 
 //region TEMPLATES
 
@@ -237,6 +268,14 @@ var factTemplate =
     "       <button data-id='{{id}}' class='deleteBtnModal btn btn-danger btn-sm'" +
     "               data-toggle='modal' data-target='#deletingModal'>Delete</button>" +
     "   </td>" +
+    "</tr>";
+
+var oscarTemplate =
+    "<tr>" +
+    "   <td class='col-md-1'>{{id}}</td>" +
+    "   <td>{{name}}</td>" +
+    "   <td>{{country}}</td>" +
+    "   <td class='col-md-6'>{{bio}}</td>"+
     "</tr>";
 
 var deletingModalTemplate =

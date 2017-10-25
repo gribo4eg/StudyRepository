@@ -52,10 +52,49 @@
              </div>
              <hr>
 
-             <div class="panel panel-primary">
+             <div class="panel panel-group panel-primary">
                 <div class="panel-heading text-center">Search</div>
                 <div class="panel-body">
-
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <a href="#collapseBoolSearch" data-toggle="collapse">Bool search</a>
+                            </h3>
+                        </div>
+                        <div id="collapseBoolSearch" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Find directors which
+                                <select id="oscar">
+                                    <option value="1">have</option>
+                                    <option value="0">don't have</option>
+                                </select> oscar. <br/><br/>
+                                <button id="searchOscar" class="btn btn-default" type="submit">
+                                    Search
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                                <hr>
+                                <table  id="searchOscarTable" class="table table-bordered table-hover well" style="display: none">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-md-1">#</th>
+                                        <th >Name</th>
+                                        <th >Country</th>
+                                        <th class="col-md-6">Biography</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="searchOscarTBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Panel Header</div>
+                        <div class="panel-body">Panel Content</div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Panel Header</div>
+                        <div class="panel-body">Panel Content</div>
+                    </div>
                 </div>
             </div>
          </div>

@@ -20,7 +20,9 @@ $(function () {
             }
         }
     });
-
+    $('#loadFilesBtn').prop('disabled', true);
+    $('#textSearchField').prop('disabled', true);
+    $('#wordTextRadio1').prop('checked', true);
     $.ajax({
         type:'get',
         url:'/api/facts/',
@@ -208,7 +210,7 @@ $('#truncateBtnModal').on('click', function () {
 });
 
 $modalDiv.delegate('.truncateBtn', 'click', function () {
-
+    $('#loadFilesBtn').prop('disabled', false);
     $.ajax({
         type:'delete',
         url:'/api/facts/',
@@ -230,26 +232,102 @@ $modalDiv.delegate('.truncateBtn', 'click', function () {
 
 //region BOOL
 
-var $searchOscTable = $('#searchOscarTable'),
-    $searcgOscTBody = $('#searchOscarTBody');
-
 $('#searchOscar').on('click', function () {
 
     var value = $('#oscar').val();
-    $searchOscTable.show();
+    $('#searchOscarTable').show();
     $.ajax({
         type: 'get',
         url: '/api/search/directors/?oscar='+value,
         success:function (result) {
-            $searcgOscTBody.children().remove();
+            $('#searchOscarTBody').children().remove();
             $.each(result.directors, function (i, obj) {
-                $searcgOscTBody.append(Mustache.render(oscarTemplate, obj))
-            })
+                $('#searchOscarTBody').append(Mustache.render(oscarTemplate, obj));
+            });
         }
     });
 });
 
 //endregion
+
+//region NUMBER RANGE
+
+$('#searchRange').on('click', function () {
+
+    var bottom = $('#bottomVal').val(),
+        top = $('#topVal').val();
+    $('#searchRangeTable').show();
+    $.ajax({
+        type:'get',
+        url:'/api/search/films/?bottom='+bottom+
+            '&top='+top,
+        success:function (result) {
+            $('#searchRangeTBody').children().remove();
+            $.each(result.films, function (i, obj) {
+                $('#searchRangeTBody').append(Mustache.render(rangeTemplate, obj));
+            });
+        }
+    });
+});
+
+//endregion
+
+//region WORD/TEXT
+
+$('#wordTextRadio1').on('click', function () {
+    $('#wordSearchField').prop('disabled', false);
+    $('#textSearchField').prop('disabled', true);
+});
+
+
+$('#wordTextRadio2').on('click', function () {
+    $('#wordSearchField').prop('disabled', true);
+    $('#textSearchField').prop('disabled', false);
+});
+
+$('#searchWordText').on('click', function () {
+    var search, type;
+    if ($('#wordTextRadio1').prop('checked')) {
+        search =$('#wordSearchField').val();
+        type = 'word';
+    } else {
+        search = $('#textSearchField').val();
+        type = 'text';
+    }
+
+    $('#searchWordTextTable').show();
+    $.ajax({
+        type:'get',
+        url:'/api/search/studios/?type='+type+
+            '&search='+search,
+        success:function (result) {
+            $('#searchWordTextTBody').children().remove();
+            $.each(result.films, function (i, obj) {
+                $('#searchWordTextTBody').append(Mustache.render(textTemplate, obj));
+            });
+        }
+    });
+});
+
+//endregion
+
+//endregion
+
+//region LOAD FILES
+
+$('#loadFilesBtn').on('click', function () {
+    $(this).prop('disabled', true);
+
+    $.ajax({
+        type:'get',
+        url:'/api/load_files/',
+        success:function (result) {
+            films = result.data.films;
+            directors = result.data.directors;
+            studios = result.data.studios;
+        }
+    })
+});
 
 //endregion
 
@@ -276,6 +354,23 @@ var oscarTemplate =
     "   <td>{{name}}</td>" +
     "   <td>{{country}}</td>" +
     "   <td class='col-md-6'>{{bio}}</td>"+
+    "</tr>";
+
+var rangeTemplate =
+    "<tr>" +
+    "   <td class='col-md-1'>{{id}}</td>" +
+    "   <td>{{name}}</td>" +
+    "   <td>{{duration}}</td>" +
+    "   <td>{{budget}}</td>"+
+    "</tr>";
+
+var textTemplate =
+    "<tr>" +
+    "   <td class='col-md-1'>{{id}}</td>" +
+    "   <td>{{name}}</td>" +
+    "   <td>{{country}}</td>" +
+    "   <td>{{year}}</td>"+
+    "   <td class='col-md-6'>{{history}}</td>"+
     "</tr>";
 
 var deletingModalTemplate =

@@ -15,4 +15,9 @@
         <Duration>120</Duration>
         <Budget>400000</Budget>
     </Film>
+    <Film>
+        <Name>Film 4</Name>
+        <Duration>100</Duration>
+        <Budget>300000</Budget>
+    </Film>
 </Films>

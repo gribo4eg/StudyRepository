@@ -37,13 +37,18 @@
              </table>
 
              <div class="row">
-                 <div class="col-md-6 text-center">
+                 <div class="col-md-4 text-center">
                      <button id="newInstanceBtn" type="button" class="btn btn-primary btn-lg"
                              data-toggle="modal" data-target="#cuModal">
                          Add instance
                      </button>
                  </div>
-                 <div class="col-md-6 text-center">
+                 <div class="col-md-4 text-center">
+                     <button id="loadFilesBtn" type="button" class="btn btn-warning btn-lg">
+                         Load files
+                     </button>
+                 </div>
+                 <div class="col-md-4 text-center">
                      <button id="truncateBtnModal" type="button" class="btn btn-danger btn-lg"
                              data-toggle="modal" data-target="#deletingModal">
                          Truncate table
@@ -51,49 +56,121 @@
                  </div>
              </div>
              <hr>
-
              <div class="panel panel-group panel-primary">
                 <div class="panel-heading text-center">Search</div>
                 <div class="panel-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                <a href="#collapseBoolSearch" data-toggle="collapse">Bool search</a>
-                            </h3>
-                        </div>
-                        <div id="collapseBoolSearch" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Find directors which
-                                <select id="oscar">
-                                    <option value="1">have</option>
-                                    <option value="0">don't have</option>
-                                </select> oscar. <br/><br/>
-                                <button id="searchOscar" class="btn btn-default" type="submit">
-                                    Search
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                                <hr>
-                                <table  id="searchOscarTable" class="table table-bordered table-hover well" style="display: none">
-                                    <thead>
-                                    <tr>
-                                        <th class="col-md-1">#</th>
-                                        <th >Name</th>
-                                        <th >Country</th>
-                                        <th class="col-md-6">Biography</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="searchOscarTBody"></tbody>
-                                </table>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default"><!--BOOL SEARCH-->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a href="#collapseBoolSearch" data-parent="#accordion" data-toggle="collapse">
+                                        Bool search
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="collapseBoolSearch" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Find directors which
+                                    <select id="oscar">
+                                        <option value="1">have</option>
+                                        <option value="0">don't have</option>
+                                    </select> oscar. <br/><br/>
+                                    <button id="searchOscar" class="btn btn-default" type="submit">
+                                        Search
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                    <hr>
+                                    <table  id="searchOscarTable" class="table table-bordered table-hover well" style="display: none">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1">#</th>
+                                            <th >Name</th>
+                                            <th >Country</th>
+                                            <th class="col-md-6">Biography</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="searchOscarTBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!--BOOL SEARCH-->
+                        <div class="panel panel-default"><!--Number ranges search-->
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a href="#collapseNumRangeSearch" data-parent="#accordion" data-toggle="collapse">
+                                        Number range search
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="collapseNumRangeSearch" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    Find films with budget between
+                                    <input type="number" id="bottomVal">
+                                    and
+                                    <input type="number" id="topVal">
+                                    <br/>
+                                    <button id="searchRange" class="btn btn-default" type="submit">
+                                        Search
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                    <hr>
+                                    <table  id="searchRangeTable" class="table table-bordered table-hover well" style="display: none">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1">#</th>
+                                            <th >Name</th>
+                                            <th >Duration</th>
+                                            <th >Budget</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="searchRangeTBody"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!--NUMBER RANGE SEARCH-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <a href="#collapseTextSearch" data-parent="#accordion" data-toggle="collapse">
+                                        Search word/text
+                                    </a>
+                                </h3>
+                            </div>
+                            <div id="collapseTextSearch" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="radio">
+                                        <label><input value="word" type="radio" name="wordTextRadio" id="wordTextRadio1">
+                                            Search in studios history word
+                                            <input type="text" id="wordSearchField">
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input value="text" type="radio" name="wordTextRadio" id="wordTextRadio2">
+                                            Search in studios history text
+                                            <input type="text" id="textSearchField">
+                                        </label>
+                                    </div>
+                                    <br/>
+                                    <button id="searchWordText" class="btn btn-default" type="submit">
+                                        Search
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                    <hr/>
+                                    <table  id="searchWordTextTable" class="table table-bordered table-hover well" style="display: none">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1">#</th>
+                                            <th >Name</th>
+                                            <th >Country</th>
+                                            <th >Year</th>
+                                            <th class="col-md-6">History</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="searchWordTextTBody"></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Panel Header</div>
-                        <div class="panel-body">Panel Content</div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Panel Header</div>
-                        <div class="panel-body">Panel Content</div>
                     </div>
                 </div>
             </div>

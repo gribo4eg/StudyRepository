@@ -18,28 +18,22 @@ class Database:
             data = json.load(f)
         self.con = mdb.connect(data['host'], data['user'], data['password'],
                                data['database'], port=data['port'])
-        self.load_files()
         print("Open!")
 
+    def xml_to_db(self):
+        cur = self.con.cursor()
+        cur.execute("LOAD XML LOCAL INFILE %s INTO TABLE Directors ROWS IDENTIFIED BY '<Director>';",
+                    (self.directors_xml,))
+        cur.execute("LOAD XML LOCAL INFILE %s INTO TABLE Films ROWS IDENTIFIED BY '<Film>';",
+                    (self.films_xml,))
+        cur.execute("LOAD XML LOCAL INFILE %s INTO TABLE Studios ROWS IDENTIFIED BY '<Studio>';",
+                    (self.studios_xml,))
+        cur.close()
+        self.con.commit()
+
     def load_files(self):
-        if not self.files and self.dimension_rows_count() is not 3:
-
-            cur = self.con.cursor()
-
-            cur.execute("LOAD XML LOCAL INFILE %s INTO TABLE Directors ROWS IDENTIFIED BY '<Director>';",
-                        (self.directors_xml,))
-
-            cur.execute("LOAD XML LOCAL INFILE %s INTO TABLE Films ROWS IDENTIFIED BY '<Film>';",
-                        (self.films_xml,))
-
-            cur.execute("LOAD XML LOCAL INFILE %s INTO TABLE Studios ROWS IDENTIFIED BY '<Studio>';",
-                        (self.studios_xml,))
-
-            cur.close()
-
-            self.con.commit()
-
-            self.files = True
+        self.truncate_dimensions_table()
+        self.xml_to_db()
 
     def truncate_dimensions_table(self):
 
@@ -53,18 +47,6 @@ class Database:
 
         cur.close()
         self.con.commit()
-
-    def dimension_rows_count(self):
-        cur = self.con.cursor()
-
-        cur.execute('SELECT * FROM Films;')
-
-        count = cur.rowcount
-
-        cur.close()
-        self.con.commit()
-
-        return count
 
     def get_dicts_of_dimensions(self, table_name):
 
@@ -116,7 +98,7 @@ class Database:
               "INNER JOIN Films ON Film_creations.Film_id = Films.Id) " \
               "INNER JOIN Directors ON Film_creations.Director_id = Directors.Id) " \
               "INNER JOIN Studios ON Film_creations.Studio_id = Studios.Id) " \
-              "ORDER BY Film_creations.Id DESC LIMIT 0,1;"
+              "WHERE Film_creations.Id = MAX(Film_creations.Id);"
         cur.execute(sql)
 
         newFact = cur.fetchone()
@@ -153,18 +135,6 @@ class Database:
         cur.close()
 
         return data
-
-    def get_field_from_table_by_id(self, table, id, field):
-
-        cur = self.con.cursor()
-
-        sql = "SELECT %s FROM %s WHERE Id = %d ;" % (field, table, id)
-        cur.execute(sql)
-
-        data = cur.fetchone()
-
-        cur.close()
-        return data[0]
 
     def get_all_id_and_name(self, table_name):
         cur = self.con.cursor()
@@ -245,6 +215,30 @@ class Database:
         cur.close()
 
         return self.make_list_of_dicts_dimensions('Directors', data)
+
+    def search_films_range(self, bottom, top):
+
+        cur = self.con.cursor()
+        sql = 'SELECT * FROM Films WHERE Budget BETWEEN %s AND %s;' % (bottom, top)
+        cur.execute(sql)
+
+        data = []
+        for i in range(cur.rowcount):
+            data.append(cur.fetchone())
+        cur.close()
+        return self.make_list_of_dicts_dimensions('Films', data)
+
+    def search_studios_word(self, word):
+        cur = self.con.cursor()
+        sql = "SELECT * FROM Studios WHERE MATCH(History) AGAINST " \
+              "(%s IN BOOLEAN MODE);" % word
+
+        cur.execute(sql)
+        data = []
+        for i in range(cur.rowcount):
+            data.append(cur.fetchone())
+        cur.close()
+        return self.make_list_of_dicts_dimensions('Studios', data)
 
     def close_connection(self):
         self.con.close()

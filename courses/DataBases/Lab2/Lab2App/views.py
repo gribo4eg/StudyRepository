@@ -2,8 +2,9 @@ import MySQLdb
 import json
 import ast
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import generic
 
 from .models import Database
@@ -13,6 +14,13 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         pass
+
+def load_files(request):
+    db = Database()
+    db.load_files()
+    db.close_connection()
+    return HttpResponseRedirect(reverse('Lab2App:dimensions_names', args=()))
+
 
 def all_facts(request):
 
@@ -46,15 +54,10 @@ def post_fact(request):
     return HttpResponse(json.dumps(newFact), content_type='application/json')
 
 def truncate_facts(request):
-
     db = Database()
-
     db.truncate_facts()
-
     db.close_connection()
-
     res = dict({'status':True})
-
     return HttpResponse(json.dumps(res), content_type='application/json')
 
 def fact(request, id):
@@ -120,3 +123,35 @@ def bool_search(request):
 
         res = dict({'directors':directors})
         return HttpResponse(json.dumps(res), content_type='application/json')
+
+def range_search(request):
+    if request.method == 'GET':
+        bottom = request.GET.get('bottom')
+        top = request.GET.get('top')
+
+        db = Database()
+        films = db.search_films_range(bottom, top)
+        db.close_connection()
+
+        res = dict({'films':films})
+        return HttpResponse(json.dumps(res), content_type='application/json')
+
+def word_text_search(request):
+    if request.method == 'GET':
+        searchType = request.GET.get('type')
+        search = request.GET.get('search')
+        if searchType == 'word':
+            search = '+'+request.GET.get('search').replace(' ','+')
+            return word_search(request, search)
+        elif searchType == 'text':
+            search = request.GET.get('search')
+            print('text: ' + search)
+        return HttpResponse("ok")
+
+def word_search(request, word):
+    word = '+'+ word.replace(' ', '+')
+    db = Database()
+    studios = db.search_studios_word(word)
+    db.close_connection()
+    res = dict({'studios':studios})
+    return HttpResponse(json.dumps(res), content_type='application/json')

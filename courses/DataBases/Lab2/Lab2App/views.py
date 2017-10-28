@@ -141,17 +141,12 @@ def word_text_search(request):
         searchType = request.GET.get('type')
         search = request.GET.get('search')
         if searchType == 'word':
-            search = '+'+request.GET.get('search').replace(' ','+')
-            return word_search(request, search)
-        elif searchType == 'text':
-            search = request.GET.get('search')
-            print('text: ' + search)
-        return HttpResponse("ok")
+            search = '+' + search.replace(' ','+')
+        else:
+            search = ''.join(('"',search,'"'))
+        db = Database()
+        studios = db.search_studios_word_text(search)
+        db.close_connection()
+        res = dict({'studios':studios})
+        return HttpResponse(json.dumps(res), content_type='application/json')
 
-def word_search(request, word):
-    word = '+'+ word.replace(' ', '+')
-    db = Database()
-    studios = db.search_studios_word(word)
-    db.close_connection()
-    res = dict({'studios':studios})
-    return HttpResponse(json.dumps(res), content_type='application/json')

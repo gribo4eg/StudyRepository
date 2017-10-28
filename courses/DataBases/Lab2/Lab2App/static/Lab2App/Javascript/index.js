@@ -302,7 +302,7 @@ $('#searchWordText').on('click', function () {
             '&search='+search,
         success:function (result) {
             $('#searchWordTextTBody').children().remove();
-            $.each(result.films, function (i, obj) {
+            $.each(result.studios, function (i, obj) {
                 $('#searchWordTextTBody').append(Mustache.render(textTemplate, obj));
             });
         }

@@ -76,7 +76,7 @@ class Database:
         elif table_name is "Films":
             fields = ['id', 'name', 'duration', 'budget']
         elif table_name is "Studios":
-            fields = ['id', 'name', 'country', 'year', 'history']
+            fields = ['id', 'name', 'year', 'country', 'history']
         else:return []
 
         for tuple in list_of_tuple:
@@ -88,7 +88,7 @@ class Database:
         cur = self.con.cursor()
 
         fact['date'] = str(datetime.date.today())
-
+        print(fact)
         cur.execute("INSERT INTO Film_creations(Film_id, Director_id, Studio_id, Date) "
                     "VALUES(%s, %s, %s, %s);", (fact['filmId'], fact['directorId'],
                                                fact['studioId'], fact['date']))
@@ -98,13 +98,13 @@ class Database:
               "INNER JOIN Films ON Film_creations.Film_id = Films.Id) " \
               "INNER JOIN Directors ON Film_creations.Director_id = Directors.Id) " \
               "INNER JOIN Studios ON Film_creations.Studio_id = Studios.Id) " \
-              "WHERE Film_creations.Id = MAX(Film_creations.Id);"
+              "ORDER BY Film_creations.Id DESC LIMIT 0,1;"
         cur.execute(sql)
 
         newFact = cur.fetchone()
         self.con.commit()
         cur.close()
-
+        print(newFact)
         return self.fact_to_dict(newFact)
 
     def fact_to_dict(self, fact):
@@ -228,11 +228,10 @@ class Database:
         cur.close()
         return self.make_list_of_dicts_dimensions('Films', data)
 
-    def search_studios_word(self, word):
+    def search_studios_word_text(self, word):
         cur = self.con.cursor()
-        sql = "SELECT * FROM Studios WHERE MATCH(History) AGAINST " \
-              "(%s IN BOOLEAN MODE);" % word
-
+        sql = "SELECT * FROM Studios WHERE MATCH (History) " \
+              "against ('%s' in boolean mode);" % word
         cur.execute(sql)
         data = []
         for i in range(cur.rowcount):

@@ -17,5 +17,3 @@ urlpatterns = [
         url(r'^studios/$', views.word_text_search, name='word_text_search')
     ]))
 ]
-
-#?oscar=(?P<oscar>[01])

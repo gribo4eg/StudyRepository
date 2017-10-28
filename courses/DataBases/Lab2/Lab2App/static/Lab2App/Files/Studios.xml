@@ -18,4 +18,10 @@
         <Year>1800</Year>
         <History>American film studio based in Hollywood, California, that has been a subsidiary of the American media conglomerate Viacom since 1994. Paramount is the fifth oldest surviving film studio in the world,[2] the second oldest in the United States, and the sole member of the "Big Six" film studios still located in the Los Angeles neighborhood of Hollywood.</History>
     </Studio>
+    <Studio>
+        <Name>Studio 4</Name>
+        <Country>Country of Studio 4</Country>
+        <Year>2007</Year>
+        <History>The Ramoji Film City in India is located in Hyderabad. At 2000 acres, it is the largest integrated film city in the Telangana and the largest studio complex in the world. The film city was also certified by the Guinness World Records as the world’s largest Film Studio complex. It was set up by Ramoji Group in 1996. It is also a popular tourism and recreation centre, containing natural and artificial attractions including an amusement park. Around 1.5 million tourists visit the place every year.</History>
+    </Studio>
 </Studios>

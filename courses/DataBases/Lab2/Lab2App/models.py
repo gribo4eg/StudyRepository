@@ -88,7 +88,6 @@ class Database:
         cur = self.con.cursor()
 
         fact['date'] = str(datetime.date.today())
-        print(fact)
         cur.execute("INSERT INTO Film_creations(Film_id, Director_id, Studio_id, Date) "
                     "VALUES(%s, %s, %s, %s);", (fact['filmId'], fact['directorId'],
                                                fact['studioId'], fact['date']))
@@ -104,7 +103,6 @@ class Database:
         newFact = cur.fetchone()
         self.con.commit()
         cur.close()
-        print(newFact)
         return self.fact_to_dict(newFact)
 
     def fact_to_dict(self, fact):

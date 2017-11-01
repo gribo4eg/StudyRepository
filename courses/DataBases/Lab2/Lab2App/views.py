@@ -19,7 +19,10 @@ def load_files(request):
     db = Database()
     db.load_files()
     db.close_connection()
-    return HttpResponseRedirect(reverse('Lab2App:dimensions_names', args=()))
+
+
+    res = get_dim_names_ids()
+    return HttpResponse(json.dumps(res), content_type='application/json')
 
 
 def all_facts(request):
@@ -97,19 +100,7 @@ def get_dimensions_names_and_id(request):
 
     if request.method == 'GET':
 
-        db = Database()
-        directors = db.get_all_id_and_name("Directors")
-        films = db.get_all_id_and_name("Films")
-        studios = db.get_all_id_and_name("Studios")
-        db.close_connection()
-
-        res = dict({
-            'data':{
-                'directors':directors,
-                'films':films,
-                'studios':studios
-            }
-        })
+        res = get_dim_names_ids()
 
         return HttpResponse(json.dumps(res), content_type='application/json')
 
@@ -149,4 +140,19 @@ def word_text_search(request):
         db.close_connection()
         res = dict({'studios':studios})
         return HttpResponse(json.dumps(res), content_type='application/json')
+
+def get_dim_names_ids():
+    db = Database()
+    directors = db.get_all_id_and_name("Directors")
+    films = db.get_all_id_and_name("Films")
+    studios = db.get_all_id_and_name("Studios")
+    db.close_connection()
+
+    return dict({
+        'data': {
+            'directors': directors,
+            'films': films,
+            'studios': studios
+        }
+    })
 

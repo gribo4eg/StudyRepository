@@ -23,6 +23,7 @@ $(function () {
     $('#loadFilesBtn').prop('disabled', true);
     $('#textSearchField').prop('disabled', true);
     $('#wordTextRadio1').prop('checked', true);
+
     $.ajax({
         type:'get',
         url:'/api/facts/',
@@ -39,8 +40,14 @@ $(function () {
             });
         }
     });
+});
 
+$(document).ajaxStart(function() {
+    $("#loading").show();
+});
 
+$(document).ajaxStop(function () {
+    $('#loading').hide();
 });
 
 //region POSTING

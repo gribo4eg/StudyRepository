@@ -1,10 +1,7 @@
-import MySQLdb
 import json
 import ast
 
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.http import HttpResponse
 from django.views import generic
 
 from .models import Database

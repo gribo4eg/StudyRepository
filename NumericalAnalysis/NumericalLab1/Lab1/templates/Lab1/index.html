@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Numerical Analysis</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/Lab1/css/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">Numerical Analysis</h1>
+        </div>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            Algebraic Equation
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="text-center">
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> x<sup>7</sup> + </label>
+                            </div>
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> x<sup>6</sup> + </label>
+                            </div>
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> x<sup>5</sup> + </label>
+                            </div>
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> x<sup>4</sup> + </label>
+                            </div>
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> x<sup>3</sup> + </label>
+                            </div>
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> x<sup>2</sup> + </label>
+                            </div>
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> x + </label>
+                            </div>
+                            <div class="xwrapper">
+                                <input class="x" type="text"> <label> = 0</label>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="row text-center">
+                            <div class="col-md-12">
+                                <label for="epsilonEq"><b>&epsilon; :</b></label>
+                                <input id="epsilonEq" type="text">
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="row text-center">
+                            <div class="col-md-12">
+                                <button id="calcEq" type="button" class="btn btn-success btn-lg">Calculate</button>
+                            </div>
+                        </div>
+                        <div id="lobachevskyAlert"></div>
+                        <div class="row">
+                            <div class="col-md-12 text-center loading">
+                                <img src="/static/Lab1/loading.gif" alt="Loading...">
+                            </div>
+                        </div>
+                        <div id="equationPlot"></div>
+                        <div class="table-responsive lobachevskyTable">
+                            <table  class="table table-bordered table-hover well">
+                                <caption>
+                                    <h3 class="text-center">Steps table</h3>
+                                </caption>
+                                <thead>
+                                <tr>
+                                    <th class="col-md-1">p</th>
+                                    <th>n</th>
+                                    <th>a0</th>
+                                    <th>a1</th>
+                                    <th>a2</th>
+                                    <th>a3</th>
+                                    <th>a4</th>
+                                    <th>a5</th>
+                                    <th>a6</th>
+                                    <th>a7</th>
+                                </tr>
+                                </thead>
+                                <tbody id="lobachevskyStepsTable" class="lobachevskyResultsTable"></tbody>
+                            </table>
+                        </div>
+                        <br/>
+                        <div class="table-responsive lobachevskyTable">
+                            <table  class="table table-bordered table-hover well">
+                                <caption>
+                                    <h3 class="text-center">Roots analysis table</h3>
+                                </caption>
+                                <thead>
+                                <tr>
+                                    <th colspan="2" class="text-center">Interval of negative Roots</th>
+                                    <th colspan="2" class="text-center">Interval of positive Roots</th>
+                                </tr>
+                                </thead>
+                                <tbody id="rootsAnalysisTable" class="lobachevskyResultsTable"></tbody>
+                            </table>
+                        </div>
+                        <br/>
+                        <div class="table-responsive lobachevskyTable">
+                            <table  class="table table-bordered table-hover well">
+                                <caption>
+                                    <h3 class="text-center">Roots table</h3>
+                                </caption>
+                                <thead>
+                                <tr>
+                                    <th>x1</th>
+                                    <th>x2</th>
+                                    <th>x3</th>
+                                    <th>x4</th>
+                                    <th>x5</th>
+                                    <th>x6</th>
+                                    <th>x7</th>
+                                </tr>
+                                </thead>
+                                <tbody id="lobachevskyRootsTable" class="lobachevskyResultsTable"></tbody>
+                            </table>
+                        </div>
+                        <br/>
+                        <div class="table-responsive lobachevskyTable">
+                            <table  class="table table-bordered table-hover well">
+                                <caption>
+                                    <h3 class="text-center">Roots after Newton method</h3>
+                                </caption>
+                                <thead>
+                                <tr>
+                                    <th>x1</th>
+                                    <th>x2</th>
+                                    <th>x3</th>
+                                    <th>x4</th>
+                                    <th>x5</th>
+                                    <th>x6</th>
+                                    <th>x7</th>
+                                </tr>
+                                </thead>
+                                <tbody id="newtonRootsTable" class="lobachevskyResultsTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            Functions
+                        </a>
+                    </h3>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row text-center">
+                            <h3 class="text-center">Choose function:</h3>
+                            <div class="col-md-6 text-center">
+                                <input type="radio" name="function" value="2">
+                                <h3><span>&radic;<span style="text-decoration:overline;">&nbsp;|x|&nbsp;</span></span> - 9x<sup>2</sup> + 23 = sin(x)</h3>
+                                </input>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <input type="radio" name="function" value="1">
+                                <h3>1 + x<sup>7</sup> - ln(1 + &pi;cos(x<sup>3</sup>)) + x<sup>10</sup> = tg<sup>5</sup>(x) - x</h3>
+                                </input>
+                            </div>
+                            <h3 class="text-center">Choose method:</h3>
+                            <select name="method" id="selectMethod">
+                                <option value="bisection">Bisection method</option>
+                                <option value="hybrid">Hybrid method</option>
+                                <option value="iteration">Fixed point iteration method</option>
+                            </select>
+                            <h3>Interval and accuracy:</h3>
+                            <h4 class="text-center">x &#8712; [ <input type="text" class="intBorder"/> ;
+                                <input type="text" class="intBorder"/> ]; <br><br>&epsilon; : <input id="epsilonFunc" type="text"/></h4>
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <button id="calcFunc" type="button" class="btn btn-success btn-lg">Calculate</button>
+                                </div>
+                            </div>
+                            <div id="funcAlert"></div>
+                            <div class="row">
+                                <div class="col-md-12 text-center loading">
+                                    <img src="/static/Lab1/loading.gif" alt="Loading...">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div id="funcPlot"></div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6" style="overflow: auto">
+                                <div id="rootPlot"></div>
+                            </div>
+                            <div class="col-md-6" style="overflow: auto">
+                                <div id="taskPlot"></div>
+                            </div>
+                        </div>
+                        <div class="table-responsive functionsTable">
+                            <table  class="table table-bordered table-hover well">
+                                <caption>
+                                    <h3 class="text-center">Roots table</h3>
+                                </caption>
+                                <thead>
+                                <tr>
+                                    <th class="col-md-1">#</th>
+                                    <th>x&#8776;</th>
+                                    <th colspan="2" class="text-center">Interval</th>
+                                </tr>
+                                </thead>
+                                <tbody id="functionsRootTable"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="/static/Lab1/Javascript/index.js"></script>
+</html>

@@ -1,0 +1,22 @@
+.x {
+    width: 70%;
+}
+
+.xwrapper {
+    float: left;
+    width: 12%;
+    text-align: center;
+}
+
+.intBorder {
+    width: 10%;
+    text-align: center;
+}
+
+#rootPlot, #funcPlot, #taskPlot, #equationPlot {
+    width: 90%;
+}
+
+.lobachevskyTable, .functionsTable, .loading {
+    display: none;
+}

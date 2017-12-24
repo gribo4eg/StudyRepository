@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
     </head>
 
-    <body>
+    <body background="/static/Lab3App/background.jpg">
 
          <div class="container">
 
@@ -22,7 +22,11 @@
 
                  <h1 class="text-center">Film creation</h1>
              </div>
-             <table  class="table table-bordered table-hover well">
+             <ul class="pager">
+                 <li class="next"><a href="{% url 'Lab3App:history' %}">History</a></li>
+             </ul>
+             <table  class="table table-bordered table-hover well"
+                     style="border-radius: 15px; border-width: 0px">
                  <thead>
                  <tr>
                      <th class="col-md-1">#</th>
@@ -37,27 +41,22 @@
              </table>
 
              <div class="row">
-                 <div class="col-md-4 text-center">
+                 <div class="col-md-6 text-center">
                      <button id="newInstanceBtn" type="button" class="btn btn-primary btn-lg"
                              data-toggle="modal" data-target="#cuModal">
                          Add instance
                      </button>
                  </div>
-                 <div class="col-md-4 text-center">
-                     <button id="loadFilesBtn" type="button" class="btn btn-warning btn-lg">
-                         Load files
-                     </button>
-                 </div>
-                 <div class="col-md-4 text-center">
+                 <div class="col-md-6 text-center">
                      <button id="truncateBtnModal" type="button" class="btn btn-danger btn-lg"
                              data-toggle="modal" data-target="#deletingModal">
-                         Truncate table
+                         Delete table
                      </button>
                  </div>
              </div>
              <div id="loading" class="row" style="display: none">
                  <div class="col-md-12 text-center">
-                     <img src="/static/Lab2App/loading.gif" alt="loading" width="150">
+                     <img src="/static/Lab3App/loading.gif" alt="loading" width="150">
                  </div>
              </div>
              <hr>
@@ -133,55 +132,14 @@
                                 </div>
                             </div>
                         </div><!--NUMBER RANGE SEARCH-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    <a href="#collapseTextSearch" data-parent="#accordion" data-toggle="collapse">
-                                        Search word/text
-                                    </a>
-                                </h3>
-                            </div>
-                            <div id="collapseTextSearch" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="radio">
-                                        <label><input value="word" type="radio" name="wordTextRadio" id="wordTextRadio1">
-                                            Search in studios history word
-                                            <input type="text" id="wordSearchField">
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input value="text" type="radio" name="wordTextRadio" id="wordTextRadio2">
-                                            Search in studios history text
-                                            <input type="text" id="textSearchField">
-                                        </label>
-                                    </div>
-                                    <br/>
-                                    <button id="searchWordText" class="btn btn-default" type="submit">
-                                        Search
-                                        <i class="glyphicon glyphicon-search"></i>
-                                    </button>
-                                    <hr/>
-                                    <table  id="searchWordTextTable" class="table table-bordered table-hover well" style="display: none">
-                                        <thead>
-                                        <tr>
-                                            <th class="col-md-1">#</th>
-                                            <th >Name</th>
-                                            <th >Country</th>
-                                            <th >Year</th>
-                                            <th class="col-md-6">History</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="searchWordTextTBody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
          </div>
 
          <div id="modalTarget"></div>
+
     </body>
-    <script src="/static/Lab2App/Javascript/index.js"></script>
+        <script src="/static/Lab3App/Javascript/index.js"></script>
+
 </html>

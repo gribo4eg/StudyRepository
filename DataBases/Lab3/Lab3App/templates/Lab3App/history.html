@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>History</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body background="/static/Lab3App/background.jpg">
+<div class="container">
+    <ul class="pager">
+        <li class="previous"><a href="{% url 'Lab3App:index' %}">Film creations</a></li>
+    </ul>
+    {% if history_list %}
+        <div class="table-responsive">
+            <table class="table well">
+                <thead>
+                <tr>
+                    <th class="col-md-1">#</th>
+                    <th class="col-md-1">FC</th>
+                    <th>Film</th>
+                    <th>Director</th>
+                    <th>Studio</th>
+                    <th>Date&Time</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for history in history_list %}
+                    <tr>
+                        <td>{{ history.id }}</td>
+                        <td>{{ history.filmCreations_id }}</td>
+                        <td>{{ history.filmHistory }}</td>
+                        <td>{{ history.directorHistory }}</td>
+                        <td>{{ history.studioHistory }}</td>
+                        <td>{{ history.date }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            <strong>Info!</strong> No history elements. Turn on history switcher and change smth.
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>

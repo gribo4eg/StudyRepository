@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Films>
+    <Film>
+        <Name>Film 1</Name>
+        <Duration>90</Duration>
+        <Budget>100000</Budget>
+    </Film>
+    <Film>
+        <Name>Film 2</Name>
+        <Duration>100</Duration>
+        <Budget>250000</Budget>
+    </Film>
+    <Film>
+        <Name>Film 3</Name>
+        <Duration>120</Duration>
+        <Budget>400000</Budget>
+    </Film>
+    <Film>
+        <Name>Film 4</Name>
+        <Duration>100</Duration>
+        <Budget>300000</Budget>
+    </Film>
+</Films>

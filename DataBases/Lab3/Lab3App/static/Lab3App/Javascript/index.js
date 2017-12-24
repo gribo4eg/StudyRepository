@@ -60,7 +60,6 @@ $('#newInstanceBtn').on('click', function () {
                 header: "Create instance",
                 classType: "createBtn"
             },
-
             fact: {
                 films: films,
                 directors: directors,
@@ -86,7 +85,7 @@ $modalDiv.delegate('.createBtn', 'click', function () {
         data:JSON.stringify(data),
         dataType:'json',
         success:function (result) {
-            addFact(result)
+            addFact(result.fact)
         },
         error: function () {
             alert("Error while posting data!")
@@ -193,9 +192,9 @@ $modalDiv.delegate('.updateBtn', 'click', function () {
         dataType:'json',
         success:function (result) {
             var fact = $('#fact'+id).children();
-            fact[1].textContent =result.fact['film'];
-            fact[2].textContent = result.fact['director'];
-            fact[3].textContent = result.fact['studio']
+            fact[1].textContent =result.fact['film__name'];
+            fact[2].textContent = result.fact['director__name'];
+            fact[3].textContent = result.fact['studio__name']
         },
         error: function () {
             alert("Error while updating data!")
@@ -280,63 +279,6 @@ $('#searchRange').on('click', function () {
 
 //endregion
 
-//region WORD/TEXT
-
-$('#wordTextRadio1').on('click', function () {
-    $('#wordSearchField').prop('disabled', false);
-    $('#textSearchField').prop('disabled', true);
-});
-
-
-$('#wordTextRadio2').on('click', function () {
-    $('#wordSearchField').prop('disabled', true);
-    $('#textSearchField').prop('disabled', false);
-});
-
-$('#searchWordText').on('click', function () {
-    var search, type;
-    if ($('#wordTextRadio1').prop('checked')) {
-        search =$('#wordSearchField').val();
-        type = 'word';
-    } else {
-        search = $('#textSearchField').val();
-        type = 'text';
-    }
-
-    $('#searchWordTextTable').show();
-    $.ajax({
-        type:'get',
-        url:'/api/search/studios/?type='+type+
-            '&search='+search,
-        success:function (result) {
-            $('#searchWordTextTBody').children().remove();
-            $.each(result.studios, function (i, obj) {
-                $('#searchWordTextTBody').append(Mustache.render(textTemplate, obj));
-            });
-        }
-    });
-});
-
-//endregion
-
-//endregion
-
-//region LOAD FILES
-
-$('#loadFilesBtn').on('click', function () {
-    $(this).prop('disabled', true);
-
-    $.ajax({
-        type:'get',
-        url:'/api/load_files/',
-        success:function (result) {
-            films = result.data.films;
-            directors = result.data.directors;
-            studios = result.data.studios;
-        }
-    })
-});
-
 //endregion
 
 //region TEMPLATES
@@ -344,9 +286,9 @@ $('#loadFilesBtn').on('click', function () {
 var factTemplate =
     "<tr id='fact{{id}}'>" +
     "   <td class='col-md-1'>{{id}}</td>" +
-    "   <td>{{film}}</td>" +
-    "   <td>{{director}}</td>" +
-    "   <td>{{studio}}</td>" +
+    "   <td>{{film__name}}</td>" +
+    "   <td>{{director__name}}</td>" +
+    "   <td>{{studio__name}}</td>" +
     "   <td>{{date}}</td>" +
     "   <td class='col-md-3 text-center'>" +
     "       <button data-id='{{id}}' class='updateBtnModal btn btn-info btn-sm'" +
@@ -370,15 +312,6 @@ var rangeTemplate =
     "   <td>{{name}}</td>" +
     "   <td>{{duration}}</td>" +
     "   <td>{{budget}}</td>"+
-    "</tr>";
-
-var textTemplate =
-    "<tr>" +
-    "   <td class='col-md-1'>{{id}}</td>" +
-    "   <td>{{name}}</td>" +
-    "   <td>{{country}}</td>" +
-    "   <td>{{year}}</td>"+
-    "   <td class='col-md-6'>{{history}}</td>"+
     "</tr>";
 
 var deletingModalTemplate =

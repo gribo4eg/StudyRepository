@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Directors>
+    <Director>
+        <Name>Director 1</Name>
+        <Country>Country of Directors</Country>
+        <Oscar>1</Oscar>
+        <Bio>Regna terrae, cantate Deo, psallite Domino qui fertis ascendit super caelum caeli ad Orientem Ecce dabit voci suae vocem virtutis, tribuite virtutem deo.</Bio>
+    </Director>
+    <Director>
+        <Name>Director 2</Name>
+        <Country>Country of Director 2</Country>
+        <Oscar>0</Oscar>
+        <Bio>Exorcizamus te, omnis immundus spiritus omnis satanica potestas, omnis incursio infernalis adversarii, omnis legio, omnis congregatio et secta diabolica. Ergo draco maledicte et omnis legio diabolica adjuramus te.</Bio>
+    </Director>
+    <Director>
+        <Name>Director 3</Name>
+        <Country>Country of Directors</Country>
+        <Oscar>1</Oscar>
+        <Bio>Simple biography with omnis unknown words for me potestas, even i dont understand why I do diabolica this stuff</Bio>
+    </Director>
+    <Director>
+        <Name>Director 4</Name>
+        <Country>Country of Director 4</Country>
+        <Oscar>1</Oscar>
+        <Bio>Simple biography afwfw efqwefasf kfkfkfk BBBRRRAAAAA KEKEKE just copy of director3 even i dont understand why I do diabolica this stuff</Bio>
+    </Director>
+</Directors>

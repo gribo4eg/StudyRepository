@@ -11,13 +11,12 @@ class Database:
     studios_xml = "Lab2App/static/Lab2App/Files/Studios.xml"
 
     con = None
-    files = False
 
     def __init__(self):
         with open(Database.config_json, 'r') as f:
             data = json.load(f)
         self.con = mdb.connect(data['host'], data['user'], data['password'],
-                               data['database'], port=data['port'])
+                               data['name'], port=data['port'])
         print("Open!")
 
     def xml_to_db(self):

@@ -1,0 +1,6 @@
+INFO (2018-3-20 2:1:36) : | Program started
+WARNING (2018-3-20 2:1:36) : | PARENT: Child was born by me with PID: 12094
+INFO (2018-3-20 2:1:36) : | PARENT: Parent is done.
+WARNING (2018-3-20 2:1:36) : | CHILD: I was born! New session ID: 12094
+INFO (2018-3-20 2:1:36) : | CHILD: I've changed working directory to "/" 
+WARNING (2018-3-20 2:1:36) : | CHILD: Closing all parent descriptors...

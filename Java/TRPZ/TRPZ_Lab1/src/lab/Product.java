@@ -22,4 +22,8 @@ public class Product {
     public void setCost(double cost) {
         this.cost = cost;
     }
+
+    public void printProduct(){
+        System.out.println(String.format("Product: %s, cost: %.2f", name, cost));
+    }
 }

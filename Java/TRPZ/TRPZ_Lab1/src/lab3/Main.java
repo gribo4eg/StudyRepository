@@ -1,6 +1,6 @@
 package lab3;
 
-import lab.Product;
+import lab1.Product;
 
 import java.util.Random;
 

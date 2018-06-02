@@ -1,6 +1,6 @@
 package lab3;
 
-import lab.Product;
+import lab1.Product;
 
 public class Queue {
     private Product queue[];

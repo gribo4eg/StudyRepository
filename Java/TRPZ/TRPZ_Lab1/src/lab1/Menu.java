@@ -1,8 +1,5 @@
-package lab;
+package lab1;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
-
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,16 +26,16 @@ public class Menu {
         switch (person.getRole()) {
             case MANAGER:
                 for (String menuPart : managerMenu) {
-                    System.out.print(menuPart);
+                    System.out.println(menuPart);
                 }
                 break;
             case WAITER:
                 for (String menuPart : waiterMenu) {
-                    System.out.print(menuPart);
+                    System.out.println(menuPart);
                 }
                 break;
             default:
-                System.out.print("Something goes wrong");
+                System.out.println("Something goes wrong");
         }
     }
 
@@ -73,6 +70,8 @@ public class Menu {
             case 3:break;
             case 4:break;
             case 5:break;
+            default:
+                System.out.println("Shit");
         }
     }
 }

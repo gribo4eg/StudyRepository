@@ -1,6 +1,6 @@
 package lab2;
 
-import lab.*;
+import lab1.*;
 
 import java.util.Random;
 
